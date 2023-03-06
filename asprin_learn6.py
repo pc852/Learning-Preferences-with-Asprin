@@ -43,34 +43,25 @@ class Xformer(Transformer):
                     self._state = ""
                     pass
                 else:
-                    print("we're in #program preference now.")
                     self._state = "library"
                     self._builder.add(stm)
             elif stm.name == "backend":
                 self._state = "backend"
                 self._builder.add(stm)
-                print("we're in #program backend now.")
             elif stm.name == "examples":
                 self._state = "examples"
                 self._builder.add(stm)
-                print("we're in #program examples now.")
             elif stm.name == "domain":
                 self._state = "domain"
                 self._builder.add(stm)
-                print("we're in #program domain now.")
             elif stm.name == "generation":
                 self._state = "generation"
                 self._builder.add(stm)
-                print("We're in #program generation now.")
             elif stm.name == "heuristic":
                 self._state = "heuristic"
-                #print("We're in #program heuristic now.")
             else:
                 self._state = ""
                 self._builder.add(stm)
-                #print("unknown stm: ", stm)
-                #print("Unknown program name, please check.")
-                #raise RuntimeError("unexpected program part")
 
         else:
             if self._state == "examples" or self._state == "domain":
@@ -265,12 +256,29 @@ class AsprinLearn(Application):
     def formula(self):
         return self.forAtoms
 
+    def printPref(self, type_lst, ele_lst):
+        self.prefPrint = "#preference("
+        for typ in type_lst:
+            toPrint = ""
+            toPrint = self.prefPrint + typ[0] + "," + typ[1] + ")"
+            toPrint = toPrint + "{"
+            for ele in ele_lst:
+                if ele[0] == typ[0]:
+                    toPrint = toPrint + ele[3].lstrip("for(")[:-1] + ","
+            if toPrint[-1] == "{":
+                continue
+            toPrint = toPrint[:-1] + "}."
+            print("\n","Learned preference statement: ", toPrint)
+
+
     def main(self, ctl, files):
         if not files:
             files = ["-"]
         conf = self._conf
         istop, threads = conf.istop, conf.threads
         self.forAtoms = []
+        self.prefType = []
+        self.prefEle = []
 
         with ProgramBuilder(ctl) as bld:
             trans = Xformer(bld)
@@ -298,7 +306,21 @@ class AsprinLearn(Application):
         ctl.ground(part2, context=self)
         #print([(str(x.symbol), x.is_fact) for x in ctl.symbolic_atoms.by_signature("holds", 2)])
         #print([(str(x.symbol), x.is_fact) for x in ctl.symbolic_atoms.by_signature("_b_for", 1)])
-        ctl.solve(on_model=print)
+        with ctl.solve(yield_=True) as hnd:
+            for m in hnd:
+                print(m)
+                self.prefType = []
+                self.prefEle = []
+                for lit in m.symbols(shown=True):
+                    if lit.name == "preference":
+                        if len(lit.arguments) == 2:
+                            self.prefType.append([str(lit.arguments[0]),str(lit.arguments[1])])
+                        elif len(lit.arguments) == 5:
+                            self.prefEle.append([str(lit.arguments[0]),str(lit.arguments[1]),\
+                            str(lit.arguments[2]),str(lit.arguments[3]),str(lit.arguments[4])])
+            print(hnd.get())
+
+        self.printPref(self.prefType, self.prefEle)
         solvedTheProblem()
 
 
