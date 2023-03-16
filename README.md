@@ -18,4 +18,4 @@ The system outputs:
 
 ### Usage
 *** 
-`python3 asprin_learn6.lp <domain.lp> <examples.lp> <generation.lp> <lib.lp> <backend.lp>` 
+`python3 asprin_learn.lp <domain.lp> <examples.lp> <generation.lp> <lib.lp> <backend.lp>` 
