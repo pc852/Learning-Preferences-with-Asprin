@@ -296,7 +296,6 @@ class AsprinLearn(Application):
         with ProgramBuilder(ctl) as bld:
             trans = Xformer(bld, self.prefNames)
             parse_files(files, trans.process)
-        print(self.prefNames)
 
         part1.append(('examples', []))
         part1.append(('generation', []))
