@@ -147,28 +147,6 @@ error(("preference:",P,": error: preference specification error, type '",T,"' re
 %        return int(math.ceil(math.log(x.number,2)))
 %
 
-#program preference(and).
-
-
-better(P) :- preference(P,and),better(Q) : preference(P,_,_,name(Q),_).
-
-
-
-bettereq(P) :- preference(P,and),1 #sum { 1: better(P); 1: eq(P) }.
-
-
-eq(P) :- preference(P,and),eq(Q) : preference(P,_,_,name(Q),_).
-
-
-
-worseeq(P) :- preference(P,and),1 #sum { 1: worse(P); 1: eq(P) }.
-
-
-worse(P) :- preference(P,and),worse(Q) : preference(P,_,_,name(Q),_).
-
-
-
-unc(P) :- preference(P,and),not bettereq(P); not worseeq(P).
 
 % errors
 error_type(and,no_formulas).
@@ -370,28 +348,7 @@ error_type(more(weight),no_sets).
 error_type(more(weight),yes_weights).
 
 
-#program preference(neg).
 
-
-better(P) :- preference(P,neg),worse(Q), preference(P,_,_,name(Q),_).
-
-
-
-bettereq(P) :- preference(P,neg),1 #sum { 1: better(P); 1: eq(P) }.
-
-
-eq(P) :- preference(P,neg),eq(Q), preference(P,_,_,name(Q),_).
-
-
-
-worseeq(P) :- preference(P,neg),1 #sum { 1: worse(P); 1: eq(P) }.
-
-
-worse(P) :- preference(P,neg),better(Q), preference(P,_,_,name(Q),_).
-
-
-
-unc(P) :- preference(P,neg),not bettereq(P); not worseeq(P).
 
 % errors
 error_type(neg,no_formulas).
