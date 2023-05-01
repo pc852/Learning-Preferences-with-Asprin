@@ -1,4 +1,4 @@
-# Learning Preferences with Asprin
+# asprin-vPL -- Learning Preferences with Asprin
 An answer set programming (ASP) system for learning preferences.
 
 ### Dependencies
