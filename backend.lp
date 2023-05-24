@@ -19,4 +19,3 @@ output(M,unc,N)   :-    unc(P,M,N).
 :- { output(M,O,N) } < 1, input(M,I,N).
 #minimize{1@1,M,N: input(M,R,N), not output(M,R,N)}.
 #minimize{1@0,A,B,C,D,E: preference(A,B,C,D,E)    }.
-
