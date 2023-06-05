@@ -18,7 +18,9 @@ preference(test5b, (2,1), 2, for(or(       atom(b(5)) ,neg( atom(b(6))))), (1,2)
 % }.
 %
 % #preference(test5b,type2){
-%   5,6 :: not atom(b(3))  & not atom(b(4))  >> 1,2 :: atom(b(5)) | not atom(b(6)) || 3,4 :: atom(b(1)) | atom(b(2)) 
+%   5,6 :: not atom(b(3))  & not atom(b(4))  >> 1,2 :: atom(b(5)) | not atom(b(6))  || 3,4 :: atom(b(1)) | atom(b(2)) 
 % }.
+
+% to run unit tests, change working directory to ../Asprin, then execute "python3 asprin_learn.py backend.lp unit_test_<x>.lp", replacing <x> with the test number
 
 

@@ -25,3 +25,4 @@ preference(test3b, (2,3), 1, for(atom(b(3))), ()).
 %  atom(b(3)) 
 % }.
 
+% to run unit tests, change working directory to ../Asprin, then execute "python3 asprin_learn.py backend.lp unit_test_<x>.lp", replacing <x> with the test number
