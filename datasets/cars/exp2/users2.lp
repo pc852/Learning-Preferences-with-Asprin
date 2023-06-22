@@ -1,0 +1,65 @@
+% user(User ID, Education, Age, Gender, Region, no. of Correct Controls).
+% Education: 0 for no response, 1 for High Sch, 2 for Bachelors, 3 for PhD.
+% Age:       0 for no response, 1 for <25     , 2 for 25-30    , 3 for 30-35     , 4 for > 40.
+% Gender:    0 for no response, 1 for male    , 2 for female.
+% Region:    0 for no response, 1 for South   , 2 for West     , 3 for North-East, 4 for Mid-West.    
+user(1,2,1,2,3,4).
+user(2,1,1,2,1,3).
+user(3,2,3,2,1,4).
+user(4,2,2,1,2,4).
+user(5,2,3,2,2,4).
+user(6,3,1,2,2,4).
+user(7,1,2,1,2,4).
+user(8,1,3,1,1,4).
+user(9,2,3,2,1,4).
+user(10,2,1,2,2,3).
+user(11,1,3,2,2,4).
+user(12,1,2,1,2,4).
+user(13,2,1,0,1,4).
+user(14,2,3,2,2,4).
+user(15,2,1,2,2,4).
+user(16,1,2,1,1,4).
+user(17,1,3,2,3,3).
+user(18,1,1,1,1,4).
+user(19,2,2,1,3,4).
+user(20,1,1,1,2,4).
+user(21,1,1,2,2,4).
+user(22,2,1,2,1,4).
+user(23,3,2,1,3,4).
+user(24,2,3,1,2,4).
+user(25,2,2,1,1,4).
+user(26,3,1,1,3,4).
+user(27,3,1,2,3,4).
+user(28,1,1,2,3,4).
+user(29,2,1,2,2,4).
+user(30,3,1,2,1,4).
+user(31,2,3,0,2,4).
+user(32,2,4,1,3,3).
+user(33,3,4,2,4,4).
+user(34,2,1,1,2,4).
+user(35,1,4,1,4,4).
+user(36,1,2,1,3,4).
+user(37,2,2,2,3,4).
+user(38,1,2,2,1,4).
+user(39,1,3,1,1,4).
+user(40,3,0,2,2,4).
+user(41,1,2,1,2,4).
+user(42,1,1,1,3,4).
+user(43,2,3,1,4,3).
+user(44,2,2,1,1,4).
+user(45,2,1,2,1,4).
+user(46,2,3,1,2,4).
+user(47,2,2,1,2,4).
+user(48,2,2,1,3,3).
+user(49,1,2,2,2,4).
+user(50,1,1,1,3,4).
+user(51,2,2,2,3,4).
+user(52,2,1,2,4,4).
+user(53,1,3,2,3,3).
+user(54,1,1,1,4,4).
+user(55,2,1,2,2,4).
+user(56,1,3,2,1,4).
+user(57,1,3,1,4,4).
+user(58,2,1,1,2,4).
+user(59,1,2,2,3,4).
+user(60,2,1,1,3,4).
