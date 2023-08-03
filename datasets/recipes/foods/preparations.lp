@@ -1,211 +1,212 @@
-food(Spaghetti alla Carbonara,preparation,(0,4)).
-food(Spaghetti alla Carbonara,preparation,(1,2)).
-food(Spaghetti alla Carbonara,preparation,(4,1)).
-food(Spaghetti alle vongole,preparation,(0,4)).
-food(Spaghetti alle vongole,preparation,(6,2)).
-food(Spaghetti Cacio e Pepe,preparation,(0,4)).
-food(Spaghetti Cacio e Pepe,preparation,(1,1)).
-food(Spaghetti Cacio e Pepe,preparation,(4,3)).
-food(Spaghetti all'Amatriciana,preparation,(0,4)).
-food(Spaghetti all'Amatriciana,preparation,(1,2)).
-food(Spaghetti all'Amatriciana,preparation,(6,3)).
-food(Penne al baffo,preparation,(0,4)).
-food(Penne al baffo,preparation,(1,1)).
-food(Lasagne alla Bolognese,preparation,(1,2)).
-food(Lasagne alla Bolognese,preparation,(5,5)).
-food(Lasagne alla Bolognese,preparation,(6,4)).
-food(Lasagne alla Bolognese,preparation,(7,2)).
-food(Parmigiana di melanzane,preparation,(0,1)).
-food(Parmigiana di melanzane,preparation,(1,2)).
-food(Parmigiana di melanzane,preparation,(2,4)).
-food(Parmigiana di melanzane,preparation,(5,4)).
-food(Parmigiana di melanzane,preparation,(6,1)).
-food(Gateau di patate,preparation,(0,3)).
-food(Gateau di patate,preparation,(5,5)).
-food(Spaghetti allo scoglio,preparation,(0,4)).
-food(Spaghetti allo scoglio,preparation,(6,4)).
-food(Arancine,preparation,(0,4)).
-food(Arancine,preparation,(1,1)).
-food(Arancine,preparation,(2,4)).
-food(Arancine,preparation,(7,2)).
-food(Pasta e fagioli,preparation,(1,3)).
-food(Pasta e fagioli,preparation,(6,4)).
-food(Pasta alla gricia,preparation,(0,4)).
-food(Pasta alla gricia,preparation,(1,3)).
-food(Crema di zucca,preparation,(1,4)).
-food(Crema di zucca,preparation,(5,4)).
-food(Crema di zucca,preparation,(6,4)).
-food(Pasta al forno,preparation,(0,4)).
-food(Pasta al forno,preparation,(1,2)).
-food(Pasta al forno,preparation,(5,5)).
-food(Calamarata,preparation,(0,4)).
-food(Calamarata,preparation,(5,2)).
-food(Calamarata,preparation,(6,3)).
-food(Pollo alle mandorle,preparation,(0,3)).
-food(Pollo alle mandorle,preparation,(1,4)).
-food(Pollo alle mandorle,preparation,(3,2)).
-food(Pollo alle mandorle,preparation,(6,3)).
-food(Torta salata di melanzane,preparation,(5,5)).
-food(Vitello tonnato,preparation,(0,4)).
-food(Vitello tonnato,preparation,(6,3)).
-food(Spaghetti con crema di burrata e melanzane,preparation,(0,4)).
-food(Spaghetti con crema di burrata e melanzane,preparation,(1,1)).
-food(Spaghetti con crema di burrata e melanzane,preparation,(2,2)).
-food(Insalata tiepida di polpo e patate,preparation,(0,5)).
-food(Scaloppine al limone,preparation,(1,4)).
-food(Scaloppine al limone,preparation,(6,3)).
-food(Melanzane al forno,preparation,(5,5)).
-food(Seppie con piselli,preparation,(6,3)).
-food(Seppie con piselli,preparation,(7,4)).
-food(Torta salata di zucchine,preparation,(5,4)).
-food(Torta salata di zucchine,preparation,(7,3)).
-food(Polpettine di tonno e ricotta,preparation,(2,5)).
-food(Polpette di melanzane,preparation,(2,5)).
-food(Polpette di melanzane,preparation,(5,2)).
-food(Conchiglioni ripieni,preparation,(0,4)).
-food(Conchiglioni ripieni,preparation,(1,2)).
-food(Conchiglioni ripieni,preparation,(5,3)).
-food(Conchiglioni ripieni,preparation,(6,4)).
-food(Risotto allo Zafferano,preparation,(1,2)).
-food(Risotto allo Zafferano,preparation,(4,3)).
-food(Couscous alle verdure,preparation,(1,4)).
-food(Couscous alle verdure,preparation,(6,4)).
-food(Polpette al sugo,preparation,(1,4)).
-food(Polpette al sugo,preparation,(6,3)).
-food(Pasta e zucchine,preparation,(0,4)).
-food(Pasta e zucchine,preparation,(1,2)).
-food(Pasta e zucchine,preparation,(6,3)).
-food(Salmone al forno,preparation,(5,5)).
-food(Calamari ripieni,preparation,(1,3)).
-food(Calamari ripieni,preparation,(6,4)).
-food(Pasta e patate alla napoletana,preparation,(0,4)).
-food(Pasta e patate alla napoletana,preparation,(1,3)).
-food(Gnocchi alla romana,preparation,(0,3)).
-food(Gnocchi alla romana,preparation,(5,3)).
-food(Pizzoccheri alla valtellinese,preparation,(0,4)).
-food(Pizzoccheri alla valtellinese,preparation,(6,3)).
-food(Pasta e lenticchie,preparation,(0,4)).
-food(Pasta e lenticchie,preparation,(1,2)).
-food(Pasta e lenticchie,preparation,(7,3)).
-food(Pasta allo scarpariello,preparation,(0,4)).
-food(Pasta allo scarpariello,preparation,(1,2)).
-food(Cannelloni,preparation,(1,2)).
-food(Cannelloni,preparation,(5,5)).
-food(Cannelloni,preparation,(6,3)).
-food(Sushi,preparation,(0,5)).
-food(Gamberoni al forno,preparation,(5,5)).
-food(Pasta alla zozzona,preparation,(0,4)).
-food(Pasta alla zozzona,preparation,(1,2)).
-food(Paccheri con carciofi alla carbonara,preparation,(0,4)).
-food(Paccheri con carciofi alla carbonara,preparation,(1,2)).
-food(Ossibuchi alla milanese,preparation,(1,2)).
-food(Ossibuchi alla milanese,preparation,(6,4)).
-food(Trofie con crema di zucchine e pancetta,preparation,(0,5)).
-food(Trofie con crema di zucchine e pancetta,preparation,(1,3)).
-food(Mozzarella in carrozza,preparation,(2,5)).
-food(Brasato al Barolo,preparation,(3,3)).
-food(Brasato al Barolo,preparation,(6,4)).
-food(Baccalà in umido,preparation,(1,3)).
-food(Baccalà in umido,preparation,(7,4)).
-food(Saltimbocca alla Romana,preparation,(6,5)).
-food(Fiori di zucca in pastella,preparation,(2,5)).
-food(Gnocco fritto,preparation,(2,5)).
-food(Pollo al limone,preparation,(1,3)).
-food(Pollo al limone,preparation,(6,4)).
-food(Insalata di riso,preparation,(0,4)).
-food(Piadina Romagnola,preparation,(1,5)).
-food(Zuppa di ceci,preparation,(1,3)).
-food(Zuppa di ceci,preparation,(7,4)).
-food(Spaghetti al tonno,preparation,(0,4)).
-food(Spaghetti al tonno,preparation,(1,2)).
-food(Pollo al curry,preparation,(0,3)).
-food(Pollo al curry,preparation,(1,1)).
-food(Pollo al curry,preparation,(3,1)).
-food(Pollo al curry,preparation,(6,3)).
-food(Spezzatino di vitello con patate,preparation,(1,3)).
-food(Spezzatino di vitello con patate,preparation,(6,3)).
-food(Spezzatino di vitello con patate,preparation,(7,5)).
-food(Risotto alla salsiccia,preparation,(1,3)).
-food(Risotto alla salsiccia,preparation,(4,4)).
-food(Crocchette di patate,preparation,(0,3)).
-food(Crocchette di patate,preparation,(2,5)).
-food(Riso alla cantonese,preparation,(0,4)).
-food(Riso alla cantonese,preparation,(6,3)).
-food(Gnocchi alla sorrentina,preparation,(0,4)).
-food(Gnocchi alla sorrentina,preparation,(1,1)).
-food(Gnocchi alla sorrentina,preparation,(5,2)).
-food(Paccheri al sugo di calamari,preparation,(0,4)).
-food(Paccheri al sugo di calamari,preparation,(6,3)).
-food(Orecchiette broccoli e salsiccia,preparation,(0,4)).
-food(Orecchiette broccoli e salsiccia,preparation,(1,2)).
-food(Pollo alla cacciatora,preparation,(6,3)).
-food(Pollo alla cacciatora,preparation,(7,5)).
-food(Linguine gamberetti zucchine e zafferano,preparation,(0,4)).
-food(Linguine gamberetti zucchine e zafferano,preparation,(1,2)).
-food(Linguine gamberetti zucchine e zafferano,preparation,(6,3)).
-food(Cornetti salati,preparation,(5,5)).
-food(Salmone croccante,preparation,(5,5)).
-food(Risotto con zucchine,preparation,(1,2)).
-food(Risotto con zucchine,preparation,(4,4)).
-food(Risotto con zucchine,preparation,(6,3)).
-food(Genovese,preparation,(0,4)).
-food(Genovese,preparation,(6,5)).
-food(Pesce spada alla siciliana,preparation,(1,3)).
-food(Pesce spada alla siciliana,preparation,(6,3)).
-food(Cozze gratinate,preparation,(5,4)).
-food(Scaloppine ai funghi,preparation,(1,3)).
-food(Scaloppine ai funghi,preparation,(6,4)).
-food(Polpette di verdure,preparation,(1,3)).
-food(Polpette di verdure,preparation,(2,4)).
-food(Spezzatino di manzo,preparation,(6,4)).
-food(Torta rustica salata,preparation,(5,4)).
-food(Passatelli in brodo,preparation,(0,4)).
-food(Arrosto di vitello al forno con patate,preparation,(6,4)).
-food(Pasta con la zucca,preparation,(0,4)).
-food(Pasta con la zucca,preparation,(6,3)).
-food(Frittata di spaghetti,preparation,(0,3)).
-food(Frittata di spaghetti,preparation,(1,1)).
-food(Frittata di spaghetti,preparation,(6,4)).
-food(Canederli alla tirolese (Knödel),preparation,(0,3)).
-food(Canederli alla tirolese (Knödel),preparation,(1,3)).
-food(Spaghetti alla puttanesca,preparation,(0,4)).
-food(Spaghetti alla puttanesca,preparation,(1,3)).
-food(Pasta al forno con broccoli e pancetta,preparation,(1,2)).
-food(Pasta al forno con broccoli e pancetta,preparation,(5,4)).
-food(Pasta al forno con broccoli e pancetta,preparation,(6,2)).
-food(Polpette di zucchine,preparation,(2,4)).
-food(Carne alla pizzaiola,preparation,(1,2)).
-food(Carne alla pizzaiola,preparation,(6,4)).
-food(Cosce di pollo al forno,preparation,(5,4)).
-food(Vellutata di zucca,preparation,(1,1)).
-food(Vellutata di zucca,preparation,(6,4)).
-food(Capesante gratinate,preparation,(5,4)).
-food(Pasta alla cenere,preparation,(0,4)).
-food(Pasta alla cenere,preparation,(6,2)).
-food(Polpette di carne,preparation,(2,4)).
-food(Pasta alla marinara,preparation,(0,4)).
-food(Pasta alla marinara,preparation,(1,1)).
-food(Pasta alla marinara,preparation,(6,3)).
-food(Pasta agli asparagi,preparation,(0,4)).
-food(Pasta agli asparagi,preparation,(6,2)).
-food(Spaghetti aglio olio e peperoncino,preparation,(0,4)).
-food(Spaghetti aglio olio e peperoncino,preparation,(1,3)).
-food(Pomodori ripieni,preparation,(0,3)).
-food(Pomodori ripieni,preparation,(1,3)).
-food(Pomodori ripieni,preparation,(6,3)).
-food(Ali di pollo e patate saporite,preparation,(5,4)).
-food(Pasta con asparagi e pancetta,preparation,(0,4)).
-food(Pasta con asparagi e pancetta,preparation,(1,3)).
-food(Pasta con asparagi e pancetta,preparation,(4,1)).
-food(Orecchiette con le cime di rapa,preparation,(0,4)).
-food(Orecchiette con le cime di rapa,preparation,(1,3)).
-food(Orecchiette con le cime di rapa,preparation,(6,2)).
-food(Carbonara di mare,preparation,(0,4)).
-food(Carbonara di mare,preparation,(1,3)).
-food(Tagliatelle ai funghi porcini,preparation,(0,4)).
-food(Tagliatelle ai funghi porcini,preparation,(6,3)).
-food(Risotto ai funghi porcini,preparation,(0,4)).
-food(Risotto ai funghi porcini,preparation,(1,1)).
-food(Risotto ai funghi porcini,preparation,(4,3)).
-food(Risotto ai funghi porcini,preparation,(6,2)).
-food(Spezzatino con piselli,preparation,(6,4)).
+% food(<ID>, preparation(<class>, <weight>)).
+food(1,preparation,(0,4)).
+food(1,preparation,(1,2)).
+food(1,preparation,(4,1)).
+food(2,preparation,(0,4)).
+food(2,preparation,(6,2)).
+food(3,preparation,(0,4)).
+food(3,preparation,(1,1)).
+food(3,preparation,(4,3)).
+food(4,preparation,(0,4)).
+food(4,preparation,(1,2)).
+food(4,preparation,(6,3)).
+food(5,preparation,(0,4)).
+food(5,preparation,(1,1)).
+food(6,preparation,(1,2)).
+food(6,preparation,(5,5)).
+food(6,preparation,(6,4)).
+food(6,preparation,(7,2)).
+food(7,preparation,(0,1)).
+food(7,preparation,(1,2)).
+food(7,preparation,(2,4)).
+food(7,preparation,(5,4)).
+food(7,preparation,(6,1)).
+food(8,preparation,(0,3)).
+food(8,preparation,(5,5)).
+food(9,preparation,(0,4)).
+food(9,preparation,(6,4)).
+food(10,preparation,(0,4)).
+food(10,preparation,(1,1)).
+food(10,preparation,(2,4)).
+food(10,preparation,(7,2)).
+food(11,preparation,(1,3)).
+food(11,preparation,(6,4)).
+food(12,preparation,(0,4)).
+food(12,preparation,(1,3)).
+food(13,preparation,(1,4)).
+food(13,preparation,(5,4)).
+food(13,preparation,(6,4)).
+food(14,preparation,(0,4)).
+food(14,preparation,(1,2)).
+food(14,preparation,(5,5)).
+food(15,preparation,(0,4)).
+food(15,preparation,(5,2)).
+food(15,preparation,(6,3)).
+food(16,preparation,(0,3)).
+food(16,preparation,(1,4)).
+food(16,preparation,(3,2)).
+food(16,preparation,(6,3)).
+food(17,preparation,(5,5)).
+food(18,preparation,(0,4)).
+food(18,preparation,(6,3)).
+food(19,preparation,(0,4)).
+food(19,preparation,(1,1)).
+food(19,preparation,(2,2)).
+food(20,preparation,(0,5)).
+food(21,preparation,(1,4)).
+food(21,preparation,(6,3)).
+food(22,preparation,(5,5)).
+food(23,preparation,(6,3)).
+food(23,preparation,(7,4)).
+food(24,preparation,(5,4)).
+food(24,preparation,(7,3)).
+food(25,preparation,(2,5)).
+food(26,preparation,(2,5)).
+food(26,preparation,(5,2)).
+food(27,preparation,(0,4)).
+food(27,preparation,(1,2)).
+food(27,preparation,(5,3)).
+food(27,preparation,(6,4)).
+food(28,preparation,(1,2)).
+food(28,preparation,(4,3)).
+food(29,preparation,(1,4)).
+food(29,preparation,(6,4)).
+food(30,preparation,(1,4)).
+food(30,preparation,(6,3)).
+food(31,preparation,(0,4)).
+food(31,preparation,(1,2)).
+food(31,preparation,(6,3)).
+food(32,preparation,(5,5)).
+food(33,preparation,(1,3)).
+food(33,preparation,(6,4)).
+food(34,preparation,(0,4)).
+food(34,preparation,(1,3)).
+food(35,preparation,(0,3)).
+food(35,preparation,(5,3)).
+food(36,preparation,(0,4)).
+food(36,preparation,(6,3)).
+food(37,preparation,(0,4)).
+food(37,preparation,(1,2)).
+food(37,preparation,(7,3)).
+food(38,preparation,(0,4)).
+food(38,preparation,(1,2)).
+food(39,preparation,(1,2)).
+food(39,preparation,(5,5)).
+food(39,preparation,(6,3)).
+food(40,preparation,(0,5)).
+food(41,preparation,(5,5)).
+food(42,preparation,(0,4)).
+food(42,preparation,(1,2)).
+food(43,preparation,(0,4)).
+food(43,preparation,(1,2)).
+food(44,preparation,(1,2)).
+food(44,preparation,(6,4)).
+food(45,preparation,(0,5)).
+food(45,preparation,(1,3)).
+food(46,preparation,(2,5)).
+food(47,preparation,(3,3)).
+food(47,preparation,(6,4)).
+food(48,preparation,(1,3)).
+food(48,preparation,(7,4)).
+food(49,preparation,(6,5)).
+food(50,preparation,(2,5)).
+food(51,preparation,(2,5)).
+food(52,preparation,(1,3)).
+food(52,preparation,(6,4)).
+food(53,preparation,(0,4)).
+food(54,preparation,(1,5)).
+food(55,preparation,(1,3)).
+food(55,preparation,(7,4)).
+food(56,preparation,(0,4)).
+food(56,preparation,(1,2)).
+food(57,preparation,(0,3)).
+food(57,preparation,(1,1)).
+food(57,preparation,(3,1)).
+food(57,preparation,(6,3)).
+food(58,preparation,(1,3)).
+food(58,preparation,(6,3)).
+food(58,preparation,(7,5)).
+food(59,preparation,(1,3)).
+food(59,preparation,(4,4)).
+food(60,preparation,(0,3)).
+food(60,preparation,(2,5)).
+food(61,preparation,(0,4)).
+food(61,preparation,(6,3)).
+food(62,preparation,(0,4)).
+food(62,preparation,(1,1)).
+food(62,preparation,(5,2)).
+food(63,preparation,(0,4)).
+food(63,preparation,(6,3)).
+food(64,preparation,(0,4)).
+food(64,preparation,(1,2)).
+food(65,preparation,(6,3)).
+food(65,preparation,(7,5)).
+food(66,preparation,(0,4)).
+food(66,preparation,(1,2)).
+food(66,preparation,(6,3)).
+food(67,preparation,(5,5)).
+food(68,preparation,(5,5)).
+food(69,preparation,(1,2)).
+food(69,preparation,(4,4)).
+food(69,preparation,(6,3)).
+food(70,preparation,(0,4)).
+food(70,preparation,(6,5)).
+food(71,preparation,(1,3)).
+food(71,preparation,(6,3)).
+food(72,preparation,(5,4)).
+food(73,preparation,(1,3)).
+food(73,preparation,(6,4)).
+food(74,preparation,(1,3)).
+food(74,preparation,(2,4)).
+food(75,preparation,(6,4)).
+food(76,preparation,(5,4)).
+food(77,preparation,(0,4)).
+food(78,preparation,(6,4)).
+food(79,preparation,(0,4)).
+food(79,preparation,(6,3)).
+food(80,preparation,(0,3)).
+food(80,preparation,(1,1)).
+food(80,preparation,(6,4)).
+food(81,preparation,(0,3)).
+food(81,preparation,(1,3)).
+food(82,preparation,(0,4)).
+food(82,preparation,(1,3)).
+food(83,preparation,(1,2)).
+food(83,preparation,(5,4)).
+food(83,preparation,(6,2)).
+food(84,preparation,(2,4)).
+food(85,preparation,(1,2)).
+food(85,preparation,(6,4)).
+food(86,preparation,(5,4)).
+food(87,preparation,(1,1)).
+food(87,preparation,(6,4)).
+food(88,preparation,(5,4)).
+food(89,preparation,(0,4)).
+food(89,preparation,(6,2)).
+food(90,preparation,(2,4)).
+food(91,preparation,(0,4)).
+food(91,preparation,(1,1)).
+food(91,preparation,(6,3)).
+food(92,preparation,(0,4)).
+food(92,preparation,(6,2)).
+food(93,preparation,(0,4)).
+food(93,preparation,(1,3)).
+food(94,preparation,(0,3)).
+food(94,preparation,(1,3)).
+food(94,preparation,(6,3)).
+food(95,preparation,(5,4)).
+food(96,preparation,(0,4)).
+food(96,preparation,(1,3)).
+food(96,preparation,(4,1)).
+food(97,preparation,(0,4)).
+food(97,preparation,(1,3)).
+food(97,preparation,(6,2)).
+food(98,preparation,(0,4)).
+food(98,preparation,(1,3)).
+food(99,preparation,(0,4)).
+food(99,preparation,(6,3)).
+food(100,preparation,(0,4)).
+food(100,preparation,(1,1)).
+food(100,preparation,(4,3)).
+food(100,preparation,(6,2)).
+food(101,preparation,(6,4)).

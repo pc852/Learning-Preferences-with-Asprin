@@ -1,3 +1,4 @@
+% sushi(<ID>, <style>, <major grp>, <minor grp>, <oiliness 0-100>, <often eaten? 0-100>, <price >=100>, <often sold? 0-100>).
 sushi(0,1,0,6,68,71,183,84).
 sushi(1,1,0,3,23,66,199,88).
 sushi(2,1,0,1,44,78,187,88).

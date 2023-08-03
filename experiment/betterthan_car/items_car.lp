@@ -1,0 +1,24 @@
+#program examples.
+
+% car(Item ID, BodyType, Transmission, Engin Capacity, Fuel Consumed).
+% BodyType:        1 for Sedan  , 2 for SUV
+% Transmission:    1 for manual , 2 for automatic
+% Engine Capacity: 1 for 2.5L   , 2 for 3.5L      , 3 for 4.5L   , 4 for 5.5L   , 5 for 6.2L
+% Fuel Consumed:   1 for hybrid , 2 for non-hybrid
+car(1,2,1,1,2).
+car(2,1,2,4,1).
+car(3,1,1,3,2).
+car(4,1,1,5,2).
+car(5,2,1,2,2).
+car(6,2,2,2,1).
+car(7,1,2,2,1).
+car(8,2,2,1,1).
+car(9,1,2,2,2).
+car(10,2,2,3,2).
+
+
+%2211
+%1241
+
+%1221
+%2211

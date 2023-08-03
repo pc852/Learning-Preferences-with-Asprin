@@ -1,3 +1,11 @@
+% 10 subsets of 21 random recipes each. Each user sorts a subset in three parts:
+% 1, 2, 3, 4, 5, 6, 7, 8, 9,10
+% 1, 2, 3,11,12,13,14,15,16,17
+% 4, 5, 6,11,12,13,18,19,20,21
+%preferences below directly inferred from the ordering above.
+
+%pref(<food1>, <relation>, <food2>, <user>).
+
 pref(24,better,63,0).
 pref(24,better,23,0).
 pref(24,better,22,0).

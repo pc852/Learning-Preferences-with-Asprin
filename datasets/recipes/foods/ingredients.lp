@@ -1,714 +1,715 @@
-food(Spaghetti alla Carbonara,ingredient,(6,2)).
-food(Spaghetti alla Carbonara,ingredient,(10,5)).
-food(Spaghetti alla Carbonara,ingredient,(11,3)).
-food(Spaghetti alla Carbonara,ingredient,(22,3)).
-food(Spaghetti alla Carbonara,ingredient,(29,1)).
-food(Spaghetti alle vongole,ingredient,(9,2)).
-food(Spaghetti alle vongole,ingredient,(10,5)).
-food(Spaghetti alle vongole,ingredient,(15,3)).
-food(Spaghetti alle vongole,ingredient,(19,5)).
-food(Spaghetti alle vongole,ingredient,(29,1)).
-food(Spaghetti Cacio e Pepe,ingredient,(6,4)).
-food(Spaghetti Cacio e Pepe,ingredient,(10,5)).
-food(Spaghetti Cacio e Pepe,ingredient,(29,4)).
-food(Spaghetti all'Amatriciana,ingredient,(6,2)).
-food(Spaghetti all'Amatriciana,ingredient,(9,1)).
-food(Spaghetti all'Amatriciana,ingredient,(10,5)).
-food(Spaghetti all'Amatriciana,ingredient,(14,3)).
-food(Spaghetti all'Amatriciana,ingredient,(22,3)).
-food(Spaghetti all'Amatriciana,ingredient,(29,1)).
-food(Spaghetti all'Amatriciana,ingredient,(34,1)).
-food(Penne al baffo,ingredient,(9,1)).
-food(Penne al baffo,ingredient,(10,5)).
-food(Penne al baffo,ingredient,(14,2)).
-food(Penne al baffo,ingredient,(15,1)).
-food(Penne al baffo,ingredient,(18,3)).
-food(Penne al baffo,ingredient,(22,3)).
-food(Penne al baffo,ingredient,(29,1)).
-food(Lasagne alla Bolognese,ingredient,(0,3)).
-food(Lasagne alla Bolognese,ingredient,(4,1)).
-food(Lasagne alla Bolognese,ingredient,(6,3)).
-food(Lasagne alla Bolognese,ingredient,(9,2)).
-food(Lasagne alla Bolognese,ingredient,(13,4)).
-food(Lasagne alla Bolognese,ingredient,(14,5)).
-food(Lasagne alla Bolognese,ingredient,(15,1)).
-food(Lasagne alla Bolognese,ingredient,(18,3)).
-food(Lasagne alla Bolognese,ingredient,(22,2)).
-food(Lasagne alla Bolognese,ingredient,(29,1)).
-food(Lasagne alla Bolognese,ingredient,(33,1)).
-food(Lasagne alla Bolognese,ingredient,(34,1)).
-food(Parmigiana di melanzane,ingredient,(6,3)).
-food(Parmigiana di melanzane,ingredient,(9,2)).
-food(Parmigiana di melanzane,ingredient,(14,3)).
-food(Parmigiana di melanzane,ingredient,(15,2)).
-food(Parmigiana di melanzane,ingredient,(28,3)).
-food(Parmigiana di melanzane,ingredient,(29,1)).
-food(Parmigiana di melanzane,ingredient,(33,5)).
-food(Gateau di patate,ingredient,(2,1)).
-food(Gateau di patate,ingredient,(6,3)).
-food(Gateau di patate,ingredient,(9,2)).
-food(Gateau di patate,ingredient,(11,4)).
-food(Gateau di patate,ingredient,(22,6)).
-food(Gateau di patate,ingredient,(28,3)).
-food(Gateau di patate,ingredient,(29,1)).
-food(Gateau di patate,ingredient,(33,5)).
-food(Spaghetti allo scoglio,ingredient,(9,2)).
-food(Spaghetti allo scoglio,ingredient,(10,5)).
-food(Spaghetti allo scoglio,ingredient,(14,3)).
-food(Spaghetti allo scoglio,ingredient,(15,4)).
-food(Spaghetti allo scoglio,ingredient,(19,12)).
-food(Spaghetti allo scoglio,ingredient,(25,4)).
-food(Spaghetti allo scoglio,ingredient,(29,1)).
-food(Spaghetti allo scoglio,ingredient,(34,1)).
-food(Arancine,ingredient,(2,2)).
-food(Arancine,ingredient,(4,1)).
-food(Arancine,ingredient,(5,5)).
-food(Arancine,ingredient,(6,3)).
-food(Arancine,ingredient,(9,3)).
-food(Arancine,ingredient,(14,3)).
-food(Arancine,ingredient,(17,2)).
-food(Arancine,ingredient,(18,2)).
-food(Arancine,ingredient,(22,3)).
-food(Arancine,ingredient,(29,3)).
-food(Arancine,ingredient,(34,1)).
-food(Pasta e fagioli,ingredient,(9,1)).
-food(Pasta e fagioli,ingredient,(10,5)).
-food(Pasta e fagioli,ingredient,(14,5)).
-food(Pasta e fagioli,ingredient,(15,7)).
-food(Pasta e fagioli,ingredient,(17,5)).
-food(Pasta e fagioli,ingredient,(22,4)).
-food(Pasta e fagioli,ingredient,(29,1)).
-food(Pasta e fagioli,ingredient,(33,2)).
-food(Pasta alla gricia,ingredient,(6,4)).
-food(Pasta alla gricia,ingredient,(10,5)).
-food(Pasta alla gricia,ingredient,(22,4)).
-food(Crema di zucca,ingredient,(3,3)).
-food(Crema di zucca,ingredient,(9,2)).
-food(Crema di zucca,ingredient,(15,1)).
-food(Crema di zucca,ingredient,(29,3)).
-food(Crema di zucca,ingredient,(33,8)).
-food(Pasta al forno,ingredient,(2,1)).
-food(Pasta al forno,ingredient,(6,4)).
-food(Pasta al forno,ingredient,(9,1)).
-food(Pasta al forno,ingredient,(10,5)).
-food(Pasta al forno,ingredient,(11,2)).
-food(Pasta al forno,ingredient,(14,4)).
-food(Pasta al forno,ingredient,(15,3)).
-food(Pasta al forno,ingredient,(18,3)).
-food(Pasta al forno,ingredient,(22,5)).
-food(Pasta al forno,ingredient,(29,2)).
-food(Calamarata,ingredient,(9,1)).
-food(Calamarata,ingredient,(10,5)).
-food(Calamarata,ingredient,(14,3)).
-food(Calamarata,ingredient,(15,2)).
-food(Calamarata,ingredient,(19,4)).
-food(Calamarata,ingredient,(29,2)).
-food(Calamarata,ingredient,(34,1)).
-food(Pollo alle mandorle,ingredient,(7,5)).
-food(Pollo alle mandorle,ingredient,(9,2)).
-food(Pollo alle mandorle,ingredient,(11,2)).
-food(Pollo alle mandorle,ingredient,(12,2)).
-food(Pollo alle mandorle,ingredient,(14,2)).
-food(Pollo alle mandorle,ingredient,(21,4)).
-food(Pollo alle mandorle,ingredient,(29,1)).
-food(Torta salata di melanzane,ingredient,(6,4)).
-food(Torta salata di melanzane,ingredient,(9,1)).
-food(Torta salata di melanzane,ingredient,(13,5)).
-food(Torta salata di melanzane,ingredient,(14,1)).
-food(Torta salata di melanzane,ingredient,(29,1)).
-food(Torta salata di melanzane,ingredient,(33,5)).
-food(Vitello tonnato,ingredient,(0,5)).
-food(Vitello tonnato,ingredient,(9,1)).
-food(Vitello tonnato,ingredient,(11,2)).
-food(Vitello tonnato,ingredient,(14,1)).
-food(Vitello tonnato,ingredient,(15,3)).
-food(Vitello tonnato,ingredient,(24,1)).
-food(Vitello tonnato,ingredient,(25,7)).
-food(Vitello tonnato,ingredient,(29,2)).
-food(Vitello tonnato,ingredient,(33,1)).
-food(Vitello tonnato,ingredient,(34,1)).
-food(Spaghetti con crema di burrata e melanzane,ingredient,(9,1)).
-food(Spaghetti con crema di burrata e melanzane,ingredient,(10,5)).
-food(Spaghetti con crema di burrata e melanzane,ingredient,(15,1)).
-food(Spaghetti con crema di burrata e melanzane,ingredient,(25,1)).
-food(Spaghetti con crema di burrata e melanzane,ingredient,(28,3)).
-food(Spaghetti con crema di burrata e melanzane,ingredient,(29,1)).
-food(Spaghetti con crema di burrata e melanzane,ingredient,(33,3)).
-food(Insalata tiepida di polpo e patate,ingredient,(8,3)).
-food(Insalata tiepida di polpo e patate,ingredient,(9,2)).
-food(Insalata tiepida di polpo e patate,ingredient,(15,3)).
-food(Insalata tiepida di polpo e patate,ingredient,(19,5)).
-food(Insalata tiepida di polpo e patate,ingredient,(29,1)).
-food(Insalata tiepida di polpo e patate,ingredient,(33,5)).
-food(Scaloppine al limone,ingredient,(0,5)).
-food(Scaloppine al limone,ingredient,(4,1)).
-food(Scaloppine al limone,ingredient,(9,3)).
-food(Scaloppine al limone,ingredient,(12,1)).
-food(Scaloppine al limone,ingredient,(29,1)).
-food(Melanzane al forno,ingredient,(6,3)).
-food(Melanzane al forno,ingredient,(9,1)).
-food(Melanzane al forno,ingredient,(14,3)).
-food(Melanzane al forno,ingredient,(15,1)).
-food(Melanzane al forno,ingredient,(24,2)).
-food(Melanzane al forno,ingredient,(29,1)).
-food(Melanzane al forno,ingredient,(33,5)).
-food(Seppie con piselli,ingredient,(3,2)).
-food(Seppie con piselli,ingredient,(9,1)).
-food(Seppie con piselli,ingredient,(14,2)).
-food(Seppie con piselli,ingredient,(15,2)).
-food(Seppie con piselli,ingredient,(17,4)).
-food(Seppie con piselli,ingredient,(19,5)).
-food(Seppie con piselli,ingredient,(29,1)).
-food(Seppie con piselli,ingredient,(34,1)).
-food(Torta salata di zucchine,ingredient,(6,5)).
-food(Torta salata di zucchine,ingredient,(9,4)).
-food(Torta salata di zucchine,ingredient,(11,3)).
-food(Torta salata di zucchine,ingredient,(12,2)).
-food(Torta salata di zucchine,ingredient,(15,3)).
-food(Torta salata di zucchine,ingredient,(22,2)).
-food(Torta salata di zucchine,ingredient,(29,2)).
-food(Torta salata di zucchine,ingredient,(33,4)).
-food(Polpettine di tonno e ricotta,ingredient,(2,1)).
-food(Polpettine di tonno e ricotta,ingredient,(6,2)).
-food(Polpettine di tonno e ricotta,ingredient,(9,3)).
-food(Polpettine di tonno e ricotta,ingredient,(11,2)).
-food(Polpettine di tonno e ricotta,ingredient,(15,1)).
-food(Polpettine di tonno e ricotta,ingredient,(24,1)).
-food(Polpettine di tonno e ricotta,ingredient,(25,6)).
-food(Polpettine di tonno e ricotta,ingredient,(28,4)).
-food(Polpettine di tonno e ricotta,ingredient,(29,1)).
-food(Polpette di melanzane,ingredient,(2,1)).
-food(Polpette di melanzane,ingredient,(6,2)).
-food(Polpette di melanzane,ingredient,(9,3)).
-food(Polpette di melanzane,ingredient,(11,2)).
-food(Polpette di melanzane,ingredient,(15,2)).
-food(Polpette di melanzane,ingredient,(29,1)).
-food(Polpette di melanzane,ingredient,(33,4)).
-food(Conchiglioni ripieni,ingredient,(0,3)).
-food(Conchiglioni ripieni,ingredient,(6,2)).
-food(Conchiglioni ripieni,ingredient,(9,2)).
-food(Conchiglioni ripieni,ingredient,(10,4)).
-food(Conchiglioni ripieni,ingredient,(11,2)).
-food(Conchiglioni ripieni,ingredient,(14,3)).
-food(Conchiglioni ripieni,ingredient,(15,3)).
-food(Conchiglioni ripieni,ingredient,(22,3)).
-food(Conchiglioni ripieni,ingredient,(28,4)).
-food(Conchiglioni ripieni,ingredient,(29,1)).
-food(Conchiglioni ripieni,ingredient,(34,1)).
-food(Risotto allo Zafferano,ingredient,(3,2)).
-food(Risotto allo Zafferano,ingredient,(4,2)).
-food(Risotto allo Zafferano,ingredient,(5,4)).
-food(Risotto allo Zafferano,ingredient,(6,2)).
-food(Risotto allo Zafferano,ingredient,(15,2)).
-food(Risotto allo Zafferano,ingredient,(29,3)).
-food(Risotto allo Zafferano,ingredient,(34,1)).
-food(Couscous alle verdure,ingredient,(9,2)).
-food(Couscous alle verdure,ingredient,(10,5)).
-food(Couscous alle verdure,ingredient,(14,2)).
-food(Couscous alle verdure,ingredient,(15,5)).
-food(Couscous alle verdure,ingredient,(17,2)).
-food(Couscous alle verdure,ingredient,(29,4)).
-food(Couscous alle verdure,ingredient,(33,6)).
-food(Polpette al sugo,ingredient,(0,5)).
-food(Polpette al sugo,ingredient,(2,2)).
-food(Polpette al sugo,ingredient,(6,2)).
-food(Polpette al sugo,ingredient,(9,1)).
-food(Polpette al sugo,ingredient,(11,3)).
-food(Polpette al sugo,ingredient,(14,3)).
-food(Polpette al sugo,ingredient,(15,2)).
-food(Polpette al sugo,ingredient,(22,3)).
-food(Polpette al sugo,ingredient,(29,2)).
-food(Pasta e zucchine,ingredient,(9,1)).
-food(Pasta e zucchine,ingredient,(10,5)).
-food(Pasta e zucchine,ingredient,(15,3)).
-food(Pasta e zucchine,ingredient,(29,1)).
-food(Pasta e zucchine,ingredient,(33,4)).
-food(Salmone al forno,ingredient,(8,2)).
-food(Salmone al forno,ingredient,(9,1)).
-food(Salmone al forno,ingredient,(15,1)).
-food(Salmone al forno,ingredient,(25,5)).
-food(Salmone al forno,ingredient,(29,1)).
-food(Salmone al forno,ingredient,(33,3)).
-food(Salmone al forno,ingredient,(34,1)).
-food(Calamari ripieni,ingredient,(2,1)).
-food(Calamari ripieni,ingredient,(6,1)).
-food(Calamari ripieni,ingredient,(9,1)).
-food(Calamari ripieni,ingredient,(11,2)).
-food(Calamari ripieni,ingredient,(15,2)).
-food(Calamari ripieni,ingredient,(19,5)).
-food(Calamari ripieni,ingredient,(25,4)).
-food(Calamari ripieni,ingredient,(29,1)).
-food(Calamari ripieni,ingredient,(34,3)).
-food(Pasta e patate alla napoletana,ingredient,(6,1)).
-food(Pasta e patate alla napoletana,ingredient,(9,1)).
-food(Pasta e patate alla napoletana,ingredient,(10,5)).
-food(Pasta e patate alla napoletana,ingredient,(14,2)).
-food(Pasta e patate alla napoletana,ingredient,(15,2)).
-food(Pasta e patate alla napoletana,ingredient,(22,3)).
-food(Pasta e patate alla napoletana,ingredient,(29,1)).
-food(Pasta e patate alla napoletana,ingredient,(33,4)).
-food(Gnocchi alla romana,ingredient,(4,2)).
-food(Gnocchi alla romana,ingredient,(5,4)).
-food(Gnocchi alla romana,ingredient,(6,2)).
-food(Gnocchi alla romana,ingredient,(11,2)).
-food(Gnocchi alla romana,ingredient,(18,1)).
-food(Gnocchi alla romana,ingredient,(29,1)).
-food(Pizzoccheri alla valtellinese,ingredient,(4,3)).
-food(Pizzoccheri alla valtellinese,ingredient,(6,5)).
-food(Pizzoccheri alla valtellinese,ingredient,(13,4)).
-food(Pizzoccheri alla valtellinese,ingredient,(15,1)).
-food(Pizzoccheri alla valtellinese,ingredient,(33,2)).
-food(Pasta e lenticchie,ingredient,(3,2)).
-food(Pasta e lenticchie,ingredient,(6,1)).
-food(Pasta e lenticchie,ingredient,(9,1)).
-food(Pasta e lenticchie,ingredient,(10,5)).
-food(Pasta e lenticchie,ingredient,(14,4)).
-food(Pasta e lenticchie,ingredient,(15,4)).
-food(Pasta e lenticchie,ingredient,(17,3)).
-food(Pasta e lenticchie,ingredient,(22,3)).
-food(Pasta e lenticchie,ingredient,(29,2)).
-food(Pasta e lenticchie,ingredient,(33,1)).
-food(Pasta allo scarpariello,ingredient,(6,3)).
-food(Pasta allo scarpariello,ingredient,(9,1)).
-food(Pasta allo scarpariello,ingredient,(10,5)).
-food(Pasta allo scarpariello,ingredient,(14,3)).
-food(Pasta allo scarpariello,ingredient,(15,2)).
-food(Pasta allo scarpariello,ingredient,(29,1)).
-food(Cannelloni,ingredient,(0,3)).
-food(Cannelloni,ingredient,(6,1)).
-food(Cannelloni,ingredient,(9,1)).
-food(Cannelloni,ingredient,(11,2)).
-food(Cannelloni,ingredient,(12,5)).
-food(Cannelloni,ingredient,(14,4)).
-food(Cannelloni,ingredient,(15,1)).
-food(Cannelloni,ingredient,(18,3)).
-food(Cannelloni,ingredient,(22,3)).
-food(Cannelloni,ingredient,(29,1)).
-food(Cannelloni,ingredient,(33,1)).
-food(Cannelloni,ingredient,(34,1)).
-food(Sushi,ingredient,(5,5)).
-food(Sushi,ingredient,(9,3)).
-food(Sushi,ingredient,(14,2)).
-food(Sushi,ingredient,(25,6)).
-food(Sushi,ingredient,(27,3)).
-food(Sushi,ingredient,(29,3)).
-food(Sushi,ingredient,(30,2)).
-food(Sushi,ingredient,(31,1)).
-food(Gamberoni al forno,ingredient,(8,1)).
-food(Gamberoni al forno,ingredient,(9,1)).
-food(Gamberoni al forno,ingredient,(15,1)).
-food(Gamberoni al forno,ingredient,(27,5)).
-food(Gamberoni al forno,ingredient,(29,1)).
-food(Pasta alla zozzona,ingredient,(6,3)).
-food(Pasta alla zozzona,ingredient,(9,1)).
-food(Pasta alla zozzona,ingredient,(10,5)).
-food(Pasta alla zozzona,ingredient,(11,2)).
-food(Pasta alla zozzona,ingredient,(14,3)).
-food(Pasta alla zozzona,ingredient,(22,6)).
-food(Paccheri con carciofi alla carbonara,ingredient,(6,3)).
-food(Paccheri con carciofi alla carbonara,ingredient,(9,1)).
-food(Paccheri con carciofi alla carbonara,ingredient,(10,5)).
-food(Paccheri con carciofi alla carbonara,ingredient,(11,2)).
-food(Paccheri con carciofi alla carbonara,ingredient,(15,1)).
-food(Paccheri con carciofi alla carbonara,ingredient,(22,3)).
-food(Paccheri con carciofi alla carbonara,ingredient,(29,1)).
-food(Paccheri con carciofi alla carbonara,ingredient,(33,3)).
-food(Paccheri con carciofi alla carbonara,ingredient,(34,1)).
-food(Ossibuchi alla milanese,ingredient,(0,4)).
-food(Ossibuchi alla milanese,ingredient,(3,2)).
-food(Ossibuchi alla milanese,ingredient,(4,2)).
-food(Ossibuchi alla milanese,ingredient,(8,1)).
-food(Ossibuchi alla milanese,ingredient,(9,2)).
-food(Ossibuchi alla milanese,ingredient,(12,2)).
-food(Ossibuchi alla milanese,ingredient,(15,6)).
-food(Ossibuchi alla milanese,ingredient,(29,1)).
-food(Ossibuchi alla milanese,ingredient,(34,1)).
-food(Trofie con crema di zucchine e pancetta,ingredient,(9,1)).
-food(Trofie con crema di zucchine e pancetta,ingredient,(10,5)).
-food(Trofie con crema di zucchine e pancetta,ingredient,(15,1)).
-food(Trofie con crema di zucchine e pancetta,ingredient,(22,3)).
-food(Trofie con crema di zucchine e pancetta,ingredient,(29,1)).
-food(Trofie con crema di zucchine e pancetta,ingredient,(33,3)).
-food(Mozzarella in carrozza,ingredient,(2,4)).
-food(Mozzarella in carrozza,ingredient,(9,1)).
-food(Mozzarella in carrozza,ingredient,(11,3)).
-food(Mozzarella in carrozza,ingredient,(12,3)).
-food(Mozzarella in carrozza,ingredient,(28,5)).
-food(Brasato al Barolo,ingredient,(0,5)).
-food(Brasato al Barolo,ingredient,(4,1)).
-food(Brasato al Barolo,ingredient,(9,1)).
-food(Brasato al Barolo,ingredient,(14,2)).
-food(Brasato al Barolo,ingredient,(15,4)).
-food(Brasato al Barolo,ingredient,(29,3)).
-food(Brasato al Barolo,ingredient,(33,2)).
-food(Brasato al Barolo,ingredient,(34,3)).
-food(Baccalà in umido,ingredient,(9,1)).
-food(Baccalà in umido,ingredient,(12,2)).
-food(Baccalà in umido,ingredient,(14,3)).
-food(Baccalà in umido,ingredient,(15,3)).
-food(Baccalà in umido,ingredient,(24,2)).
-food(Baccalà in umido,ingredient,(25,5)).
-food(Baccalà in umido,ingredient,(29,1)).
-food(Baccalà in umido,ingredient,(34,1)).
-food(Saltimbocca alla Romana,ingredient,(0,5)).
-food(Saltimbocca alla Romana,ingredient,(4,1)).
-food(Saltimbocca alla Romana,ingredient,(9,1)).
-food(Saltimbocca alla Romana,ingredient,(12,2)).
-food(Saltimbocca alla Romana,ingredient,(15,1)).
-food(Saltimbocca alla Romana,ingredient,(22,4)).
-food(Saltimbocca alla Romana,ingredient,(29,1)).
-food(Saltimbocca alla Romana,ingredient,(34,1)).
-food(Fiori di zucca in pastella,ingredient,(9,3)).
-food(Fiori di zucca in pastella,ingredient,(11,2)).
-food(Fiori di zucca in pastella,ingredient,(12,2)).
-food(Fiori di zucca in pastella,ingredient,(33,4)).
-food(Gnocco fritto,ingredient,(9,3)).
-food(Gnocco fritto,ingredient,(12,3)).
-food(Gnocco fritto,ingredient,(18,2)).
-food(Gnocco fritto,ingredient,(22,3)).
-food(Pollo al limone,ingredient,(7,5)).
-food(Pollo al limone,ingredient,(8,3)).
-food(Pollo al limone,ingredient,(9,4)).
-food(Pollo al limone,ingredient,(12,4)).
-food(Pollo al limone,ingredient,(15,1)).
-food(Insalata di riso,ingredient,(5,4)).
-food(Insalata di riso,ingredient,(6,2)).
-food(Insalata di riso,ingredient,(14,2)).
-food(Insalata di riso,ingredient,(15,1)).
-food(Insalata di riso,ingredient,(17,2)).
-food(Insalata di riso,ingredient,(22,2)).
-food(Insalata di riso,ingredient,(24,2)).
-food(Insalata di riso,ingredient,(25,2)).
-food(Insalata di riso,ingredient,(33,4)).
-food(Piadina Romagnola,ingredient,(6,3)).
-food(Piadina Romagnola,ingredient,(12,2)).
-food(Piadina Romagnola,ingredient,(14,2)).
-food(Piadina Romagnola,ingredient,(22,4)).
-food(Zuppa di ceci,ingredient,(3,2)).
-food(Zuppa di ceci,ingredient,(9,1)).
-food(Zuppa di ceci,ingredient,(14,4)).
-food(Zuppa di ceci,ingredient,(15,3)).
-food(Zuppa di ceci,ingredient,(17,4)).
-food(Zuppa di ceci,ingredient,(29,1)).
-food(Zuppa di ceci,ingredient,(33,2)).
-food(Spaghetti al tonno,ingredient,(9,1)).
-food(Spaghetti al tonno,ingredient,(10,5)).
-food(Spaghetti al tonno,ingredient,(14,1)).
-food(Spaghetti al tonno,ingredient,(15,2)).
-food(Spaghetti al tonno,ingredient,(25,3)).
-food(Spaghetti al tonno,ingredient,(29,1)).
-food(Pollo al curry,ingredient,(5,3)).
-food(Pollo al curry,ingredient,(7,4)).
-food(Pollo al curry,ingredient,(9,2)).
-food(Pollo al curry,ingredient,(15,3)).
-food(Pollo al curry,ingredient,(29,19)).
-food(Pollo al curry,ingredient,(35,1)).
-food(Spezzatino di vitello con patate,ingredient,(0,4)).
-food(Spezzatino di vitello con patate,ingredient,(3,2)).
-food(Spezzatino di vitello con patate,ingredient,(9,1)).
-food(Spezzatino di vitello con patate,ingredient,(12,1)).
-food(Spezzatino di vitello con patate,ingredient,(14,1)).
-food(Spezzatino di vitello con patate,ingredient,(15,4)).
-food(Spezzatino di vitello con patate,ingredient,(29,1)).
-food(Spezzatino di vitello con patate,ingredient,(33,5)).
-food(Spezzatino di vitello con patate,ingredient,(34,1)).
-food(Risotto alla salsiccia,ingredient,(3,3)).
-food(Risotto alla salsiccia,ingredient,(4,2)).
-food(Risotto alla salsiccia,ingredient,(5,5)).
-food(Risotto alla salsiccia,ingredient,(6,2)).
-food(Risotto alla salsiccia,ingredient,(9,1)).
-food(Risotto alla salsiccia,ingredient,(15,1)).
-food(Risotto alla salsiccia,ingredient,(22,4)).
-food(Risotto alla salsiccia,ingredient,(29,3)).
-food(Risotto alla salsiccia,ingredient,(34,2)).
-food(Crocchette di patate,ingredient,(2,2)).
-food(Crocchette di patate,ingredient,(6,2)).
-food(Crocchette di patate,ingredient,(9,3)).
-food(Crocchette di patate,ingredient,(11,3)).
-food(Crocchette di patate,ingredient,(29,2)).
-food(Crocchette di patate,ingredient,(33,5)).
-food(Riso alla cantonese,ingredient,(5,5)).
-food(Riso alla cantonese,ingredient,(9,1)).
-food(Riso alla cantonese,ingredient,(11,3)).
-food(Riso alla cantonese,ingredient,(15,1)).
-food(Riso alla cantonese,ingredient,(17,3)).
-food(Riso alla cantonese,ingredient,(22,3)).
-food(Riso alla cantonese,ingredient,(34,1)).
-food(Gnocchi alla sorrentina,ingredient,(6,3)).
-food(Gnocchi alla sorrentina,ingredient,(9,1)).
-food(Gnocchi alla sorrentina,ingredient,(11,2)).
-food(Gnocchi alla sorrentina,ingredient,(12,4)).
-food(Gnocchi alla sorrentina,ingredient,(14,3)).
-food(Gnocchi alla sorrentina,ingredient,(15,2)).
-food(Gnocchi alla sorrentina,ingredient,(28,3)).
-food(Gnocchi alla sorrentina,ingredient,(33,4)).
-food(Paccheri al sugo di calamari,ingredient,(9,1)).
-food(Paccheri al sugo di calamari,ingredient,(10,5)).
-food(Paccheri al sugo di calamari,ingredient,(14,3)).
-food(Paccheri al sugo di calamari,ingredient,(15,2)).
-food(Paccheri al sugo di calamari,ingredient,(19,4)).
-food(Paccheri al sugo di calamari,ingredient,(29,1)).
-food(Paccheri al sugo di calamari,ingredient,(34,1)).
-food(Orecchiette broccoli e salsiccia,ingredient,(9,1)).
-food(Orecchiette broccoli e salsiccia,ingredient,(10,4)).
-food(Orecchiette broccoli e salsiccia,ingredient,(15,3)).
-food(Orecchiette broccoli e salsiccia,ingredient,(22,3)).
-food(Orecchiette broccoli e salsiccia,ingredient,(29,1)).
-food(Orecchiette broccoli e salsiccia,ingredient,(33,3)).
-food(Orecchiette broccoli e salsiccia,ingredient,(34,1)).
-food(Pollo alla cacciatora,ingredient,(7,5)).
-food(Pollo alla cacciatora,ingredient,(9,1)).
-food(Pollo alla cacciatora,ingredient,(14,4)).
-food(Pollo alla cacciatora,ingredient,(15,4)).
-food(Pollo alla cacciatora,ingredient,(29,1)).
-food(Pollo alla cacciatora,ingredient,(33,1)).
-food(Pollo alla cacciatora,ingredient,(34,1)).
-food(Linguine gamberetti zucchine e zafferano,ingredient,(9,1)).
-food(Linguine gamberetti zucchine e zafferano,ingredient,(10,4)).
-food(Linguine gamberetti zucchine e zafferano,ingredient,(15,3)).
-food(Linguine gamberetti zucchine e zafferano,ingredient,(18,2)).
-food(Linguine gamberetti zucchine e zafferano,ingredient,(27,3)).
-food(Linguine gamberetti zucchine e zafferano,ingredient,(29,2)).
-food(Linguine gamberetti zucchine e zafferano,ingredient,(33,3)).
-food(Linguine gamberetti zucchine e zafferano,ingredient,(34,1)).
-food(Cornetti salati,ingredient,(6,3)).
-food(Cornetti salati,ingredient,(11,1)).
-food(Cornetti salati,ingredient,(13,3)).
-food(Cornetti salati,ingredient,(18,1)).
-food(Cornetti salati,ingredient,(22,3)).
-food(Cornetti salati,ingredient,(29,1)).
-food(Salmone croccante,ingredient,(2,1)).
-food(Salmone croccante,ingredient,(8,1)).
-food(Salmone croccante,ingredient,(9,1)).
-food(Salmone croccante,ingredient,(15,3)).
-food(Salmone croccante,ingredient,(25,5)).
-food(Salmone croccante,ingredient,(33,1)).
-food(Risotto con zucchine,ingredient,(3,2)).
-food(Risotto con zucchine,ingredient,(4,1)).
-food(Risotto con zucchine,ingredient,(5,4)).
-food(Risotto con zucchine,ingredient,(6,1)).
-food(Risotto con zucchine,ingredient,(9,1)).
-food(Risotto con zucchine,ingredient,(15,2)).
-food(Risotto con zucchine,ingredient,(29,1)).
-food(Risotto con zucchine,ingredient,(33,3)).
-food(Risotto con zucchine,ingredient,(34,1)).
-food(Genovese,ingredient,(0,4)).
-food(Genovese,ingredient,(6,1)).
-food(Genovese,ingredient,(9,1)).
-food(Genovese,ingredient,(10,5)).
-food(Genovese,ingredient,(14,1)).
-food(Genovese,ingredient,(15,6)).
-food(Genovese,ingredient,(29,1)).
-food(Genovese,ingredient,(33,1)).
-food(Genovese,ingredient,(34,1)).
-food(Pesce spada alla siciliana,ingredient,(9,1)).
-food(Pesce spada alla siciliana,ingredient,(14,2)).
-food(Pesce spada alla siciliana,ingredient,(15,2)).
-food(Pesce spada alla siciliana,ingredient,(21,1)).
-food(Pesce spada alla siciliana,ingredient,(24,2)).
-food(Pesce spada alla siciliana,ingredient,(25,4)).
-food(Pesce spada alla siciliana,ingredient,(29,1)).
-food(Cozze gratinate,ingredient,(2,2)).
-food(Cozze gratinate,ingredient,(6,2)).
-food(Cozze gratinate,ingredient,(8,1)).
-food(Cozze gratinate,ingredient,(9,1)).
-food(Cozze gratinate,ingredient,(15,2)).
-food(Cozze gratinate,ingredient,(19,5)).
-food(Cozze gratinate,ingredient,(29,1)).
-food(Scaloppine ai funghi,ingredient,(0,4)).
-food(Scaloppine ai funghi,ingredient,(4,2)).
-food(Scaloppine ai funghi,ingredient,(9,2)).
-food(Scaloppine ai funghi,ingredient,(12,2)).
-food(Scaloppine ai funghi,ingredient,(15,3)).
-food(Scaloppine ai funghi,ingredient,(20,3)).
-food(Scaloppine ai funghi,ingredient,(29,1)).
-food(Polpette di verdure,ingredient,(6,2)).
-food(Polpette di verdure,ingredient,(9,1)).
-food(Polpette di verdure,ingredient,(11,2)).
-food(Polpette di verdure,ingredient,(15,4)).
-food(Polpette di verdure,ingredient,(17,2)).
-food(Polpette di verdure,ingredient,(29,2)).
-food(Polpette di verdure,ingredient,(33,8)).
-food(Spezzatino di manzo,ingredient,(0,4)).
-food(Spezzatino di manzo,ingredient,(3,3)).
-food(Spezzatino di manzo,ingredient,(4,1)).
-food(Spezzatino di manzo,ingredient,(9,1)).
-food(Spezzatino di manzo,ingredient,(12,1)).
-food(Spezzatino di manzo,ingredient,(14,2)).
-food(Spezzatino di manzo,ingredient,(15,5)).
-food(Spezzatino di manzo,ingredient,(29,1)).
-food(Spezzatino di manzo,ingredient,(33,2)).
-food(Spezzatino di manzo,ingredient,(34,2)).
-food(Torta rustica salata,ingredient,(4,2)).
-food(Torta rustica salata,ingredient,(6,2)).
-food(Torta rustica salata,ingredient,(13,3)).
-food(Torta rustica salata,ingredient,(15,1)).
-food(Torta rustica salata,ingredient,(22,2)).
-food(Torta rustica salata,ingredient,(29,2)).
-food(Torta rustica salata,ingredient,(33,2)).
-food(Passatelli in brodo,ingredient,(2,2)).
-food(Passatelli in brodo,ingredient,(3,3)).
-food(Passatelli in brodo,ingredient,(6,2)).
-food(Passatelli in brodo,ingredient,(8,1)).
-food(Passatelli in brodo,ingredient,(11,4)).
-food(Passatelli in brodo,ingredient,(29,1)).
-food(Arrosto di vitello al forno con patate,ingredient,(0,5)).
-food(Arrosto di vitello al forno con patate,ingredient,(9,1)).
-food(Arrosto di vitello al forno con patate,ingredient,(15,2)).
-food(Arrosto di vitello al forno con patate,ingredient,(29,1)).
-food(Arrosto di vitello al forno con patate,ingredient,(33,3)).
-food(Arrosto di vitello al forno con patate,ingredient,(34,1)).
-food(Pasta con la zucca,ingredient,(3,2)).
-food(Pasta con la zucca,ingredient,(9,1)).
-food(Pasta con la zucca,ingredient,(10,5)).
-food(Pasta con la zucca,ingredient,(15,2)).
-food(Pasta con la zucca,ingredient,(22,3)).
-food(Pasta con la zucca,ingredient,(28,2)).
-food(Pasta con la zucca,ingredient,(29,1)).
-food(Pasta con la zucca,ingredient,(33,4)).
-food(Frittata di spaghetti,ingredient,(6,4)).
-food(Frittata di spaghetti,ingredient,(9,1)).
-food(Frittata di spaghetti,ingredient,(10,3)).
-food(Frittata di spaghetti,ingredient,(11,3)).
-food(Frittata di spaghetti,ingredient,(15,2)).
-food(Frittata di spaghetti,ingredient,(18,1)).
-food(Frittata di spaghetti,ingredient,(22,2)).
-food(Frittata di spaghetti,ingredient,(29,1)).
-food(Canederli alla tirolese (Knödel),ingredient,(2,3)).
-food(Canederli alla tirolese (Knödel),ingredient,(3,3)).
-food(Canederli alla tirolese (Knödel),ingredient,(4,1)).
-food(Canederli alla tirolese (Knödel),ingredient,(11,2)).
-food(Canederli alla tirolese (Knödel),ingredient,(15,4)).
-food(Canederli alla tirolese (Knödel),ingredient,(18,1)).
-food(Canederli alla tirolese (Knödel),ingredient,(22,2)).
-food(Canederli alla tirolese (Knödel),ingredient,(29,1)).
-food(Spaghetti alla puttanesca,ingredient,(9,1)).
-food(Spaghetti alla puttanesca,ingredient,(10,5)).
-food(Spaghetti alla puttanesca,ingredient,(14,3)).
-food(Spaghetti alla puttanesca,ingredient,(15,2)).
-food(Spaghetti alla puttanesca,ingredient,(24,4)).
-food(Spaghetti alla puttanesca,ingredient,(25,2)).
-food(Spaghetti alla puttanesca,ingredient,(29,1)).
-food(Pasta al forno con broccoli e pancetta,ingredient,(6,5)).
-food(Pasta al forno con broccoli e pancetta,ingredient,(9,1)).
-food(Pasta al forno con broccoli e pancetta,ingredient,(10,5)).
-food(Pasta al forno con broccoli e pancetta,ingredient,(22,3)).
-food(Pasta al forno con broccoli e pancetta,ingredient,(33,4)).
-food(Polpette di zucchine,ingredient,(2,1)).
-food(Polpette di zucchine,ingredient,(5,1)).
-food(Polpette di zucchine,ingredient,(6,2)).
-food(Polpette di zucchine,ingredient,(9,1)).
-food(Polpette di zucchine,ingredient,(11,2)).
-food(Polpette di zucchine,ingredient,(15,1)).
-food(Polpette di zucchine,ingredient,(28,2)).
-food(Polpette di zucchine,ingredient,(33,4)).
-food(Carne alla pizzaiola,ingredient,(0,4)).
-food(Carne alla pizzaiola,ingredient,(9,1)).
-food(Carne alla pizzaiola,ingredient,(14,3)).
-food(Carne alla pizzaiola,ingredient,(15,2)).
-food(Cosce di pollo al forno,ingredient,(7,5)).
-food(Cosce di pollo al forno,ingredient,(9,1)).
-food(Cosce di pollo al forno,ingredient,(15,2)).
-food(Cosce di pollo al forno,ingredient,(29,1)).
-food(Cosce di pollo al forno,ingredient,(33,2)).
-food(Vellutata di zucca,ingredient,(3,2)).
-food(Vellutata di zucca,ingredient,(9,1)).
-food(Vellutata di zucca,ingredient,(15,1)).
-food(Vellutata di zucca,ingredient,(18,1)).
-food(Vellutata di zucca,ingredient,(29,1)).
-food(Vellutata di zucca,ingredient,(33,4)).
-food(Capesante gratinate,ingredient,(2,1)).
-food(Capesante gratinate,ingredient,(8,1)).
-food(Capesante gratinate,ingredient,(9,1)).
-food(Capesante gratinate,ingredient,(15,3)).
-food(Capesante gratinate,ingredient,(19,5)).
-food(Capesante gratinate,ingredient,(29,1)).
-food(Pasta alla cenere,ingredient,(10,5)).
-food(Pasta alla cenere,ingredient,(18,2)).
-food(Pasta alla cenere,ingredient,(24,1)).
-food(Pasta alla cenere,ingredient,(28,3)).
-food(Pasta alla cenere,ingredient,(29,1)).
-food(Polpette di carne,ingredient,(0,4)).
-food(Polpette di carne,ingredient,(2,1)).
-food(Polpette di carne,ingredient,(6,4)).
-food(Polpette di carne,ingredient,(9,1)).
-food(Polpette di carne,ingredient,(11,2)).
-food(Polpette di carne,ingredient,(15,2)).
-food(Polpette di carne,ingredient,(29,1)).
-food(Pasta alla marinara,ingredient,(9,1)).
-food(Pasta alla marinara,ingredient,(10,5)).
-food(Pasta alla marinara,ingredient,(14,3)).
-food(Pasta alla marinara,ingredient,(15,3)).
-food(Pasta alla marinara,ingredient,(19,6)).
-food(Pasta alla marinara,ingredient,(25,2)).
-food(Pasta alla marinara,ingredient,(27,2)).
-food(Pasta alla marinara,ingredient,(29,1)).
-food(Pasta agli asparagi,ingredient,(6,2)).
-food(Pasta agli asparagi,ingredient,(10,5)).
-food(Pasta agli asparagi,ingredient,(14,4)).
-food(Pasta agli asparagi,ingredient,(15,2)).
-food(Pasta agli asparagi,ingredient,(29,1)).
-food(Spaghetti aglio olio e peperoncino,ingredient,(9,2)).
-food(Spaghetti aglio olio e peperoncino,ingredient,(10,5)).
-food(Spaghetti aglio olio e peperoncino,ingredient,(15,2)).
-food(Spaghetti aglio olio e peperoncino,ingredient,(29,2)).
-food(Pomodori ripieni,ingredient,(5,2)).
-food(Pomodori ripieni,ingredient,(6,6)).
-food(Pomodori ripieni,ingredient,(9,1)).
-food(Pomodori ripieni,ingredient,(14,5)).
-food(Pomodori ripieni,ingredient,(15,3)).
-food(Pomodori ripieni,ingredient,(29,1)).
-food(Ali di pollo e patate saporite,ingredient,(2,1)).
-food(Ali di pollo e patate saporite,ingredient,(6,1)).
-food(Ali di pollo e patate saporite,ingredient,(7,5)).
-food(Ali di pollo e patate saporite,ingredient,(9,1)).
-food(Ali di pollo e patate saporite,ingredient,(11,2)).
-food(Ali di pollo e patate saporite,ingredient,(12,1)).
-food(Ali di pollo e patate saporite,ingredient,(15,1)).
-food(Ali di pollo e patate saporite,ingredient,(33,2)).
-food(Pasta con asparagi e pancetta,ingredient,(9,1)).
-food(Pasta con asparagi e pancetta,ingredient,(10,5)).
-food(Pasta con asparagi e pancetta,ingredient,(14,4)).
-food(Pasta con asparagi e pancetta,ingredient,(15,1)).
-food(Pasta con asparagi e pancetta,ingredient,(22,3)).
-food(Pasta con asparagi e pancetta,ingredient,(29,1)).
-food(Orecchiette con le cime di rapa,ingredient,(2,2)).
-food(Orecchiette con le cime di rapa,ingredient,(5,5)).
-food(Orecchiette con le cime di rapa,ingredient,(9,1)).
-food(Orecchiette con le cime di rapa,ingredient,(14,4)).
-food(Orecchiette con le cime di rapa,ingredient,(15,1)).
-food(Orecchiette con le cime di rapa,ingredient,(25,2)).
-food(Carbonara di mare,ingredient,(6,1)).
-food(Carbonara di mare,ingredient,(9,1)).
-food(Carbonara di mare,ingredient,(10,5)).
-food(Carbonara di mare,ingredient,(11,1)).
-food(Carbonara di mare,ingredient,(15,2)).
-food(Carbonara di mare,ingredient,(25,6)).
-food(Carbonara di mare,ingredient,(29,1)).
-food(Carbonara di mare,ingredient,(34,1)).
-food(Tagliatelle ai funghi porcini,ingredient,(4,2)).
-food(Tagliatelle ai funghi porcini,ingredient,(5,4)).
-food(Tagliatelle ai funghi porcini,ingredient,(9,1)).
-food(Tagliatelle ai funghi porcini,ingredient,(11,4)).
-food(Tagliatelle ai funghi porcini,ingredient,(12,4)).
-food(Tagliatelle ai funghi porcini,ingredient,(15,2)).
-food(Tagliatelle ai funghi porcini,ingredient,(20,2)).
-food(Tagliatelle ai funghi porcini,ingredient,(29,1)).
-food(Risotto ai funghi porcini,ingredient,(3,2)).
-food(Risotto ai funghi porcini,ingredient,(4,1)).
-food(Risotto ai funghi porcini,ingredient,(5,5)).
-food(Risotto ai funghi porcini,ingredient,(6,2)).
-food(Risotto ai funghi porcini,ingredient,(9,1)).
-food(Risotto ai funghi porcini,ingredient,(15,3)).
-food(Risotto ai funghi porcini,ingredient,(20,3)).
-food(Risotto ai funghi porcini,ingredient,(29,1)).
-food(Spezzatino con piselli,ingredient,(0,4)).
-food(Spezzatino con piselli,ingredient,(3,2)).
-food(Spezzatino con piselli,ingredient,(9,1)).
-food(Spezzatino con piselli,ingredient,(12,1)).
-food(Spezzatino con piselli,ingredient,(14,2)).
-food(Spezzatino con piselli,ingredient,(15,1)).
-food(Spezzatino con piselli,ingredient,(17,2)).
-food(Spezzatino con piselli,ingredient,(29,1)).
-food(Spezzatino con piselli,ingredient,(33,1)).
-food(Spezzatino con piselli,ingredient,(34,1)).
+% food(<ID>, ingredients(<class>, <weight>)).
+food(1,ingredient,(6,2)).
+food(1,ingredient,(10,5)).
+food(1,ingredient,(11,3)).
+food(1,ingredient,(22,3)).
+food(1,ingredient,(29,1)).
+food(2,ingredient,(9,2)).
+food(2,ingredient,(10,5)).
+food(2,ingredient,(15,3)).
+food(2,ingredient,(19,5)).
+food(2,ingredient,(29,1)).
+food(3,ingredient,(6,4)).
+food(3,ingredient,(10,5)).
+food(3,ingredient,(29,4)).
+food(4,ingredient,(6,2)).
+food(4,ingredient,(9,1)).
+food(4,ingredient,(10,5)).
+food(4,ingredient,(14,3)).
+food(4,ingredient,(22,3)).
+food(4,ingredient,(29,1)).
+food(4,ingredient,(34,1)).
+food(5,ingredient,(9,1)).
+food(5,ingredient,(10,5)).
+food(5,ingredient,(14,2)).
+food(5,ingredient,(15,1)).
+food(5,ingredient,(18,3)).
+food(5,ingredient,(22,3)).
+food(5,ingredient,(29,1)).
+food(6,ingredient,(0,3)).
+food(6,ingredient,(4,1)).
+food(6,ingredient,(6,3)).
+food(6,ingredient,(9,2)).
+food(6,ingredient,(13,4)).
+food(6,ingredient,(14,5)).
+food(6,ingredient,(15,1)).
+food(6,ingredient,(18,3)).
+food(6,ingredient,(22,2)).
+food(6,ingredient,(29,1)).
+food(6,ingredient,(33,1)).
+food(6,ingredient,(34,1)).
+food(7,ingredient,(6,3)).
+food(7,ingredient,(9,2)).
+food(7,ingredient,(14,3)).
+food(7,ingredient,(15,2)).
+food(7,ingredient,(28,3)).
+food(7,ingredient,(29,1)).
+food(7,ingredient,(33,5)).
+food(8,ingredient,(2,1)).
+food(8,ingredient,(6,3)).
+food(8,ingredient,(9,2)).
+food(8,ingredient,(11,4)).
+food(8,ingredient,(22,6)).
+food(8,ingredient,(28,3)).
+food(8,ingredient,(29,1)).
+food(8,ingredient,(33,5)).
+food(9,ingredient,(9,2)).
+food(9,ingredient,(10,5)).
+food(9,ingredient,(14,3)).
+food(9,ingredient,(15,4)).
+food(9,ingredient,(19,12)).
+food(9,ingredient,(25,4)).
+food(9,ingredient,(29,1)).
+food(9,ingredient,(34,1)).
+food(10,ingredient,(2,2)).
+food(10,ingredient,(4,1)).
+food(10,ingredient,(5,5)).
+food(10,ingredient,(6,3)).
+food(10,ingredient,(9,3)).
+food(10,ingredient,(14,3)).
+food(10,ingredient,(17,2)).
+food(10,ingredient,(18,2)).
+food(10,ingredient,(22,3)).
+food(10,ingredient,(29,3)).
+food(10,ingredient,(34,1)).
+food(11,ingredient,(9,1)).
+food(11,ingredient,(10,5)).
+food(11,ingredient,(14,5)).
+food(11,ingredient,(15,7)).
+food(11,ingredient,(17,5)).
+food(11,ingredient,(22,4)).
+food(11,ingredient,(29,1)).
+food(11,ingredient,(33,2)).
+food(12,ingredient,(6,4)).
+food(12,ingredient,(10,5)).
+food(12,ingredient,(22,4)).
+food(13,ingredient,(3,3)).
+food(13,ingredient,(9,2)).
+food(13,ingredient,(15,1)).
+food(13,ingredient,(29,3)).
+food(13,ingredient,(33,8)).
+food(14,ingredient,(2,1)).
+food(14,ingredient,(6,4)).
+food(14,ingredient,(9,1)).
+food(14,ingredient,(10,5)).
+food(14,ingredient,(11,2)).
+food(14,ingredient,(14,4)).
+food(14,ingredient,(15,3)).
+food(14,ingredient,(18,3)).
+food(14,ingredient,(22,5)).
+food(14,ingredient,(29,2)).
+food(15,ingredient,(9,1)).
+food(15,ingredient,(10,5)).
+food(15,ingredient,(14,3)).
+food(15,ingredient,(15,2)).
+food(15,ingredient,(19,4)).
+food(15,ingredient,(29,2)).
+food(15,ingredient,(34,1)).
+food(16,ingredient,(7,5)).
+food(16,ingredient,(9,2)).
+food(16,ingredient,(11,2)).
+food(16,ingredient,(12,2)).
+food(16,ingredient,(14,2)).
+food(16,ingredient,(21,4)).
+food(16,ingredient,(29,1)).
+food(17,ingredient,(6,4)).
+food(17,ingredient,(9,1)).
+food(17,ingredient,(13,5)).
+food(17,ingredient,(14,1)).
+food(17,ingredient,(29,1)).
+food(17,ingredient,(33,5)).
+food(18,ingredient,(0,5)).
+food(18,ingredient,(9,1)).
+food(18,ingredient,(11,2)).
+food(18,ingredient,(14,1)).
+food(18,ingredient,(15,3)).
+food(18,ingredient,(24,1)).
+food(18,ingredient,(25,7)).
+food(18,ingredient,(29,2)).
+food(18,ingredient,(33,1)).
+food(18,ingredient,(34,1)).
+food(19,ingredient,(9,1)).
+food(19,ingredient,(10,5)).
+food(19,ingredient,(15,1)).
+food(19,ingredient,(25,1)).
+food(19,ingredient,(28,3)).
+food(19,ingredient,(29,1)).
+food(19,ingredient,(33,3)).
+food(20,ingredient,(8,3)).
+food(20,ingredient,(9,2)).
+food(20,ingredient,(15,3)).
+food(20,ingredient,(19,5)).
+food(20,ingredient,(29,1)).
+food(20,ingredient,(33,5)).
+food(21,ingredient,(0,5)).
+food(21,ingredient,(4,1)).
+food(21,ingredient,(9,3)).
+food(21,ingredient,(12,1)).
+food(21,ingredient,(29,1)).
+food(22,ingredient,(6,3)).
+food(22,ingredient,(9,1)).
+food(22,ingredient,(14,3)).
+food(22,ingredient,(15,1)).
+food(22,ingredient,(24,2)).
+food(22,ingredient,(29,1)).
+food(22,ingredient,(33,5)).
+food(23,ingredient,(3,2)).
+food(23,ingredient,(9,1)).
+food(23,ingredient,(14,2)).
+food(23,ingredient,(15,2)).
+food(23,ingredient,(17,4)).
+food(23,ingredient,(19,5)).
+food(23,ingredient,(29,1)).
+food(23,ingredient,(34,1)).
+food(24,ingredient,(6,5)).
+food(24,ingredient,(9,4)).
+food(24,ingredient,(11,3)).
+food(24,ingredient,(12,2)).
+food(24,ingredient,(15,3)).
+food(24,ingredient,(22,2)).
+food(24,ingredient,(29,2)).
+food(24,ingredient,(33,4)).
+food(25,ingredient,(2,1)).
+food(25,ingredient,(6,2)).
+food(25,ingredient,(9,3)).
+food(25,ingredient,(11,2)).
+food(25,ingredient,(15,1)).
+food(25,ingredient,(24,1)).
+food(25,ingredient,(25,6)).
+food(25,ingredient,(28,4)).
+food(25,ingredient,(29,1)).
+food(26,ingredient,(2,1)).
+food(26,ingredient,(6,2)).
+food(26,ingredient,(9,3)).
+food(26,ingredient,(11,2)).
+food(26,ingredient,(15,2)).
+food(26,ingredient,(29,1)).
+food(26,ingredient,(33,4)).
+food(27,ingredient,(0,3)).
+food(27,ingredient,(6,2)).
+food(27,ingredient,(9,2)).
+food(27,ingredient,(10,4)).
+food(27,ingredient,(11,2)).
+food(27,ingredient,(14,3)).
+food(27,ingredient,(15,3)).
+food(27,ingredient,(22,3)).
+food(27,ingredient,(28,4)).
+food(27,ingredient,(29,1)).
+food(27,ingredient,(34,1)).
+food(28,ingredient,(3,2)).
+food(28,ingredient,(4,2)).
+food(28,ingredient,(5,4)).
+food(28,ingredient,(6,2)).
+food(28,ingredient,(15,2)).
+food(28,ingredient,(29,3)).
+food(28,ingredient,(34,1)).
+food(29,ingredient,(9,2)).
+food(29,ingredient,(10,5)).
+food(29,ingredient,(14,2)).
+food(29,ingredient,(15,5)).
+food(29,ingredient,(17,2)).
+food(29,ingredient,(29,4)).
+food(29,ingredient,(33,6)).
+food(30,ingredient,(0,5)).
+food(30,ingredient,(2,2)).
+food(30,ingredient,(6,2)).
+food(30,ingredient,(9,1)).
+food(30,ingredient,(11,3)).
+food(30,ingredient,(14,3)).
+food(30,ingredient,(15,2)).
+food(30,ingredient,(22,3)).
+food(30,ingredient,(29,2)).
+food(31,ingredient,(9,1)).
+food(31,ingredient,(10,5)).
+food(31,ingredient,(15,3)).
+food(31,ingredient,(29,1)).
+food(31,ingredient,(33,4)).
+food(32,ingredient,(8,2)).
+food(32,ingredient,(9,1)).
+food(32,ingredient,(15,1)).
+food(32,ingredient,(25,5)).
+food(32,ingredient,(29,1)).
+food(32,ingredient,(33,3)).
+food(32,ingredient,(34,1)).
+food(33,ingredient,(2,1)).
+food(33,ingredient,(6,1)).
+food(33,ingredient,(9,1)).
+food(33,ingredient,(11,2)).
+food(33,ingredient,(15,2)).
+food(33,ingredient,(19,5)).
+food(33,ingredient,(25,4)).
+food(33,ingredient,(29,1)).
+food(33,ingredient,(34,3)).
+food(34,ingredient,(6,1)).
+food(34,ingredient,(9,1)).
+food(34,ingredient,(10,5)).
+food(34,ingredient,(14,2)).
+food(34,ingredient,(15,2)).
+food(34,ingredient,(22,3)).
+food(34,ingredient,(29,1)).
+food(34,ingredient,(33,4)).
+food(35,ingredient,(4,2)).
+food(35,ingredient,(5,4)).
+food(35,ingredient,(6,2)).
+food(35,ingredient,(11,2)).
+food(35,ingredient,(18,1)).
+food(35,ingredient,(29,1)).
+food(36,ingredient,(4,3)).
+food(36,ingredient,(6,5)).
+food(36,ingredient,(13,4)).
+food(36,ingredient,(15,1)).
+food(36,ingredient,(33,2)).
+food(37,ingredient,(3,2)).
+food(37,ingredient,(6,1)).
+food(37,ingredient,(9,1)).
+food(37,ingredient,(10,5)).
+food(37,ingredient,(14,4)).
+food(37,ingredient,(15,4)).
+food(37,ingredient,(17,3)).
+food(37,ingredient,(22,3)).
+food(37,ingredient,(29,2)).
+food(37,ingredient,(33,1)).
+food(38,ingredient,(6,3)).
+food(38,ingredient,(9,1)).
+food(38,ingredient,(10,5)).
+food(38,ingredient,(14,3)).
+food(38,ingredient,(15,2)).
+food(38,ingredient,(29,1)).
+food(39,ingredient,(0,3)).
+food(39,ingredient,(6,1)).
+food(39,ingredient,(9,1)).
+food(39,ingredient,(11,2)).
+food(39,ingredient,(12,5)).
+food(39,ingredient,(14,4)).
+food(39,ingredient,(15,1)).
+food(39,ingredient,(18,3)).
+food(39,ingredient,(22,3)).
+food(39,ingredient,(29,1)).
+food(39,ingredient,(33,1)).
+food(39,ingredient,(34,1)).
+food(40,ingredient,(5,5)).
+food(40,ingredient,(9,3)).
+food(40,ingredient,(14,2)).
+food(40,ingredient,(25,6)).
+food(40,ingredient,(27,3)).
+food(40,ingredient,(29,3)).
+food(40,ingredient,(30,2)).
+food(40,ingredient,(31,1)).
+food(41,ingredient,(8,1)).
+food(41,ingredient,(9,1)).
+food(41,ingredient,(15,1)).
+food(41,ingredient,(27,5)).
+food(41,ingredient,(29,1)).
+food(42,ingredient,(6,3)).
+food(42,ingredient,(9,1)).
+food(42,ingredient,(10,5)).
+food(42,ingredient,(11,2)).
+food(42,ingredient,(14,3)).
+food(42,ingredient,(22,6)).
+food(43,ingredient,(6,3)).
+food(43,ingredient,(9,1)).
+food(43,ingredient,(10,5)).
+food(43,ingredient,(11,2)).
+food(43,ingredient,(15,1)).
+food(43,ingredient,(22,3)).
+food(43,ingredient,(29,1)).
+food(43,ingredient,(33,3)).
+food(43,ingredient,(34,1)).
+food(44,ingredient,(0,4)).
+food(44,ingredient,(3,2)).
+food(44,ingredient,(4,2)).
+food(44,ingredient,(8,1)).
+food(44,ingredient,(9,2)).
+food(44,ingredient,(12,2)).
+food(44,ingredient,(15,6)).
+food(44,ingredient,(29,1)).
+food(44,ingredient,(34,1)).
+food(45,ingredient,(9,1)).
+food(45,ingredient,(10,5)).
+food(45,ingredient,(15,1)).
+food(45,ingredient,(22,3)).
+food(45,ingredient,(29,1)).
+food(45,ingredient,(33,3)).
+food(46,ingredient,(2,4)).
+food(46,ingredient,(9,1)).
+food(46,ingredient,(11,3)).
+food(46,ingredient,(12,3)).
+food(46,ingredient,(28,5)).
+food(47,ingredient,(0,5)).
+food(47,ingredient,(4,1)).
+food(47,ingredient,(9,1)).
+food(47,ingredient,(14,2)).
+food(47,ingredient,(15,4)).
+food(47,ingredient,(29,3)).
+food(47,ingredient,(33,2)).
+food(47,ingredient,(34,3)).
+food(48,ingredient,(9,1)).
+food(48,ingredient,(12,2)).
+food(48,ingredient,(14,3)).
+food(48,ingredient,(15,3)).
+food(48,ingredient,(24,2)).
+food(48,ingredient,(25,5)).
+food(48,ingredient,(29,1)).
+food(48,ingredient,(34,1)).
+food(49,ingredient,(0,5)).
+food(49,ingredient,(4,1)).
+food(49,ingredient,(9,1)).
+food(49,ingredient,(12,2)).
+food(49,ingredient,(15,1)).
+food(49,ingredient,(22,4)).
+food(49,ingredient,(29,1)).
+food(49,ingredient,(34,1)).
+food(50,ingredient,(9,3)).
+food(50,ingredient,(11,2)).
+food(50,ingredient,(12,2)).
+food(50,ingredient,(33,4)).
+food(51,ingredient,(9,3)).
+food(51,ingredient,(12,3)).
+food(51,ingredient,(18,2)).
+food(51,ingredient,(22,3)).
+food(52,ingredient,(7,5)).
+food(52,ingredient,(8,3)).
+food(52,ingredient,(9,4)).
+food(52,ingredient,(12,4)).
+food(52,ingredient,(15,1)).
+food(53,ingredient,(5,4)).
+food(53,ingredient,(6,2)).
+food(53,ingredient,(14,2)).
+food(53,ingredient,(15,1)).
+food(53,ingredient,(17,2)).
+food(53,ingredient,(22,2)).
+food(53,ingredient,(24,2)).
+food(53,ingredient,(25,2)).
+food(53,ingredient,(33,4)).
+food(54,ingredient,(6,3)).
+food(54,ingredient,(12,2)).
+food(54,ingredient,(14,2)).
+food(54,ingredient,(22,4)).
+food(55,ingredient,(3,2)).
+food(55,ingredient,(9,1)).
+food(55,ingredient,(14,4)).
+food(55,ingredient,(15,3)).
+food(55,ingredient,(17,4)).
+food(55,ingredient,(29,1)).
+food(55,ingredient,(33,2)).
+food(56,ingredient,(9,1)).
+food(56,ingredient,(10,5)).
+food(56,ingredient,(14,1)).
+food(56,ingredient,(15,2)).
+food(56,ingredient,(25,3)).
+food(56,ingredient,(29,1)).
+food(57,ingredient,(5,3)).
+food(57,ingredient,(7,4)).
+food(57,ingredient,(9,2)).
+food(57,ingredient,(15,3)).
+food(57,ingredient,(29,19)).
+food(57,ingredient,(35,1)).
+food(58,ingredient,(0,4)).
+food(58,ingredient,(3,2)).
+food(58,ingredient,(9,1)).
+food(58,ingredient,(12,1)).
+food(58,ingredient,(14,1)).
+food(58,ingredient,(15,4)).
+food(58,ingredient,(29,1)).
+food(58,ingredient,(33,5)).
+food(58,ingredient,(34,1)).
+food(59,ingredient,(3,3)).
+food(59,ingredient,(4,2)).
+food(59,ingredient,(5,5)).
+food(59,ingredient,(6,2)).
+food(59,ingredient,(9,1)).
+food(59,ingredient,(15,1)).
+food(59,ingredient,(22,4)).
+food(59,ingredient,(29,3)).
+food(59,ingredient,(34,2)).
+food(60,ingredient,(2,2)).
+food(60,ingredient,(6,2)).
+food(60,ingredient,(9,3)).
+food(60,ingredient,(11,3)).
+food(60,ingredient,(29,2)).
+food(60,ingredient,(33,5)).
+food(61,ingredient,(5,5)).
+food(61,ingredient,(9,1)).
+food(61,ingredient,(11,3)).
+food(61,ingredient,(15,1)).
+food(61,ingredient,(17,3)).
+food(61,ingredient,(22,3)).
+food(61,ingredient,(34,1)).
+food(62,ingredient,(6,3)).
+food(62,ingredient,(9,1)).
+food(62,ingredient,(11,2)).
+food(62,ingredient,(12,4)).
+food(62,ingredient,(14,3)).
+food(62,ingredient,(15,2)).
+food(62,ingredient,(28,3)).
+food(62,ingredient,(33,4)).
+food(63,ingredient,(9,1)).
+food(63,ingredient,(10,5)).
+food(63,ingredient,(14,3)).
+food(63,ingredient,(15,2)).
+food(63,ingredient,(19,4)).
+food(63,ingredient,(29,1)).
+food(63,ingredient,(34,1)).
+food(64,ingredient,(9,1)).
+food(64,ingredient,(10,4)).
+food(64,ingredient,(15,3)).
+food(64,ingredient,(22,3)).
+food(64,ingredient,(29,1)).
+food(64,ingredient,(33,3)).
+food(64,ingredient,(34,1)).
+food(65,ingredient,(7,5)).
+food(65,ingredient,(9,1)).
+food(65,ingredient,(14,4)).
+food(65,ingredient,(15,4)).
+food(65,ingredient,(29,1)).
+food(65,ingredient,(33,1)).
+food(65,ingredient,(34,1)).
+food(66,ingredient,(9,1)).
+food(66,ingredient,(10,4)).
+food(66,ingredient,(15,3)).
+food(66,ingredient,(18,2)).
+food(66,ingredient,(27,3)).
+food(66,ingredient,(29,2)).
+food(66,ingredient,(33,3)).
+food(66,ingredient,(34,1)).
+food(67,ingredient,(6,3)).
+food(67,ingredient,(11,1)).
+food(67,ingredient,(13,3)).
+food(67,ingredient,(18,1)).
+food(67,ingredient,(22,3)).
+food(67,ingredient,(29,1)).
+food(68,ingredient,(2,1)).
+food(68,ingredient,(8,1)).
+food(68,ingredient,(9,1)).
+food(68,ingredient,(15,3)).
+food(68,ingredient,(25,5)).
+food(68,ingredient,(33,1)).
+food(69,ingredient,(3,2)).
+food(69,ingredient,(4,1)).
+food(69,ingredient,(5,4)).
+food(69,ingredient,(6,1)).
+food(69,ingredient,(9,1)).
+food(69,ingredient,(15,2)).
+food(69,ingredient,(29,1)).
+food(69,ingredient,(33,3)).
+food(69,ingredient,(34,1)).
+food(70,ingredient,(0,4)).
+food(70,ingredient,(6,1)).
+food(70,ingredient,(9,1)).
+food(70,ingredient,(10,5)).
+food(70,ingredient,(14,1)).
+food(70,ingredient,(15,6)).
+food(70,ingredient,(29,1)).
+food(70,ingredient,(33,1)).
+food(70,ingredient,(34,1)).
+food(71,ingredient,(9,1)).
+food(71,ingredient,(14,2)).
+food(71,ingredient,(15,2)).
+food(71,ingredient,(21,1)).
+food(71,ingredient,(24,2)).
+food(71,ingredient,(25,4)).
+food(71,ingredient,(29,1)).
+food(72,ingredient,(2,2)).
+food(72,ingredient,(6,2)).
+food(72,ingredient,(8,1)).
+food(72,ingredient,(9,1)).
+food(72,ingredient,(15,2)).
+food(72,ingredient,(19,5)).
+food(72,ingredient,(29,1)).
+food(73,ingredient,(0,4)).
+food(73,ingredient,(4,2)).
+food(73,ingredient,(9,2)).
+food(73,ingredient,(12,2)).
+food(73,ingredient,(15,3)).
+food(73,ingredient,(20,3)).
+food(73,ingredient,(29,1)).
+food(74,ingredient,(6,2)).
+food(74,ingredient,(9,1)).
+food(74,ingredient,(11,2)).
+food(74,ingredient,(15,4)).
+food(74,ingredient,(17,2)).
+food(74,ingredient,(29,2)).
+food(74,ingredient,(33,8)).
+food(75,ingredient,(0,4)).
+food(75,ingredient,(3,3)).
+food(75,ingredient,(4,1)).
+food(75,ingredient,(9,1)).
+food(75,ingredient,(12,1)).
+food(75,ingredient,(14,2)).
+food(75,ingredient,(15,5)).
+food(75,ingredient,(29,1)).
+food(75,ingredient,(33,2)).
+food(75,ingredient,(34,2)).
+food(76,ingredient,(4,2)).
+food(76,ingredient,(6,2)).
+food(76,ingredient,(13,3)).
+food(76,ingredient,(15,1)).
+food(76,ingredient,(22,2)).
+food(76,ingredient,(29,2)).
+food(76,ingredient,(33,2)).
+food(77,ingredient,(2,2)).
+food(77,ingredient,(3,3)).
+food(77,ingredient,(6,2)).
+food(77,ingredient,(8,1)).
+food(77,ingredient,(11,4)).
+food(77,ingredient,(29,1)).
+food(78,ingredient,(0,5)).
+food(78,ingredient,(9,1)).
+food(78,ingredient,(15,2)).
+food(78,ingredient,(29,1)).
+food(78,ingredient,(33,3)).
+food(78,ingredient,(34,1)).
+food(79,ingredient,(3,2)).
+food(79,ingredient,(9,1)).
+food(79,ingredient,(10,5)).
+food(79,ingredient,(15,2)).
+food(79,ingredient,(22,3)).
+food(79,ingredient,(28,2)).
+food(79,ingredient,(29,1)).
+food(79,ingredient,(33,4)).
+food(80,ingredient,(6,4)).
+food(80,ingredient,(9,1)).
+food(80,ingredient,(10,3)).
+food(80,ingredient,(11,3)).
+food(80,ingredient,(15,2)).
+food(80,ingredient,(18,1)).
+food(80,ingredient,(22,2)).
+food(80,ingredient,(29,1)).
+food(81,ingredient,(2,3)).
+food(81,ingredient,(3,3)).
+food(81,ingredient,(4,1)).
+food(81,ingredient,(11,2)).
+food(81,ingredient,(15,4)).
+food(81,ingredient,(18,1)).
+food(81,ingredient,(22,2)).
+food(81,ingredient,(29,1)).
+food(82,ingredient,(9,1)).
+food(82,ingredient,(10,5)).
+food(82,ingredient,(14,3)).
+food(82,ingredient,(15,2)).
+food(82,ingredient,(24,4)).
+food(82,ingredient,(25,2)).
+food(82,ingredient,(29,1)).
+food(83,ingredient,(6,5)).
+food(83,ingredient,(9,1)).
+food(83,ingredient,(10,5)).
+food(83,ingredient,(22,3)).
+food(83,ingredient,(33,4)).
+food(84,ingredient,(2,1)).
+food(84,ingredient,(5,1)).
+food(84,ingredient,(6,2)).
+food(84,ingredient,(9,1)).
+food(84,ingredient,(11,2)).
+food(84,ingredient,(15,1)).
+food(84,ingredient,(28,2)).
+food(84,ingredient,(33,4)).
+food(85,ingredient,(0,4)).
+food(85,ingredient,(9,1)).
+food(85,ingredient,(14,3)).
+food(85,ingredient,(15,2)).
+food(86,ingredient,(7,5)).
+food(86,ingredient,(9,1)).
+food(86,ingredient,(15,2)).
+food(86,ingredient,(29,1)).
+food(86,ingredient,(33,2)).
+food(87,ingredient,(3,2)).
+food(87,ingredient,(9,1)).
+food(87,ingredient,(15,1)).
+food(87,ingredient,(18,1)).
+food(87,ingredient,(29,1)).
+food(87,ingredient,(33,4)).
+food(88,ingredient,(2,1)).
+food(88,ingredient,(8,1)).
+food(88,ingredient,(9,1)).
+food(88,ingredient,(15,3)).
+food(88,ingredient,(19,5)).
+food(88,ingredient,(29,1)).
+food(89,ingredient,(10,5)).
+food(89,ingredient,(18,2)).
+food(89,ingredient,(24,1)).
+food(89,ingredient,(28,3)).
+food(89,ingredient,(29,1)).
+food(90,ingredient,(0,4)).
+food(90,ingredient,(2,1)).
+food(90,ingredient,(6,4)).
+food(90,ingredient,(9,1)).
+food(90,ingredient,(11,2)).
+food(90,ingredient,(15,2)).
+food(90,ingredient,(29,1)).
+food(91,ingredient,(9,1)).
+food(91,ingredient,(10,5)).
+food(91,ingredient,(14,3)).
+food(91,ingredient,(15,3)).
+food(91,ingredient,(19,6)).
+food(91,ingredient,(25,2)).
+food(91,ingredient,(27,2)).
+food(91,ingredient,(29,1)).
+food(92,ingredient,(6,2)).
+food(92,ingredient,(10,5)).
+food(92,ingredient,(14,4)).
+food(92,ingredient,(15,2)).
+food(92,ingredient,(29,1)).
+food(93,ingredient,(9,2)).
+food(93,ingredient,(10,5)).
+food(93,ingredient,(15,2)).
+food(93,ingredient,(29,2)).
+food(94,ingredient,(5,2)).
+food(94,ingredient,(6,6)).
+food(94,ingredient,(9,1)).
+food(94,ingredient,(14,5)).
+food(94,ingredient,(15,3)).
+food(94,ingredient,(29,1)).
+food(95,ingredient,(2,1)).
+food(95,ingredient,(6,1)).
+food(95,ingredient,(7,5)).
+food(95,ingredient,(9,1)).
+food(95,ingredient,(11,2)).
+food(95,ingredient,(12,1)).
+food(95,ingredient,(15,1)).
+food(95,ingredient,(33,2)).
+food(96,ingredient,(9,1)).
+food(96,ingredient,(10,5)).
+food(96,ingredient,(14,4)).
+food(96,ingredient,(15,1)).
+food(96,ingredient,(22,3)).
+food(96,ingredient,(29,1)).
+food(97,ingredient,(2,2)).
+food(97,ingredient,(5,5)).
+food(97,ingredient,(9,1)).
+food(97,ingredient,(14,4)).
+food(97,ingredient,(15,1)).
+food(97,ingredient,(25,2)).
+food(98,ingredient,(6,1)).
+food(98,ingredient,(9,1)).
+food(98,ingredient,(10,5)).
+food(98,ingredient,(11,1)).
+food(98,ingredient,(15,2)).
+food(98,ingredient,(25,6)).
+food(98,ingredient,(29,1)).
+food(98,ingredient,(34,1)).
+food(99,ingredient,(4,2)).
+food(99,ingredient,(5,4)).
+food(99,ingredient,(9,1)).
+food(99,ingredient,(11,4)).
+food(99,ingredient,(12,4)).
+food(99,ingredient,(15,2)).
+food(99,ingredient,(20,2)).
+food(99,ingredient,(29,1)).
+food(100,ingredient,(3,2)).
+food(100,ingredient,(4,1)).
+food(100,ingredient,(5,5)).
+food(100,ingredient,(6,2)).
+food(100,ingredient,(9,1)).
+food(100,ingredient,(15,3)).
+food(100,ingredient,(20,3)).
+food(100,ingredient,(29,1)).
+food(101,ingredient,(0,4)).
+food(101,ingredient,(3,2)).
+food(101,ingredient,(9,1)).
+food(101,ingredient,(12,1)).
+food(101,ingredient,(14,2)).
+food(101,ingredient,(15,1)).
+food(101,ingredient,(17,2)).
+food(101,ingredient,(29,1)).
+food(101,ingredient,(33,1)).
+food(101,ingredient,(34,1)).
