@@ -59,10 +59,8 @@ class Xformer():
             elif stm.name == "generation":
                 self._state = "generation"
                 self._builder.add(stm)
-            elif stm.name == "heuristic":
-                self._state = "heuristic"
             else:
-                self._builder.add(stm)
+                self._state = "others"
 
         else:
             if self._state == "examples" or self._state == "domain":
@@ -89,10 +87,8 @@ class Xformer():
                     self._builder.add(temp)
                 else:
                     self._builder.add(stm)
-            elif self._state == "heuristic":
-                pass
             else:
-                self._builder.add(stm)
+                pass
 
 def dummy():
     print("dummy here")
