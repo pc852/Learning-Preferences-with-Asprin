@@ -15,38 +15,43 @@ from clingo.symbol import String, Number
 class Xformer():
     _builder: ProgramBuilder
     _state: str
-    # AM refers to AtomModifier class, IC refers to InputChecker class, first letter indicates program block.
+    # PM refers to PredicateModifier class, IC refers to InputChecker class, first letter indicates program part.
     def __init__(self, builder: ProgramBuilder, names: list):
         self._builder = builder
         self._state = ""
         self._prefNames = names
-        self.EAM = AtomModifier([("atom",1), ("model",1), ("in",2), ("input",3)],'_e_')
+        self.DPM = PredicateModifier([("atom",1), ("model",1), ("in",2), ("input",3)],'_d_')
+        #self.DIC = DomainInputChecker() #due to 0 input predicates
+        self.EPM = PredicateModifier([("atom",1), ("model",1), ("in",2), ("input",3)],'_e_')
         #self.EIC = ExmplInputChecker() #due to 0 input predicates
-        self.GAM = AtomModifier([("atom",1), ("model",1), ("in",2), ("input",3), ("preference",2), ("preference",5)],'_g_')
+        self.GPM = PredicateModifier([("atom",1), ("model",1), ("in",2), ("input",3), ("preference",2), ("preference",5)],'_g_')
         self.GIC = InputChecker([("atom",1), ("model",1), ("in",2), ("input",3)])
-        self.BAM = AtomModifier([("atom",1), ("model",1), ("in",2), ("input",3), ("preference",2), ("preference",5), ("for",1),\
+        self.BPM = PredicateModifier([("atom",1), ("model",1), ("in",2), ("input",3), ("preference",2), ("preference",5), ("for",1),\
                                ("better",3), ("bettereq",3), ("eq",3), ("worse",3), ("worseeq",3), ("unc",3), ("holds",2), ("output",3)],'_b_')
         self.BIC = InputChecker([("atom",1), ("model",1), ("in",2), ("input",3), ("preference",2), ("preference",5),\
                                ("better",3), ("better",4), ("bettereq",3), ("eq",3), ("worse",3), ("worse",4), ("worseeq",3), ("unc",3)])
-        self.PAM = AtomModifier([("holds",1), ("holds'",1), ("preference",2), ("preference",5), ("input",3),\
+        self.PPM = PredicateModifier([("holds",1), ("holds'",1), ("preference",2), ("preference",5), ("input",3),\
                                 ("better",1), ("better",2), ("bettereq",1), ("eq",1), ("worse",1), ("worse",2), ("worseeq",1), ("unc",1)],'_p_')
         self.PIC = InputChecker([("holds",1), ("holds'",1), ("preference",2), ("preference",5)])
         self.PPA = PrefPredicateAdder()
         self.PVA = PrefVariableAdder()
-
+    
+    #if input stm is program, then set self._state to that program part, if not, then apply corresponding modifications
     def process(self, stm: AST):
         if stm.ast_type == ASTType.Program:
             if stm.name == "preference":
                 if stm.parameters and str(stm.parameters[0]) != "cp":
-                    self._state = "library"
+                    self._state = "preferences"
                     self._builder.add(stm)
                     self._prefNames.append(str(stm.parameters[0]))
-                elif stm.parameters and str(stm.parameters[0]) == "cp":
+                #elif stm.parameters and str(stm.parameters[0]) == "cp":
+                    #self._state = ""
+                    #pass
+                else:
+                    #self._state = "preferences"
+                    #self._builder.add(stm)
                     self._state = ""
                     pass
-                else:
-                    self._state = "library"
-                    self._builder.add(stm)
             elif stm.name == "backend":
                 self._state = "backend"
                 self._builder.add(stm)
@@ -63,37 +68,40 @@ class Xformer():
                 self._state = "others"
 
         else:
-            if self._state == "examples" or self._state == "domain":
+            if self._state == "domain":
                 if stm.ast_type == ASTType.Rule:
-                    temp = self.EAM(stm)
+                    temp = self.DPM(stm)
+                    self._builder.add(temp)
+                else:
+                    self._builder.add(stm)
+            elif self._state == "examples":
+                if stm.ast_type == ASTType.Rule:
+                    temp = self.EPM(stm)
                     self._builder.add(temp)
                 else:
                     self._builder.add(stm)
             elif self._state == "generation":
                 if stm.ast_type == ASTType.Rule:
-                    temp = self.GAM(self.GIC(stm))
+                    temp = self.GPM(self.GIC(stm))
                     self._builder.add(temp)
                 else:
                     self._builder.add(stm)
             elif self._state == "backend":
                 if stm.ast_type == ASTType.Rule:
-                    temp = self.BAM(self.BIC(stm))
+                    temp = self.BPM(self.BIC(stm))
                     self._builder.add(temp)
                 else:
                     self._builder.add(stm)
-            elif self._state == "library":
+            elif self._state == "preferences":
                 if stm.ast_type == ASTType.Rule:
-                    temp = self.PPA(self.PVA(self.PAM(self.PIC(stm))))
+                    temp = self.PPA(self.PVA(self.PPM(self.PIC(stm))))
                     self._builder.add(temp)
                 else:
                     self._builder.add(stm)
             else:
                 pass
 
-def dummy():
-    print("dummy here")
-
-class AtomModifier(Transformer): #adds correpsonding prefix to internal predicates of each program.
+class PredicateModifier(Transformer): #adds correpsonding prefix to internal predicates of each program.
     def __init__(self, pred_list: list, prefix: str):
         self._dict = pred_list
         self._prefix = prefix
@@ -106,8 +114,6 @@ class AtomModifier(Transformer): #adds correpsonding prefix to internal predicat
         #adds prefix to predicate
         atom.symbol.name = self._prefix + atom.symbol.name
         return atom.update(symbol = atom.symbol)
-
-        #return atom
 
 class InputChecker(Transformer): #check that input predicates only occur in body and not head
     def __init__(self, inputDict: dict):
@@ -226,9 +232,6 @@ class AsprinLearn(Application):
     def __init__(self):
         self._conf = ConfigAsprinLearn()
 
-    def exp2(self, x):
-        return int(math.pow(2,x.number))
-
     def get(self, atuple, index):
         try:
             return atuple.arguments[index.number]
@@ -251,9 +254,6 @@ class AsprinLearn(Application):
             return clingo.Number(len(atuple.arguments))
         except:
             return clingo.Number(1)
-
-    def log2up(self, x):
-        return int(math.ceil(math.log(x.number,2)))
 
     def parse(self, stm):
         print("parsing: ", stm)
