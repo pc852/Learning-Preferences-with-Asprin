@@ -217,6 +217,182 @@ class PrefPredicateAdder(Transformer): #adds input(M_,R_,N_) to all preference l
             add_pairMN_to_body(False)
         return r
 
+class PrintPref(): #prints final preference statement including type and elements
+    def __init__(self,type_list,instance_list):
+        self._type_lst = type_list
+        self._inst_lst = instance_list
+        
+    def parse_atom(self,inst):
+        wgt = inst[4].lstrip("(").rstrip(")")
+
+        #process 4th argument of preference instance
+        if inst[3][:4] == "for(":
+            atom = inst[3].replace("for(","")[:-1]
+        elif inst[3][:5] == "name(":
+            atom = inst[3].replace("name(","**")[:-1]
+        else:
+            print("Invalid predicate (4th argument) in ", inst)
+        #recursive function to parse all 'or', 'neg', 'and'
+        parsed = self.check_string(atom,False)
+
+        if parsed[0] == "(" and parsed[-1] == ")":
+            parsed = parsed[1:-1]
+        if wgt:
+            parsed = wgt + " :: " + parsed
+        return parsed
+
+    def check_string(self,strg, inner):
+        new_strg = strg.replace(" ", "")
+        if "neg(" in strg[:4]:
+            new_strg = self.parse_neg(strg)
+        elif "and(" in strg[:4]:
+            new_strg = parse_or_and(new_strg, "and")
+            p1 = new_strg.split("&")[0].replace(" ","")
+            p2 = new_strg.split("&")[1].replace(" ","")
+            new_p1 = self.check_string(p1,True)
+            new_p2 = self.check_string(p2,True)
+            new_strg = "(" + new_p1 + " & " + new_p2 + ")"
+        elif "or(" in strg[:3]:
+            new_strg = parse_or_and(new_strg, "or")
+            p1 = new_strg.split("|")[0].replace(" ","")
+            p2 = new_strg.split("|")[1].replace(" ","")
+            new_p1 = self.check_string(p1,True)
+            new_p2 = self.check_string(p2,True)
+            new_strg = "(" + new_p1 + " | " + new_p2 + ")"
+        return new_strg
+
+    def parse_neg(self,lit):
+        lit = lit.lstrip("neg(")[:-1]
+        lit = "not " + lit + " "
+        return lit
+
+    def parse_or_and(self,fml,bool):
+        start_ind = 0
+        if bool == "or":
+            fml = fml[3:-1]
+        elif bool == "and":
+            fml = fml[4:-1]
+
+        iter = re.finditer(r'\),\s?[a-z]',fml)
+        indices = [i.start(0) for i in iter]
+        corr_ind = []
+        for i in indices:
+            slc = fml[:i+1]
+            ob_cnt = slc.count('(')
+            cb_cnt = slc.count(')')
+            if ob_cnt == cb_cnt:
+                start_ind = i+1
+                break
+
+        if start_ind == 0:
+            print("\n parsing failed! and/or formula! ")
+        else:
+            if bool == "or":
+                fml.replace(" ", "")
+                new_fml = fml[:start_ind] + "|" + fml[start_ind+1:]
+                return new_fml
+            elif bool == "and":
+                fml.replace(" ", "")
+                new_fml = fml[:start_ind] + "&" + fml[start_ind+1:]
+                return new_fml
+
+    def routine(self,typ):
+        prefPrint = "\n#preference("
+        toPrint = ""
+        toPrint = prefPrint + typ[0] + "," + typ[1] + ")"
+        toPrint = toPrint + "{"
+        return toPrint
+
+    def get_fml(self,ele):
+        return (ele[2])
+
+    def rotate_left(self,lst, n):
+        return lst[n:] + lst[:n]
+
+    def main(self):
+        if not self._inst_lst:
+            print("No preference instances learned!")
+
+        for inst in self._inst_lst:
+            try:
+                inst[2] = int(inst[2])
+            except:
+                print("3rd argument of preference instance ", inst, " cannot be convert to int.")
+
+            try:
+                inst[1] = [re.search(r'\([0-9]+,', inst[1])[0][1:-1], re.search(r',[0-9]+(,|\))', inst[1])[0][1:-1]]
+            except:
+                print("Part(s) of 2nd argument of preference instance ", inst, " cannot be converted to int.")
+
+        while self._type_lst:
+            toPrint = self.routine(self._type_lst[0])
+            multi_fml = False
+            st = self._type_lst[0][0] #e.g. p1
+            curr_st = []
+            for x in self._inst_lst: #loop through pref instances, find those with same pref statement name as st
+                if x[0] == st:
+                    curr_st.append(x) #add to list curr_st
+                    if x[2] != 1:
+                        multi_fml = True
+
+            if multi_fml == False:
+                for i in range(0,len(curr_st)):
+                    curr_st[i][2] = i+1
+                for inst in curr_st:
+                    parsed = self.parse_atom(inst)
+                    toPrint = toPrint + "\n" + " "*2 + parsed + " ; "
+
+            elif multi_fml == True:
+                while curr_st:
+                    ele = curr_st[0]
+                    curr_ele = []
+                    curr_ele.append(ele)
+                    toPrint = toPrint + "\n" + " "*2
+
+                    for x in curr_st: #loop through pref instances, find those with same pref element as ele
+                        if x[1][1] == ele[1][1] and x[2] != ele[2] and x[3] != ele[3]:
+                            curr_ele.append(x) #add to list curr_ele
+                        elif x[1][1] == ele[1][1] and x[2] == ele[2] and x[3] != ele[3]:
+                            print("\n", "Warning: Multiple boolean formulas at same preference rank detected for preference statement ", x[1][0], " and element index ", x[1][1],\
+                             ". Only one will be parsed.")
+                        elif x[1][1] == ele[1][1] and x[2] != ele[2] and x[3] == ele[3]:
+                            print("\n", "Warning: Same boolean formula detected at differnt preference rank for preference statement ", x[1][0], " and element index ", x[1][1],\
+                             ". Only one will be parsed.")
+                    curr_ele.sort(key=get_fml, reverse=False)
+
+                    ele_cond = []
+                    while curr_ele and curr_ele[0][2] == 0:
+                        ele_cond.append(curr_ele[0])
+                        curr_ele = curr_ele[1:]
+
+                    for inst in curr_ele:
+                        parsed = self.parse_atom(inst)
+                        if inst[2] >= 1 and inst == curr_ele[-1]:
+                            toPrint = toPrint + parsed
+                        elif inst[2] >= 1 and inst != curr_ele[-1]:
+                            toPrint = toPrint + parsed + " >> "
+                        elif inst[2] < 1:
+                            print("\n", "Formula index cannot be < 0 for preference statement ", x[1][0], " and element index ", x[1][1])
+
+                    if ele_cond:
+                        parsed = self.parse_atom(ele_cond[0])
+                        toPrint = toPrint + " || " + parsed
+
+                    z = toPrint.find("\n   || ")
+                    if z != -1:
+                        toPrint = toPrint[:z+3] + toPrint[z+7:]
+                    if toPrint[-4:] == " >> ":
+                        toPrint = toPrint[:-4]
+                    toPrint = toPrint + " ; "
+                    curr_st = [x for x in curr_st if x[1][1] != ele[1][1]]
+
+            if toPrint[-1] == "{":
+                continue
+            toPrint = toPrint[:-2] + "\n}."
+            print("\n" +"Learned preference statement: " + "\n", toPrint)
+            self._type_lst = [x for x in self._type_lst if x[0] != st]
+            self._inst_lst  = [x for x in self._inst_lst if x[0] != st]
+        
 
 class ConfigAsprinLearn:
     def __init__(self):
@@ -260,180 +436,6 @@ class AsprinLearn(Application):
 
     def formula(self):
         return self.forAtoms
-
-    #prints final preference statement including type and elements
-    def printPref(self, type_lst, inst_lst):
-        if not inst_lst:
-            print("No preference instances learned!")
-            return
-
-        for inst in inst_lst:
-            try:
-                inst[2] = int(inst[2])
-            except:
-                print("3rd argument of preference instance ", inst, " cannot be convert to int.")
-
-            try:
-                inst[1] = [re.search(r'\([0-9]+,', inst[1])[0][1:-1], re.search(r',[0-9]+(,|\))', inst[1])[0][1:-1]]
-            except:
-                print("Part(s) of 2nd argument of preference instance ", inst, " cannot be converted to int.")
-
-        def parse_atom(inst):
-            wgt = inst[4].lstrip("(").rstrip(")")
-
-            #process 4th argument of preference instance
-            if inst[3][:4] == "for(":
-                atom = inst[3].replace("for(","")[:-1]
-            elif inst[3][:5] == "name(":
-                atom = inst[3].replace("name(","**")[:-1]
-            else:
-                print("Invalid predicate (4th argument) in ", inst)
-            #recursive function to parse all 'or', 'neg', 'and'
-            parsed = check_string(atom,False)
-
-            if parsed[0] == "(" and parsed[-1] == ")":
-                parsed = parsed[1:-1]
-            if wgt:
-                parsed = wgt + " :: " + parsed
-            return parsed
-
-        def check_string(strg, inner):
-            new_strg = strg.replace(" ", "")
-            if "neg(" in strg[:4]:
-                new_strg = parse_neg(strg)
-            elif "and(" in strg[:4]:
-                new_strg = parse_or_and(new_strg, "and")
-                p1 = new_strg.split("&")[0].replace(" ","")
-                p2 = new_strg.split("&")[1].replace(" ","")
-                new_p1 = check_string(p1,True)
-                new_p2 = check_string(p2,True)
-                new_strg = "(" + new_p1 + " & " + new_p2 + ")"
-            elif "or(" in strg[:3]:
-                new_strg = parse_or_and(new_strg, "or")
-                p1 = new_strg.split("|")[0].replace(" ","")
-                p2 = new_strg.split("|")[1].replace(" ","")
-                new_p1 = check_string(p1,True)
-                new_p2 = check_string(p2,True)
-                new_strg = "(" + new_p1 + " | " + new_p2 + ")"
-            return new_strg
-
-        def parse_neg(lit):
-            lit = lit.lstrip("neg(")[:-1]
-            lit = "not " + lit + " "
-            return lit
-
-        def parse_or_and(fml,bool):
-            start_ind = 0
-            if bool == "or":
-                fml = fml[3:-1]
-            elif bool == "and":
-                fml = fml[4:-1]
-
-            iter = re.finditer(r'\),\s?[a-z]',fml)
-            indices = [i.start(0) for i in iter]
-            corr_ind = []
-            for i in indices:
-                slc = fml[:i+1]
-                ob_cnt = slc.count('(')
-                cb_cnt = slc.count(')')
-                if ob_cnt == cb_cnt:
-                    start_ind = i+1
-                    break
-
-            if start_ind == 0:
-                print("\n parsing failed! and/or formula! ")
-            else:
-                if bool == "or":
-                    fml.replace(" ", "")
-                    new_fml = fml[:start_ind] + "|" + fml[start_ind+1:]
-                    return new_fml
-                elif bool == "and":
-                    fml.replace(" ", "")
-                    new_fml = fml[:start_ind] + "&" + fml[start_ind+1:]
-                    return new_fml
-
-        def routine(typ):
-            prefPrint = "\n#preference("
-            toPrint = ""
-            toPrint = prefPrint + typ[0] + "," + typ[1] + ")"
-            toPrint = toPrint + "{"
-            return toPrint
-
-        def get_fml(ele):
-            return (ele[2])
-
-        def rotate_left(lst, n):
-            return lst[n:] + lst[:n]
-
-        while type_lst:
-            toPrint = routine(type_lst[0])
-            multi_fml = False
-            st = type_lst[0][0] #e.g. p1
-            curr_st = []
-            for x in inst_lst: #loop through pref instances, find those with same pref statement name as st
-                if x[0] == st:
-                    curr_st.append(x) #add to list curr_st
-                    if x[2] != 1:
-                        multi_fml = True
-
-            if multi_fml == False:
-                for i in range(0,len(curr_st)):
-                    curr_st[i][2] = i+1
-                for inst in curr_st:
-                    parsed = parse_atom(inst)
-                    toPrint = toPrint + "\n" + " "*2 + parsed + " ; "
-
-            elif multi_fml == True:
-                while curr_st:
-                    ele = curr_st[0]
-                    curr_ele = []
-                    curr_ele.append(ele)
-                    toPrint = toPrint + "\n" + " "*2
-
-                    for x in curr_st: #loop through pref instances, find those with same pref element as ele
-                        if x[1][1] == ele[1][1] and x[2] != ele[2] and x[3] != ele[3]:
-                            curr_ele.append(x) #add to list curr_ele
-                        elif x[1][1] == ele[1][1] and x[2] == ele[2] and x[3] != ele[3]:
-                            print("\n", "Warning: Multiple boolean formulas at same preference rank detected for preference statement ", x[1][0], " and element index ", x[1][1],\
-                             ". Only one will be parsed.")
-                        elif x[1][1] == ele[1][1] and x[2] != ele[2] and x[3] == ele[3]:
-                            print("\n", "Warning: Same boolean formula detected at differnt preference rank for preference statement ", x[1][0], " and element index ", x[1][1],\
-                             ". Only one will be parsed.")
-                    curr_ele.sort(key=get_fml, reverse=False)
-
-                    ele_cond = []
-                    while curr_ele and curr_ele[0][2] == 0:
-                        ele_cond.append(curr_ele[0])
-                        curr_ele = curr_ele[1:]
-
-                    for inst in curr_ele:
-                        parsed = parse_atom(inst)
-                        if inst[2] >= 1 and inst == curr_ele[-1]:
-                            toPrint = toPrint + parsed
-                        elif inst[2] >= 1 and inst != curr_ele[-1]:
-                            toPrint = toPrint + parsed + " >> "
-                        elif inst[2] < 1:
-                            print("\n", "Formula index cannot be < 0 for preference statement ", x[1][0], " and element index ", x[1][1])
-
-                    if ele_cond:
-                        parsed = parse_atom(ele_cond[0])
-                        toPrint = toPrint + " || " + parsed
-
-                    z = toPrint.find("\n   || ")
-                    if z != -1:
-                        toPrint = toPrint[:z+3] + toPrint[z+7:]
-                    if toPrint[-4:] == " >> ":
-                        toPrint = toPrint[:-4]
-                    toPrint = toPrint + " ; "
-                    curr_st = [x for x in curr_st if x[1][1] != ele[1][1]]
-
-            if toPrint[-1] == "{":
-                continue
-            toPrint = toPrint[:-2] + "\n}."
-            print("\n" +"Learned preference statement: " + "\n", toPrint)
-            type_lst = [x for x in type_lst if x[0] != st]
-            inst_lst  = [x for x in inst_lst if x[0] != st]
-
 
     def main(self, ctl, files):
         if not files:
@@ -479,13 +481,8 @@ class AsprinLearn(Application):
                             self.prefEle.append([str(lit.arguments[0]),str(lit.arguments[1]),\
                             str(lit.arguments[2]),str(lit.arguments[3]),str(lit.arguments[4])])
             print(hnd.get())
-        self.printPref(self.prefType, self.prefEle)
-
-        solvedTheProblem()
-
-
-def solvedTheProblem():
-    # Stop all the threads
-    pass
+        
+        self.output = PrintPref(self.prefType, self.prefEle)
+        self.output.main()
 
 clingo.clingo_main(AsprinLearn(), sys.argv[1:])
