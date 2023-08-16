@@ -222,7 +222,7 @@ class PrintPref(): #prints final preference statement including type and element
         self._type_lst = type_list
         self._inst_lst = instance_list
         
-    def parse_atom(self,inst):
+    def parse_atom(self,inst): #parses all and/or/neg to logic symbols
         wgt = inst[4].lstrip("(").rstrip(")")
 
         #process 4th argument of preference instance
@@ -232,7 +232,7 @@ class PrintPref(): #prints final preference statement including type and element
             atom = inst[3].replace("name(","**")[:-1]
         else:
             print("Invalid predicate (4th argument) in ", inst)
-        #recursive function to parse all 'or', 'neg', 'and'
+
         parsed = self.check_string(atom,False)
 
         if parsed[0] == "(" and parsed[-1] == ")":
@@ -241,19 +241,19 @@ class PrintPref(): #prints final preference statement including type and element
             parsed = wgt + " :: " + parsed
         return parsed
 
-    def check_string(self,strg, inner):
+    def check_string(self,strg, inner): #recursively unpacks all and/or/neg 
         new_strg = strg.replace(" ", "")
         if "neg(" in strg[:4]:
             new_strg = self.parse_neg(strg)
         elif "and(" in strg[:4]:
-            new_strg = parse_or_and(new_strg, "and")
+            new_strg = self.parse_or_and(new_strg, "and")
             p1 = new_strg.split("&")[0].replace(" ","")
             p2 = new_strg.split("&")[1].replace(" ","")
             new_p1 = self.check_string(p1,True)
             new_p2 = self.check_string(p2,True)
             new_strg = "(" + new_p1 + " & " + new_p2 + ")"
         elif "or(" in strg[:3]:
-            new_strg = parse_or_and(new_strg, "or")
+            new_strg = self.parse_or_and(new_strg, "or")
             p1 = new_strg.split("|")[0].replace(" ","")
             p2 = new_strg.split("|")[1].replace(" ","")
             new_p1 = self.check_string(p1,True)
@@ -261,7 +261,7 @@ class PrintPref(): #prints final preference statement including type and element
             new_strg = "(" + new_p1 + " | " + new_p2 + ")"
         return new_strg
 
-    def parse_neg(self,lit):
+    def parse_neg(self,lit): 
         lit = lit.lstrip("neg(")[:-1]
         lit = "not " + lit + " "
         return lit
@@ -303,11 +303,11 @@ class PrintPref(): #prints final preference statement including type and element
         toPrint = toPrint + "{"
         return toPrint
 
-    def get_fml(self,ele):
-        return (ele[2])
-
     def rotate_left(self,lst, n):
         return lst[n:] + lst[:n]
+    
+    def get_fml(self,ele):
+        return (ele[2])
     
     def check_empty(self):
         if not self._inst_lst:
@@ -325,7 +325,7 @@ class PrintPref(): #prints final preference statement including type and element
             except:
                 print("Part(s) of 2nd argument of preference instance ", inst, " cannot be converted to int.")
 
-    def main(self):
+    def main(self): 
         self.check_empty()
         self.check_int()
         
@@ -341,8 +341,6 @@ class PrintPref(): #prints final preference statement including type and element
                         multi_fml = True
 
             if multi_fml == False:
-                for i in range(0,len(curr_st)):
-                    curr_st[i][2] = i+1
                 for inst in curr_st:
                     parsed = self.parse_atom(inst)
                     toPrint = toPrint + "\n" + " "*2 + parsed + " ; "
@@ -361,29 +359,29 @@ class PrintPref(): #prints final preference statement including type and element
                             print("\n", "Warning: Multiple boolean formulas at same preference rank detected for preference statement ", x[1][0], " and element index ", x[1][1],\
                              ". Only one will be parsed.")
                         elif x[1][1] == ele[1][1] and x[2] != ele[2] and x[3] == ele[3]:
-                            print("\n", "Warning: Same boolean formula detected at differnt preference rank for preference statement ", x[1][0], " and element index ", x[1][1],\
+                            print("\n", "Warning: Same boolean formula detected at different preference rank for preference statement ", x[1][0], " and element index ", x[1][1],\
                              ". Only one will be parsed.")
-                    curr_ele.sort(key=get_fml, reverse=False)
+                    curr_ele.sort(key=self.get_fml, reverse=False) #formula indices for same element in ascending order
 
                     ele_cond = []
-                    while curr_ele and curr_ele[0][2] == 0:
+                    if curr_ele[0][2] == 0: #extract conditional forumla if any
                         ele_cond.append(curr_ele[0])
                         curr_ele = curr_ele[1:]
-
+                    elif curr_ele[0][2] < 0:
+                        print("\n", "Warning: Formula index cannot be < 0 for preference statement ", curr_ele[0][0], " and element index ", curr_ele[1][1])
+                    
                     for inst in curr_ele:
                         parsed = self.parse_atom(inst)
-                        if inst[2] >= 1 and inst == curr_ele[-1]:
+                        if inst[2] >= 1 and inst == curr_ele[-1]: #last formula for current pref element 
                             toPrint = toPrint + parsed
-                        elif inst[2] >= 1 and inst != curr_ele[-1]:
-                            toPrint = toPrint + parsed + " >> "
-                        elif inst[2] < 1:
-                            print("\n", "Formula index cannot be < 0 for preference statement ", x[1][0], " and element index ", x[1][1])
+                        elif inst[2] >= 1 and inst != curr_ele[-1]: #current forumla preferred to forumlas further down in list
+                            toPrint = toPrint + parsed + " >> "        
 
                     if ele_cond:
-                        parsed = self.parse_atom(ele_cond[0])
+                        parsed = self.parse_atom(ele_cond[0]) #append element condition to end of output string
                         toPrint = toPrint + " || " + parsed
 
-                    z = toPrint.find("\n   || ")
+                    z = toPrint.find("\n   || ") # prune output string of excess symbols 
                     if z != -1:
                         toPrint = toPrint[:z+3] + toPrint[z+7:]
                     if toPrint[-4:] == " >> ":
