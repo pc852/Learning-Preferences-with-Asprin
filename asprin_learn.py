@@ -308,11 +308,12 @@ class PrintPref(): #prints final preference statement including type and element
 
     def rotate_left(self,lst, n):
         return lst[n:] + lst[:n]
-
-    def main(self):
+    
+    def check_empty(self):
         if not self._inst_lst:
             print("No preference instances learned!")
-
+            
+    def check_int(self):
         for inst in self._inst_lst:
             try:
                 inst[2] = int(inst[2])
@@ -324,6 +325,10 @@ class PrintPref(): #prints final preference statement including type and element
             except:
                 print("Part(s) of 2nd argument of preference instance ", inst, " cannot be converted to int.")
 
+    def main(self):
+        self.check_empty()
+        self.check_int()
+        
         while self._type_lst:
             toPrint = self.routine(self._type_lst[0])
             multi_fml = False
