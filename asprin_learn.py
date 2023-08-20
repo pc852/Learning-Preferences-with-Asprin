@@ -20,9 +20,9 @@ class Xformer():
         self._builder = builder
         self._state = ""
         self._prefNames = names
-        self.DPM = PredicateModifier([("atom",1), ("model",1), ("in",2), ("input",3)],'_d_')
+        self.DPM = PredicateModifier([("atom",1), ("model",1)],'_d_')
         #self.DIC = DomainInputChecker() #due to 0 input predicates
-        self.EPM = PredicateModifier([("atom",1), ("model",1), ("in",2), ("input",3)],'_e_')
+        self.EPM = PredicateModifier([("in",2), ("input",3)],'_e_')
         #self.EIC = ExmplInputChecker() #due to 0 input predicates
         self.GPM = PredicateModifier([("atom",1), ("model",1), ("in",2), ("input",3), ("preference",2), ("preference",5)],'_g_')
         self.GIC = InputChecker([("atom",1), ("model",1), ("in",2), ("input",3)])
