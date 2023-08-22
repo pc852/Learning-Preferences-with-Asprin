@@ -394,7 +394,7 @@ class PrintPref(): #prints final preference statement including type and element
             toPrint = toPrint[:-2] + "\n}."
             print("\n" +"Learned preference statement: " + "\n", toPrint)
             self._type_lst = [x for x in self._type_lst if x[0] != st]
-            self._inst_lst  = [x for x in self._inst_lst if x[0] != st]
+            self._inst_lst = [x for x in self._inst_lst if x[0] != st]
         
 
 class ConfigAsprinLearn:
