@@ -1,26 +1,18 @@
 #program preference(betterthan).
 
-better(P,M,N,G,H,K) :- preference(P, betterthan), preference(P,(P,K),1,for(X),_), preference(P,(P,K),2,for(Y),_),
-             holds(X,M), holds(Y,N), input(M,R,N), holds(X,G), holds(Y,H), input(G,R,H), M!=G.
+better(P) :- preference(P, betterthan), preference(P,(P,K),1,for(X),_), preference(P,(P,K),2,for(Y),_),
+            holds(X), holds'(Y).
 
-better(P,M,N,G,H,K) :- preference(P, betterthan), preference(P,(P,K),1,for(X),_), preference(P,(P,K),2,for(Y),_),
-            holds(X,M), holds(Y,N), input(M,R,N), holds(X,G), holds(Y,H), input(G,R,H), N!=H.
+worse(P) :- preference(P, betterthan), preference(P,(P,K),1,for(X),_), preference(P,(P,K),2,for(Y),_),
+            holds(Y), holds'(X).
 
-%better(P,M,N) :- preference(P, betterthan), preference(P,(P,K),1,for(X),_), preference(P,(P,K),2,for(Y),_),
-            %holds(X,M), holds(Y,N), input(M,R,N).
+eq(P) :- preference(P, betterthan), preference(P,(P,K),1,for(X),_), preference(P,(P,K),2,for(Y),_),
+	     holds(X), holds(Y).
 
-worse(P,M,N) :- preference(P, betterthan), preference(P,(P,K),1,for(X),_), preference(P,(P,K),2,for(Y),_),
-            holds(Y,M), holds(X,N), input(M,R,N).
-
-unc(P,M,N) :- preference(P, betterthan), preference(P,(P,K),1,for(X),_), preference(P,(P,K),2,for(Y),_),
-          not holds(X,M), input(M,R,N).
-
-unc(P,M,N) :- preference(P, betterthan), preference(P,(P,K),1,for(X),_), preference(P,(P,K),2,for(Y),_),
-          not holds(Y,N), input(M,R,N).
-
-
-better(P,M,N,G,H,K) :- better(P,G,H,M,N,K).
-better(P,M,N) :- better(P,M,N,G,H,K).
-
-
+eq(P) :- preference(P, betterthan), preference(P,(P,K),1,for(X),_), preference(P,(P,K),2,for(Y),_),
+	     holds'(X), holds'(Y).
+	      
+	    
+#show better/3.
+#show worse/3.
 #show.

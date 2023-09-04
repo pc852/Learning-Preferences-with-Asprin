@@ -11,15 +11,14 @@ holds(and(X,Y),M) :- for(and(X,Y)),     holds(X,M), holds(Y,M).
 holds( or(X,Y),M) :- for( or(X,Y)),     holds(X,M).
 holds( or(X,Y),M) :- for( or(X,Y)),     holds(Y,M).
 
-output(M,better,N):- better(P,M,N).
-output(M,worse,N) :-  worse(P,M,N).
-output(M,eq,N)    :-     eq(P,M,N).
-output(M,unc,N)   :-    unc(P,M,N).
+%:- preference(P,(P,K),1,for(X),_), not better(_,_,_).
+%:- preference(P,(P,K),2,for(Y),_), not better(_,_,Y,_,_).  
 
-%:- { output(M,O,N) } != 1, input(M,I,N).
-:- output(M,worse,N), input(M,better,N).
-#maximize{1@3,M,N: input(M,better,N), output(M,better,N)}.
-#minimize{1@2,M,N: input(M,better,N), output(M,unc,N)}.
-%#maximize{1@1,E: preference(_,(P,E),_,_,_)    }.
+:- worse(_,_,_).
+:- eq(_,_,_).
+
+#maximize{1@3,M,N: better(P,M,N)}.
+%#minimize{1@2,L:_g_clauseLen(L)}.
+%#minimize{1@1,K: preference(_,(_,K),_,_,_)}.
 
 #show output/3.

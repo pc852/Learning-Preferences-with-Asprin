@@ -16,7 +16,8 @@ class Xformer():
     _builder: ProgramBuilder
     _state: str
     # PM refers to PredicateModifier class, IC refers to InputChecker class, first letter indicates program part.
-    def __init__(self, builder: ProgramBuilder, names: list):
+    def __init__(self, builder: ProgramBuilder, names: list, stm_out: list):
+        self._outBuffer = stm_out
         self._builder = builder
         self._state = ""
         self._prefNames = names
@@ -26,12 +27,27 @@ class Xformer():
         #self.EIC = ExmplInputChecker() #due to 0 input predicates
         self.GPM = PredicateModifier([("atom",1), ("model",1), ("in",2), ("input",3), ("preference",2), ("preference",5)],'_g_')
         self.GIC = InputChecker([("atom",1), ("model",1), ("in",2), ("input",3)])
+        
         self.BPM = PredicateModifier([("atom",1), ("model",1), ("in",2), ("input",3), ("preference",2), ("preference",5), ("for",1),\
-                               ("better",3), ("bettereq",3), ("eq",3), ("worse",3), ("worseeq",3), ("unc",3), ("holds",2), ("output",3)],'_b_')
+                                ("better",3),   ("better",4),   ("better",5), \
+                                ("bettereq",3), ("bettereq",4), ("bettereq",5), \
+                                ("worse",3),    ("worse",4),    ("worse",5), \
+                                ("worseeq",3),  ("worseeq",4),  ("worseeq",5), \
+                                ("eq",3),       ("eq",4),       ("eq",5), \
+                                ("unc",3),      ("unc",4),      ("unc",5), ("holds",2), ("output",3)],'_b_')
+        
         self.BIC = InputChecker([("atom",1), ("model",1), ("in",2), ("input",3), ("preference",2), ("preference",5),\
-                               ("better",3), ("better",4), ("bettereq",3), ("eq",3), ("worse",3), ("worse",4), ("worseeq",3), ("unc",3)])
+                                ("better",3), ("better",4), ("better",5), \
+                                ("bettereq",3), ("bettereq",4), ("bettereq",5), \
+                                ("worse",3),    ("worse",4),    ("worse",5), \
+                                ("worseeq",3),  ("worseeq",4),  ("worseeq",5), \
+                                ("eq",3),       ("eq",4),       ("eq",5), \
+                                ("unc",3),      ("unc",4),      ("unc",5), ])
+        
         self.PPM = PredicateModifier([("holds",1), ("holds'",1), ("preference",2), ("preference",5), ("input",3),\
-                                ("better",1), ("better",2), ("bettereq",1), ("eq",1), ("worse",1), ("worse",2), ("worseeq",1), ("unc",1)],'_p_')
+                                ("better",1), ("better",2), ("better",3), ("bettereq",1), ("eq",1), \
+                                ("worse",1), ("worse",2), ("worse",3), ("worseeq",1), ("unc",1)],'_p_')
+        
         self.PIC = InputChecker([("holds",1), ("holds'",1), ("preference",2), ("preference",5)])
         self.PPA = PrefPredicateAdder()
         self.PVA = PrefVariableAdder()
@@ -43,6 +59,7 @@ class Xformer():
                 if stm.parameters and str(stm.parameters[0]) != "cp":
                     self._state = "preferences"
                     self._builder.add(stm)
+                    self._outBuffer.append("\n\n" + str(stm))
                     self._prefNames.append(str(stm.parameters[0]))
                 #elif stm.parameters and str(stm.parameters[0]) == "cp":
                     #self._state = ""
@@ -55,51 +72,72 @@ class Xformer():
             elif stm.name == "backend":
                 self._state = "backend"
                 self._builder.add(stm)
+                self._outBuffer.append("\n\n" + str(stm))
             elif stm.name == "examples":
                 self._state = "examples"
                 self._builder.add(stm)
+                self._outBuffer.append("\n\n" + str(stm))
             elif stm.name == "domain":
                 self._state = "domain"
                 self._builder.add(stm)
+                self._outBuffer.append("\n\n" + str(stm))
             elif stm.name == "generation":
                 self._state = "generation"
                 self._builder.add(stm)
+                self._outBuffer.append("\n\n" + str(stm))
             else:
                 self._state = "others"
+                self._builder.add(stm)
+                self._outBuffer.append("\n\n" + str(stm))
 
         else:
             if self._state == "domain":
                 if stm.ast_type == ASTType.Rule:
                     temp = self.DPM(stm)
                     self._builder.add(temp)
+                    self._outBuffer.append("\n" + str(temp))
                 else:
                     self._builder.add(stm)
+                    self._outBuffer.append("\n" + str(stm))
+                    
             elif self._state == "examples":
                 if stm.ast_type == ASTType.Rule:
                     temp = self.EPM(stm)
                     self._builder.add(temp)
+                    self._outBuffer.append("\n" + str(temp))
                 else:
                     self._builder.add(stm)
+                    self._outBuffer.append("\n" + str(stm))
+                    
             elif self._state == "generation":
                 if stm.ast_type == ASTType.Rule:
                     temp = self.GPM(self.GIC(stm))
                     self._builder.add(temp)
+                    self._outBuffer.append("\n" + str(temp))
                 else:
                     self._builder.add(stm)
+                    self._outBuffer.append("\n" + str(stm))
+                    
             elif self._state == "backend":
                 if stm.ast_type == ASTType.Rule:
                     temp = self.BPM(self.BIC(stm))
                     self._builder.add(temp)
+                    self._outBuffer.append("\n" + str(temp))
                 else:
                     self._builder.add(stm)
+                    self._outBuffer.append("\n" + str(stm))
+                    
             elif self._state == "preferences":
                 if stm.ast_type == ASTType.Rule:
                     temp = self.PPA(self.PVA(self.PPM(self.PIC(stm))))
                     self._builder.add(temp)
+                    self._outBuffer.append("\n" + str(temp))
                 else:
                     self._builder.add(stm)
+                    self._outBuffer.append("\n" + str(stm))
             else:
-                pass
+                #self._builder.add(stm)
+                self._outBuffer.append("\n" + str(stm))
 
 class PredicateModifier(Transformer): #adds correpsonding prefix to internal predicates of each program.
     def __init__(self, pred_list: list, prefix: str):
@@ -167,7 +205,6 @@ class PrefVariableAdder(Transformer): #adds variable M_ to holds/1, N_to holds'/
         elif atom.symbol.name =="holds'":
             atom.symbol.arguments.insert(arg_len,varN1)
             atom.symbol.name = "holds"
-        # add M_,N_ to all other predicates
         else:
             atom.symbol.arguments.insert(arg_len,varM)
             atom.symbol.arguments.insert(arg_len+1,varN2)
@@ -312,6 +349,9 @@ class PrintPref(): #prints final preference statement including type and element
     def check_empty(self):
         if not self._inst_lst:
             print("No preference instances learned!")
+            return 1
+        else:
+            return 0
             
     def check_int(self):
         for inst in self._inst_lst:
@@ -326,10 +366,10 @@ class PrintPref(): #prints final preference statement including type and element
                 print("Part(s) of 2nd argument of preference instance ", inst, " cannot be converted to int.")
 
     def main(self): 
-        self.check_empty()
+        isEmpty = self.check_empty()
         self.check_int()
         
-        while self._type_lst:
+        while self._type_lst and isEmpty != 1:
             toPrint = self.routine(self._type_lst[0])
             multi_fml = False
             st = self._type_lst[0][0] #e.g. p1
@@ -441,21 +481,34 @@ class AsprinLearn(Application):
         return self.forAtoms
 
     def main(self, ctl, files):
-        if not files:
-            files = ["-"]
-        conf = self._conf
-        istop, threads = conf.istop, conf.threads
         self.forAtoms = []
         self.prefType = []
         self.prefEle = []
         self.prefNames= []
+        self.outBuffer = []
+        self.stm_out = ""
+        
+        conf = self._conf
+        istop, threads = conf.istop, conf.threads
         part1 = []
         part2 = []
 
+        print("here1")
+        if not files:
+            files = ["-"]
+        if files[-1][-4:] == ".txt":
+            self.stm_out = files[-1]
+            files = files[:-1]
+        print("here2")
+        
         with ProgramBuilder(ctl) as bld:
-            trans = Xformer(bld, self.prefNames)
+            trans = Xformer(bld, self.prefNames, self.outBuffer)
             parse_files(files, trans.process)
-
+        
+        if self.stm_out != "":
+            print(self.stm_out)
+            with open(self.stm_out,"w") as outFile:
+                outFile.writelines(self.outBuffer)
         part1.append(('examples', []))
         part1.append(('generation', []))
         part1.append(('domain', []))
