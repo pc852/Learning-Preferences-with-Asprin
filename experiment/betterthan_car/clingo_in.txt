@@ -2,55 +2,6 @@
 
 #program base.
 
-#program domain.
-model((1..10)).
-atom(hasBodyType((1..2))).
-atom(hasTransmission((1..2))).
-atom(hasEngineCap((1..5))).
-atom(hasFuelCons((1..2))).
-
-#program base.
-
-#program backend.
-for(@formula).
-for(X) :- for(and(X,Y)).
-for(Y) :- for(and(X,Y)).
-for(X) :- for(or(X,Y)).
-for(Y) :- for(or(X,Y)).
-for(X) :- for(neg(X)).
-holds(atom(A),M) :- for(atom(A)); in(A,M).
-holds(neg(X),M) :- for(neg(X)); not holds(X,M); model(M).
-holds(and(X,Y),M) :- for(and(X,Y)); holds(X,M); holds(Y,M).
-holds(or(X,Y),M) :- for(or(X,Y)); holds(X,M).
-holds(or(X,Y),M) :- for(or(X,Y)); holds(Y,M).
-#false :- worse(_,_,_).
-#false :- eq(_,_,_).
-:~ better(P,M,N). [-1@3,M,N]
-#show output/3.
-
-#program base.
-
-#program generation.
-#const maxEle = 8.
-#const maxLen = 2.
-_g_st(1).
-preference(P,betterthan) :- _g_st(P).
-_g_el(X) :- X = (1..maxEle).
-1 >= { preference(P,(P,EL),1,for(X),()): _g_possfor(L,X) } :- _g_el(EL); _g_st(P).
-1 <= { preference(P,(P,EL),2,for(Y),()): _g_possfor(L,Y) } <= 1 :- preference(P,(P,EL),1,for(X),()); _g_el(EL).
-_g_clauseLen(1).
-{ _g_clauseLen((2..maxLen)) }.
-#false :- _g_clauseLen(X); not _g_clauseLen((X-1)); X > 1.
-_g_possfor(1,atom(X)) :- atom(X).
-1 <= { _g_possfor(L,and(X,Y)); _g_possfor(L,and(Y,X)) } <= 1 :- _g_possfor((L-1),X); _g_possfor((L-1),Y); _g_clauseLen(L); X != Y.
-#false :- preference(P,(P,K),1,X,_); preference(P,(P,K),2,X,_).
-#false :- preference(P,(P,K),1,X,_); preference(P,(P,K),2,Y,_); preference(P,(P,J),1,X,_); preference(P,(P,J),2,Y,_); J != K.
-#show preference/2.
-#show preference/5.
-#show /0.
-
-#program base.
-
 #program examples.
 _e_pref(3,9,3,0).
 _e_pref(3,9,7,0).
@@ -116,6 +67,46 @@ eq(P,M_,N_) :- preference(P,betterthan); preference(P,(P,K),1,for(X),_); prefere
 
 #program base.
 
+#program generation.
+#const maxEle = 8.
+#const maxLen = 2.
+_g_st(1).
+preference(P,betterthan) :- _g_st(P).
+_g_el(X) :- X = (1..maxEle).
+1 >= { preference(P,(P,EL),1,for(X),()): _g_possfor(L,X) } :- _g_el(EL); _g_st(P).
+1 <= { preference(P,(P,EL),2,for(Y),()): _g_possfor(L,Y) } <= 1 :- preference(P,(P,EL),1,for(X),()); _g_el(EL).
+_g_clauseLen(1).
+{ _g_clauseLen((2..maxLen)) }.
+#false :- _g_clauseLen(X); not _g_clauseLen((X-1)); X > 1.
+_g_possfor(1,atom(X)) :- atom(X).
+1 <= { _g_possfor(L,and(X,Y)); _g_possfor(L,and(Y,X)) } <= 1 :- _g_possfor((L-1),X); _g_possfor((L-1),Y); _g_clauseLen(L); X != Y.
+#false :- preference(P,(P,K),1,X,_); preference(P,(P,K),2,X,_).
+#false :- preference(P,(P,K),1,X,_); preference(P,(P,K),2,Y,_); preference(P,(P,J),1,X,_); preference(P,(P,J),2,Y,_); J != K.
+#show preference/2.
+#show preference/5.
+#show /0.
+
+#program base.
+
+#program backend.
+for(@formula).
+for(X) :- for(and(X,Y)).
+for(Y) :- for(and(X,Y)).
+for(X) :- for(or(X,Y)).
+for(Y) :- for(or(X,Y)).
+for(X) :- for(neg(X)).
+holds(atom(A),M) :- for(atom(A)); in(A,M).
+holds(neg(X),M) :- for(neg(X)); not holds(X,M); model(M).
+holds(and(X,Y),M) :- for(and(X,Y)); holds(X,M); holds(Y,M).
+holds(or(X,Y),M) :- for(or(X,Y)); holds(X,M).
+holds(or(X,Y),M) :- for(or(X,Y)); holds(Y,M).
+#false :- worse(_,_,_).
+#false :- eq(_,_,_).
+:~ better(P,M,N). [-1@3,M,N]
+#show output/3.
+
+#program base.
+
 #program examples.
 _e_activate_user(3).
 _e_car(1,2,1,1,2).
@@ -140,3 +131,12 @@ input(B,better,D) :- _e_transitivePref(A,B,D); not _e_pref_true(A,D,B).
 input(B,better,C) :- _e_pref_true(A,B,C); not _e_transitivePref(A,C,B).
 #show input/3.
 #show /0.
+
+#program base.
+
+#program domain.
+model((1..10)).
+atom(hasBodyType((1..2))).
+atom(hasTransmission((1..2))).
+atom(hasEngineCap((1..5))).
+atom(hasFuelCons((1..2))).

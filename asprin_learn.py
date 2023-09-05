@@ -493,13 +493,11 @@ class AsprinLearn(Application):
         part1 = []
         part2 = []
 
-        print("here1")
         if not files:
             files = ["-"]
         if files[-1][-4:] == ".txt":
             self.stm_out = files[-1]
             files = files[:-1]
-        print("here2")
         
         with ProgramBuilder(ctl) as bld:
             trans = Xformer(bld, self.prefNames, self.outBuffer)
