@@ -1,6 +1,6 @@
 #program domain.
 
-model(M) :- sushi(M,_,_,_,_,_,_,_).
+model(1..100).
 
 hasStyle(X)         :- sushi(_,X,_,_,_,_,_,_).
 hasMajorGrp(X)      :- sushi(_,_,X,_,_,_,_,_).

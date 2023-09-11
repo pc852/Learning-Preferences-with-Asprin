@@ -59,7 +59,6 @@ class Xformer():
                 if stm.parameters and str(stm.parameters[0]) != "cp":
                     self._state = "preferences"
                     self._builder.add(stm)
-                    self._outBuffer.append("\n\n" + str(stm))
                     self._prefNames.append(str(stm.parameters[0]))
                 #elif stm.parameters and str(stm.parameters[0]) == "cp":
                     #self._state = ""
@@ -72,23 +71,18 @@ class Xformer():
             elif stm.name == "backend":
                 self._state = "backend"
                 self._builder.add(stm)
-                self._outBuffer.append("\n\n" + str(stm))
             elif stm.name == "examples":
                 self._state = "examples"
                 self._builder.add(stm)
-                self._outBuffer.append("\n\n" + str(stm))
             elif stm.name == "domain":
                 self._state = "domain"
                 self._builder.add(stm)
-                self._outBuffer.append("\n\n" + str(stm))
             elif stm.name == "generation":
                 self._state = "generation"
                 self._builder.add(stm)
-                self._outBuffer.append("\n\n" + str(stm))
             else:
                 self._state = "others"
                 self._builder.add(stm)
-                self._outBuffer.append("\n\n" + str(stm))
 
         else:
             if self._state == "domain":
@@ -506,6 +500,12 @@ class AsprinLearn(Application):
         if self.stm_out != "":
             print(self.stm_out)
             with open(self.stm_out,"w") as outFile:
+                for i in range(len(self.outBuffer)):
+                    if self.outBuffer[i] == "\n#show /0.":
+                        self.outBuffer[i] = "\n#show."
+                    if self.outBuffer[i] == "\nfor(@formula).":
+                        self.outBuffer[i] = "\n"
+                self.outBuffer.append("\nfor(X) :- preference(_,_,_,for(X),_).")
                 outFile.writelines(self.outBuffer)
         part1.append(('examples', []))
         part1.append(('generation', []))

@@ -1,30 +1,30 @@
 #program examples.
 
-%#show (A,B,C) : pref(A,B,C,1), not pref(A,B,C,0), not pref(A,C,B,0).
-%#show.
-% pref(userID, <more preferred>, <less preferred>, control or not).
+% pref(<sushi ID>, better, <sushi ID>, <user ID>).
 
-pref(1,2,10,0).
-pref(1,9,10,0).
-pref(1,5,3,0).
-pref(1,8,2,0).
-pref(1,7,4,0).
-pref(1,7,3,0).
-pref(1,7,8,0).
-pref(1,10,4,0).
-pref(1,3,4,1).
-pref(1,2,5,0).
-pref(1,7,1,0).
-pref(1,8,1,0).
-pref(1,2,9,0).
-pref(1,6,4,0).
-pref(1,9,4,0).
-pref(1,6,1,0).
-pref(1,8,10,0).
-pref(1,3,10,0).
-pref(1,6,10,0).
-pref(1,8,3,0).
-pref(1,1,5,0).
-pref(1,9,6,0).
-pref(1,8,6,0).
-pref(1,9,5,0).
+pref(22,better,24,1).
+pref(22,better,6,1).
+pref(22,better,12,1).
+pref(22,better,17,1).
+pref(22,better,76,1).
+pref(31,better,60,1).
+pref(31,better,21,1).
+pref(31,better,8,1).
+pref(31,better,24,1).
+pref(31,better,6,1).
+pref(31,better,12,1).
+pref(31,better,17,1).
+pref(31,better,76,1).
+pref(60,better,21,1).
+pref(60,better,8,1).
+pref(60,better,24,1).
+pref(60,better,6,1).
+pref(60,better,12,1).
+pref(60,better,17,1).
+pref(60,better,76,1).
+pref(21,better,8,1).
+pref(21,better,24,1).
+pref(21,better,6,1).
+pref(21,better,12,1).
+pref(21,better,17,1).
+pref(21,better,76,1).

@@ -1,6 +1,6 @@
 #program examples.
 
-activate_user(3).
+activate_user(7).
 
 % car(Item ID, BodyType, Transmission, Engin Capacity, Fuel Consumed).
 % BodyType:        1 for Sedan  , 2 for SUV
@@ -23,26 +23,8 @@ in(hasTransmission(X),M) :- car(M,_,X,_,_).
 in(hasEngineCap(X),M)    :- car(M,_,_,X,_).
 in(hasFuelCons(X),M)     :- car(M,_,_,_,X).
 
-only_ct(A,B,C)   :- pref(A,B,C,1), not pref(A,B,C,0), not pref(A,C,B,0).
-mismatch(A,B,C)  :- pref(A,C,B,1), pref(A,B,C,0).
-pref_true(A,B,C) :- pref(A,B,C,0), not only_ct(A,B,C), not mismatch(A,B,C).
+input(B,better,C) :- pref(A,B,C,0).
 
-transitivePref(A,B,D) :- pref_true(A,B,C), pref_true(A,C,D).
-
-input(B,better,D) :- transitivePref(A,B,D), not pref_true(A,D,B).
-input(B,better,C) :- pref_true(A,B,C), not transitivePref(A,C,B).
-
-#show input/3.
+%#show input/3.
 #show.
 
-
-%#const user_num = 60.
-%activate_user(1..user_num).
-%transitiveTrio(A,B,C,D) :- pref_true(A,B,C), pref_true(A,C,D).
-%transitiveErrorTrio(A,B,C,D) :- transitiveTrio(A,B,C,D), pref_true(A,D,B).
-%transitiveErrorTrio(A,C,B,D) :- transitiveErrorTrio(A,B,C,D).
-%transitiveErrorUnique(A,B,C,D) :- transitiveErrorTrio(A,B,C,D), B<C, C<D.
-%goodusers(A) :- not transitiveErrorUnique(A,_,_,_), pref(A,_,_,_).
-
-%#show transitiveErrorUnique/4.
-%#show goodusers/1.
