@@ -1796,10 +1796,10 @@ error(M) :-
 %
 
 % acyclic (uses the rules above)
-approximation_mode(P) :- preference(P,cp), "heuristic" = @get_mode().
-approximation_mode(P) :- preference(P,cp),      "weak" = @get_mode().
-acyclic(P,M) :- preference(P,cp), approximation_mode(P),
-                M = ("preference:",P,": error: preference specification error, the graph of cp nets using the approximation mode must be acyclic.").
+%approximation_mode(P) :- preference(P,cp), "heuristic" = @get_mode().
+%approximation_mode(P) :- preference(P,cp),      "weak" = @get_mode().
+%acyclic(P,M) :- preference(P,cp), approximation_mode(P),
+%                M = ("preference:",P,": error: preference specification error, the graph of cp nets using the approximation mode must be %acyclic.").
 
 % to avoid warnings
 #defined rel/2.

@@ -9,7 +9,7 @@ import time
 from json import dumps
 from clingo.ast import Transformer, Variable, Function, Position, Literal, SymbolicAtom, SymbolicTerm, Location, Sign,\
 parse_string, parse_files, ProgramBuilder, ASTType, AST
-from clingo.application import Application
+from clingo.application import Application, ApplicationOptions, Flag
 from clingo.symbol import String, Number
 
 class Xformer():
@@ -429,22 +429,35 @@ class PrintPref(): #prints final preference statement including type and element
             print("\n" +"Learned preference statement: " + "\n", toPrint)
             self._type_lst = [x for x in self._type_lst if x[0] != st]
             self._inst_lst = [x for x in self._inst_lst if x[0] != st]
-        
-
-class ConfigAsprinLearn:
-    def __init__(self):
-        self.istop, self.threads = "UNKNOWN", 1
-
-class Options:
-    pass
 
 class AsprinLearn(Application):
-    program_name = "asprin_learn"
+    program_name = "asprin_vL"
     version = "1.0"
-
+    
     def __init__(self):
-        self._conf = ConfigAsprinLearn()
+        self.forAtoms = []
+        self.prefType = []
+        self.prefEle = []
+        self.prefNames= []
+        self.outBuffer = []
+        self.forbid_equal = Flag(False)
+        self.forbid_worse = Flag(False)
+        self.enable_ele_opt = Flag(False)
+        self.print_clingo_input = Flag(False)
+        
 
+    def register_options(self, options:ApplicationOptions):
+        group = 'asprin-vL Options'
+        options.add_flag(group, 'print,p', 'Print input to Clingo',
+                         self.print_clingo_input)
+        options.add_flag(group, 'forbidequal', 'Forbid preference relation of eq, i.e. :- output(M,eq,N).',
+                         self.forbid_equal)
+        options.add_flag(group, 'forbidworse', 'Forbid preference relation of worse, i.e. :- output(M,worse,N).',
+                         self.forbid_worse)
+        options.add_flag(group, 'minele',
+                         'Minimize the number of preference elements, i.e. #minimize{1@0,K: preference(_,(_,K),_,_,_)}.',
+                         self.enable_ele_opt)
+    
     def get(self, atuple, index):
         try:
             return atuple.arguments[index.number]
@@ -475,31 +488,18 @@ class AsprinLearn(Application):
         return self.forAtoms
 
     def main(self, ctl, files):
-        self.forAtoms = []
-        self.prefType = []
-        self.prefEle = []
-        self.prefNames= []
-        self.outBuffer = []
-        self.stm_out = ""
-        
-        conf = self._conf
-        istop, threads = conf.istop, conf.threads
         part1 = []
         part2 = []
 
         if not files:
             files = ["-"]
-        if files[-1][-4:] == ".txt":
-            self.stm_out = files[-1]
-            files = files[:-1]
         
         with ProgramBuilder(ctl) as bld:
             trans = Xformer(bld, self.prefNames, self.outBuffer)
             parse_files(files, trans.process)
         
-        if self.stm_out != "":
-            print(self.stm_out)
-            with open(self.stm_out,"w") as outFile:
+        if self.print_clingo_input.flag== True:
+            with open("clingo_in.txt","w") as outFile:
                 for i in range(len(self.outBuffer)):
                     if self.outBuffer[i] == "\n#show /0.":
                         self.outBuffer[i] = "\n#show."
@@ -507,6 +507,16 @@ class AsprinLearn(Application):
                         self.outBuffer[i] = "\n"
                 self.outBuffer.append("\nfor(X) :- preference(_,_,_,for(X),_).")
                 outFile.writelines(self.outBuffer)
+                
+        with ProgramBuilder(ctl) as bld:
+            if self.forbid_equal.flag == True:
+                parse_string("#program backend. :- output(M,eq,N).", bld.add)
+            if self.forbid_worse.flag == True:
+                parse_string("#program backend. :- output(M,worse,N).", bld.add)
+            if self.enable_ele_opt.flag == True:
+                parse_string("#program backend. #minimize{1@1,K: preference(_,(_,K),_,_,_)}.", bld.add)
+            
+            
         part1.append(('examples', []))
         part1.append(('generation', []))
         part1.append(('domain', []))
@@ -539,4 +549,5 @@ class AsprinLearn(Application):
         self.output = PrintPref(self.prefType, self.prefEle)
         self.output.main()
 
+#newOptions = ClingoOptions()
 clingo.clingo_main(AsprinLearn(), sys.argv[1:])
