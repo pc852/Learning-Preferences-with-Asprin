@@ -249,9 +249,11 @@ class PrefPredicateAdder(Transformer): #adds input(M_,R_,N_) to all preference l
         return r
 
 class PrintPref(): #prints final preference statement including type and elements
-    def __init__(self,type_list,instance_list):
+    def __init__(self,type_list,instance_list, toWrite):
         self._type_lst = type_list
         self._inst_lst = instance_list
+        self._toWrite = toWrite
+        self.prefStms = []
         
     def parse_atom(self,inst): #parses all and/or/neg to logic symbols
         wgt = inst[4].lstrip("(").rstrip(")")
@@ -426,9 +428,16 @@ class PrintPref(): #prints final preference statement including type and element
             if toPrint[-1] == "{":
                 continue
             toPrint = toPrint[:-2] + "\n}."
-            print("\n" +"Learned preference statement: " + "\n", toPrint)
+            finalPrint = "\n" +"Learned preference statement: " + "\n" + toPrint
+            print(finalPrint)
+            self.prefStms.append(finalPrint)
             self._type_lst = [x for x in self._type_lst if x[0] != st]
             self._inst_lst = [x for x in self._inst_lst if x[0] != st]
+            
+        if self._toWrite == True:
+            with open("asprin_vL_out.txt","w") as outFile:
+                for stm in self.prefStms:
+                    outFile.writelines(stm)
 
 class AsprinLearn(Application):
     program_name = "asprin_vL"
@@ -444,12 +453,15 @@ class AsprinLearn(Application):
         self.forbid_worse = Flag(False)
         self.enable_ele_opt = Flag(False)
         self.print_clingo_input = Flag(False)
+        self.print_asprin_vL_output = Flag(False)
         
 
     def register_options(self, options:ApplicationOptions):
         group = 'asprin-vL Options'
-        options.add_flag(group, 'print,p', 'Print input to Clingo',
+        options.add_flag(group, 'printinput', 'Print input to clingo',
                          self.print_clingo_input)
+        options.add_flag(group, 'printoutput', 'Print output from asprin_vL',
+                         self.print_asprin_vL_output)
         options.add_flag(group, 'forbidequal', 'Forbid preference relation of eq, i.e. :- output(M,eq,N).',
                          self.forbid_equal)
         options.add_flag(group, 'forbidworse', 'Forbid preference relation of worse, i.e. :- output(M,worse,N).',
@@ -514,7 +526,7 @@ class AsprinLearn(Application):
             if self.forbid_worse.flag == True:
                 parse_string("#program backend. :- output(M,worse,N).", bld.add)
             if self.enable_ele_opt.flag == True:
-                parse_string("#program backend. #minimize{1@1,K: preference(_,(_,K),_,_,_)}.", bld.add)
+                parse_string("#program backend. #minimize{1@0,K: preference(_,(_,K),_,_,_)}.", bld.add)
             
             
         part1.append(('examples', []))
@@ -546,8 +558,7 @@ class AsprinLearn(Application):
                             str(lit.arguments[2]),str(lit.arguments[3]),str(lit.arguments[4])])
             print(hnd.get())
         
-        self.output = PrintPref(self.prefType, self.prefEle)
-        self.output.main()
-
+        PrintPref(self.prefType, self.prefEle, self.print_asprin_vL_output.flag).main()
+        
 #newOptions = ClingoOptions()
 clingo.clingo_main(AsprinLearn(), sys.argv[1:])

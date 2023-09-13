@@ -5,6 +5,7 @@ for(Y) :- for(and(X,Y)).
 for(X) :- for( or(X,Y)).
 for(Y) :- for( or(X,Y)).
 for(X) :- for(  neg(X)).
+
 holds( atom(A),M) :- for(atom(A)), in(A,M).
 holds(  neg(X),M) :- for(neg(X)),   not holds(X,M), model(M).
 holds(and(X,Y),M) :- for(and(X,Y)),     holds(X,M), holds(Y,M).

@@ -180,27 +180,27 @@ aso(P,Id,R) :-
           -1,Idx : holds'(X), preference(P,Id,Pos,for(X),_), Pos != 0, index(P,Id,Idx), Idx>=Pos} U.
 
 required(P,  better,   1,#sup) :- preference(P,aso), required(P,aso,  better).
-required(P,bettereq,   0,#sup) :- preference(P,aso).
+required(P,bettereq,   0,#sup) :- preference(P,aso), required(P,aso,bettereq).
 required(P,      eq,   0,   0) :- preference(P,aso), required(P,aso,      eq).
 required(P, worseeq,#inf,   0) :- preference(P,aso), required(P,aso, worseeq).
 required(P,   worse,#inf,  -1) :- preference(P,aso), required(P,aso,   worse).
 
-
-
+required(P,aso,better)   :- preference(P,aso).
+required(P,aso,bettereq) :- preference(P,aso).
 better(P) :- preference(P,aso),aso(P,Id1,bettereq) : rule(P,Id1,_);
              aso(P,Id2,  better),  rule(P,Id2,_).
 
-
+required(P,aso,bettereq) :- preference(P,aso).
 bettereq(P) :- preference(P,aso),aso(P,Id,bettereq) : rule(P,Id,_).
 
-
+required(P,aso,eq) :- preference(P,aso).
 eq(P) :- preference(P,aso),aso(P,Id,eq) : rule(P,Id,_).
 
-
+required(P,aso,worseeq) :- preference(P,aso).
 worseeq(P) :- preference(P,aso),aso(P,Id,worseeq) : rule(P,Id,_).
 
-
-
+required(P,aso,worseeq) :- preference(P,aso).
+required(P,aso,worse)   :- preference(P,aso).
 worse(P) :- preference(P,aso),aso(P,Id1,worseeq) : rule(P,Id1,_);
             aso(P,Id2,  worse),  rule(P,Id2,_).
 

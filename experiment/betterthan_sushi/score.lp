@@ -1,3 +1,4 @@
+%score(<sushi ID>, <score from 0-4>, <user ID>).
 score(1,0,0).
 score(3,4,0).
 score(4,2,0).

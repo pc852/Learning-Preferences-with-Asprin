@@ -11,8 +11,10 @@ with open('asprin_lib.lp', 'r') as f:
     step_last = re.sub('(#program weak\([A-Za-z0-9_]+)\(([A-Za-z0-9_]+)\)(\).)', r'\1_\2\3',step_five)
     lib_new = step_last
 
-with open('cleaned_asprin_lib.lp', 'w') as f:
+with open('asprin_vL_lib.lp', 'w') as f:
     f.write(lib_new)
 
 
-"""add required/4 to aso"""
+#add required/4 to aso.
+#comment out lines containing @get_mode.
+

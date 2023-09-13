@@ -1,12 +1,13 @@
 #program examples.
-
-%#show (A,B,C) : pref(A,B,C,1), not pref(A,B,C,0), not pref(A,C,B,0).
-%#show.
 % pref(userID, <more preferred>, <less preferred>, control or not).
 
 pref(7,9,3,0).
 pref(7,7,9,0).
 pref(7,9,1,0).
+pref(7,1,3,0).
+pref(7,7,1,0).
+pref(7,7,3,0).
+%*
 pref(7,10,9,1).
 pref(7,7,5,0).
 pref(7,8,4,0).
@@ -17,12 +18,10 @@ pref(7,10,9,0).
 pref(7,5,3,0).
 pref(7,8,2,0).
 pref(7,7,4,0).
-pref(7,7,3,0).
 pref(7,8,7,0).
 pref(7,10,4,0).
 pref(7,3,4,1).
 pref(7,2,5,0).
-pref(7,7,1,0).
 pref(7,6,10,1).
 pref(7,10,7,0).
 pref(7,8,1,0).
@@ -42,7 +41,6 @@ pref(7,6,4,1).
 pref(7,6,5,0).
 pref(7,7,2,0).
 pref(7,3,4,0).
-pref(7,1,3,0).
 pref(7,2,1,0).
 pref(7,6,2,0).
 pref(7,2,4,0).
@@ -54,4 +52,7 @@ pref(7,6,3,0).
 pref(7,8,9,0).
 pref(7,1,4,0).
 pref(7,10,1,0).
+*%
+#show.
+
 

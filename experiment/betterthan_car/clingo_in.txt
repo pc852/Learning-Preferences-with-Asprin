@@ -1,11 +1,581 @@
 
-better(P,M_,N_) :- preference(P,betterthan); preference(P,(P,K),1,for(X),_); preference(P,(P,K),2,for(Y),_); holds(X,M_); holds(Y,N_); input(M_,R_,N_).
-worse(P,M_,N_) :- preference(P,betterthan); preference(P,(P,K),1,for(X),_); preference(P,(P,K),2,for(Y),_); holds(Y,M_); holds(X,N_); input(M_,R_,N_).
-eq(P,M_,N_) :- preference(P,betterthan); preference(P,(P,K),1,for(X),_); preference(P,(P,K),2,for(Y),_); holds(X,M_); holds(Y,M_); input(M_,R_,N_).
-eq(P,M_,N_) :- preference(P,betterthan); preference(P,(P,K),1,for(X),_); preference(P,(P,K),2,for(Y),_); holds(X,N_); holds(Y,N_); input(M_,R_,N_).
-#show better/3.
-#show worse/3.
-#show.
+#false :- not better(P); optimize(P).
+#defined optimize/1.
+#defined better/1.
+#defined required/2.
+#defined error/1.
+#defined error_type/2.
+error(("preference:",P,": error: preference specification error, type '",T,"' does not allow formulas.")) :- preference(P,T); error_type(T,no_formulas); preference(P,_,_,for(X),_).
+error(("preference:",P,": error: preference specification error, type '",T,"' requires weight tuples.")) :- preference(P,T); error_type(T,yes_weights); preference(P,_,_,_,W); W = ().
+error(("preference:",P,": error: preference specification error, type '",T,"' does not allow weights.")) :- preference(P,T); error_type(T,no_weights); preference(P,_,_,_,W); W != ().
+error(("preference:",P,": error: preference specification error, type '",T,"' does not allow using '>>'.")) :- preference(P,T); error_type(T,no_ordering); preference(P,_,R,_,_); R > 1.
+error(("preference:",P,": error: preference specification error, type '",T,"' requires at least ",(N-1),"'>>'s.")) :- preference(P,T); error_type(T,ordering_min_length(N)); N > 1; not preference(P,_,N,_,_).
+error(("preference:",P,": error: preference specification error, type '",T,"' allows at most ",(N-1),"'>>'s.")) :- preference(P,T); error_type(T,ordering_max_length(N)); preference(P,_,R,_,_); R > N.
+error(("preference:",P,": error: preference specification error, type '",T,"' does not allow sets.")) :- preference(P,T); error_type(T,no_sets); preference(P,E,S,X,_); preference(P,E,S,Y,_); X > Y.
+error(("preference:",P,": error: preference specification error, type '",T,"' does not allow sets at position",S,".")) :- preference(P,T); error_type(T,no_sets(S)); preference(P,E,S,X,_); preference(P,E,S,Y,_); X > Y.
+error(("preference:",P,": error: preference specification error, type '",T,"' does not allow naming atoms.")) :- preference(P,T); error_type(T,no_naming); preference(P,_,_,name(X),_).
+error(("preference:",P,": error: preference specification error, type '",T,"' does not allow more than one preference element.")) :- preference(P,T); error_type(T,single); 2 <= { preference(P,_,_,_,_) }.
+error(("preference:",P,": error: preference specification error, type '",T,"' does not allow using '||'.")) :- preference(P,T); error_type(T,no_condition); preference(P,_,0,_,_).
+error(("preference:",P,": error: preference specification error, type '",T,"' requires a weight tuple of at least ",N," elements.")) :- preference(P,T); error_type(T,(min_weight_length,N)); preference(P,_,_,_,W); @length(W) < N.
+error(("preference:",P,": error: preference specification error, type '",T,"' requires a weight tuple of at most ",N," elements.")) :- preference(P,T); error_type(T,(max_weight_length,N)); preference(P,_,_,_,W); @length(W) > N.
+error(("preference:",P,": error: preference specification error, type '",T,"' requires different weights for every named preference statement")) :- preference(P,T); error_type(T,naming_unique_weights); preference(P,_,_,name(P1),W); preference(P,_,_,name(P2),W); P1 != P2.
+error_type(and,no_formulas).
+error_type(and,no_weights).
+error_type(and,no_ordering).
+error_type(and,no_condition).
+error_type(and,no_sets).
+_p_rule(P,Id,L,M_,N_) :- preference(P,aso); preference(P,Id,_,_,_); L = #max { H: preference(P,Id,H,_,_) }; L > 1; input(M_,R_,N_).
+_p_index(P,Id,(1..(L-1)),M_,N_) :- preference(P,aso); preference(P,Id,_,_,_); L = #max { H: preference(P,Id,H,_,_) }; input(M_,R_,N_).
+_p_nohead(P,Id,M_,N_) :- preference(P,aso); _p_rule(P,Id,_,M_,N_); not holds(X,M_): preference(P,Id,H,for(X),_), H != 0; input(M_,R_,N_).
+_p_nohead'(P,Id,M_,N_) :- preference(P,aso); _p_rule(P,Id,_,M_,N_); not holds(X,N_): preference(P,Id,H,for(X),_), H != 0; input(M_,R_,N_).
+_p_aso(P,Id,R,M_,N_) :- preference(P,aso); _p_required(P,R,L,U,M_,N_); _p_rule(P,Id,_,M_,N_); L <= #sum { 1,Idx: not holds(X,M_), preference(P,Id,0,for(X),_), _p_index(P,Id,Idx,M_,N_); 1,Idx: _p_nohead(P,Id,M_,N_), _p_index(P,Id,Idx,M_,N_); 1,Idx: holds(X,M_), preference(P,Id,Pos,for(X),_), Pos != 0, _p_index(P,Id,Idx,M_,N_), Idx >= Pos; -1,Idx: not holds(X,N_), preference(P,Id,0,for(X),_), _p_index(P,Id,Idx,M_,N_); -1,Idx: _p_nohead'(P,Id,M_,N_), _p_index(P,Id,Idx,M_,N_); -1,Idx: holds(X,N_), preference(P,Id,Pos,for(X),_), Pos != 0, _p_index(P,Id,Idx,M_,N_), Idx >= Pos } <= U; input(M_,R_,N_).
+_p_required(P,better,1,#sup,M_,N_) :- preference(P,aso); _p_required(P,aso,better,M_,N_); input(M_,R_,N_).
+_p_required(P,bettereq,0,#sup,M_,N_) :- preference(P,aso); _p_required(P,aso,bettereq,M_,N_); input(M_,R_,N_).
+_p_required(P,eq,0,0,M_,N_) :- preference(P,aso); _p_required(P,aso,eq,M_,N_); input(M_,R_,N_).
+_p_required(P,worseeq,#inf,0,M_,N_) :- preference(P,aso); _p_required(P,aso,worseeq,M_,N_); input(M_,R_,N_).
+_p_required(P,worse,#inf,-1,M_,N_) :- preference(P,aso); _p_required(P,aso,worse,M_,N_); input(M_,R_,N_).
+_p_required(P,aso,better,M_,N_) :- preference(P,aso); input(M_,R_,N_).
+_p_required(P,aso,bettereq,M_,N_) :- preference(P,aso); input(M_,R_,N_).
+better(P,M_,N_) :- preference(P,aso); _p_aso(P,Id1,bettereq,M_,N_): _p_rule(P,Id1,_,M_,N_); _p_aso(P,Id2,better,M_,N_); _p_rule(P,Id2,_,M_,N_); input(M_,R_,N_).
+_p_required(P,aso,bettereq,M_,N_) :- preference(P,aso); input(M_,R_,N_).
+bettereq(P,M_,N_) :- preference(P,aso); _p_aso(P,Id,bettereq,M_,N_): _p_rule(P,Id,_,M_,N_); input(M_,R_,N_).
+_p_required(P,aso,eq,M_,N_) :- preference(P,aso); input(M_,R_,N_).
+eq(P,M_,N_) :- preference(P,aso); _p_aso(P,Id,eq,M_,N_): _p_rule(P,Id,_,M_,N_); input(M_,R_,N_).
+_p_required(P,aso,worseeq,M_,N_) :- preference(P,aso); input(M_,R_,N_).
+worseeq(P,M_,N_) :- preference(P,aso); _p_aso(P,Id,worseeq,M_,N_): _p_rule(P,Id,_,M_,N_); input(M_,R_,N_).
+_p_required(P,aso,worseeq,M_,N_) :- preference(P,aso); input(M_,R_,N_).
+_p_required(P,aso,worse,M_,N_) :- preference(P,aso); input(M_,R_,N_).
+worse(P,M_,N_) :- preference(P,aso); _p_aso(P,Id1,worseeq,M_,N_): _p_rule(P,Id1,_,M_,N_); _p_aso(P,Id2,worse,M_,N_); _p_rule(P,Id2,_,M_,N_); input(M_,R_,N_).
+_p_error_type(aso,no_naming,M_,N_) :- input(M_,R_,N_).
+_p_error_type(aso,no_weights,M_,N_) :- input(M_,R_,N_).
+_p_error_type(aso,no_sets,M_,N_) :- input(M_,R_,N_).
+#defined rule/3.
+better(P,M_,N_) :- preference(P,less(cardinality)); 1 <= #sum { -1,X: holds(X,M_), preference(P,_,_,for(X),_); 1,X: holds(X,N_), preference(P,_,_,for(X),_) }; input(M_,R_,N_).
+bettereq(P,M_,N_) :- preference(P,less(cardinality)); 0 <= #sum { -1,X: holds(X,M_), preference(P,_,_,for(X),_); 1,X: holds(X,N_), preference(P,_,_,for(X),_) }; input(M_,R_,N_).
+eq(P,M_,N_) :- preference(P,less(cardinality)); 0 <= #sum { -1,X: holds(X,M_), preference(P,_,_,for(X),_); 1,X: holds(X,N_), preference(P,_,_,for(X),_) } <= 0; input(M_,R_,N_).
+worseeq(P,M_,N_) :- preference(P,less(cardinality)); 0 >= #sum { -1,X: holds(X,M_), preference(P,_,_,for(X),_); 1,X: holds(X,N_), preference(P,_,_,for(X),_) }; input(M_,R_,N_).
+worse(P,M_,N_) :- preference(P,less(cardinality)); -1 >= #sum { -1,X: holds(X,M_), preference(P,_,_,for(X),_); 1,X: holds(X,N_), preference(P,_,_,for(X),_) }; input(M_,R_,N_).
+_p_error_type(less(cardinality),no_naming,M_,N_) :- input(M_,R_,N_).
+_p_error_type(less(cardinality),no_ordering,M_,N_) :- input(M_,R_,N_).
+_p_error_type(less(cardinality),no_condition,M_,N_) :- input(M_,R_,N_).
+_p_error_type(less(cardinality),no_weights,M_,N_) :- input(M_,R_,N_).
+_p_error_type(less(cardinality),no_sets,M_,N_) :- input(M_,R_,N_).
+better(P,M_,N_) :- preference(P,less(weight)); 1 <= #sum { -W,T: holds(X,M_), preference(P,_,_,for(X),T), W = @get(T,0); W,T: holds(X,N_), preference(P,_,_,for(X),T), W = @get(T,0) }; input(M_,R_,N_).
+bettereq(P,M_,N_) :- preference(P,less(weight)); 0 <= #sum { -W,T: holds(X,M_), preference(P,_,_,for(X),T), W = @get(T,0); W,T: holds(X,N_), preference(P,_,_,for(X),T), W = @get(T,0) }; input(M_,R_,N_).
+eq(P,M_,N_) :- preference(P,less(weight)); 0 <= #sum { -W,T: holds(X,M_), preference(P,_,_,for(X),T), W = @get(T,0); W,T: holds(X,N_), preference(P,_,_,for(X),T), W = @get(T,0) } <= 0; input(M_,R_,N_).
+worseeq(P,M_,N_) :- preference(P,less(weight)); 0 >= #sum { -W,T: holds(X,M_), preference(P,_,_,for(X),T), W = @get(T,0); W,T: holds(X,N_), preference(P,_,_,for(X),T), W = @get(T,0) }; input(M_,R_,N_).
+worse(P,M_,N_) :- preference(P,less(weight)); -1 >= #sum { -W,T: holds(X,M_), preference(P,_,_,for(X),T), W = @get(T,0); W,T: holds(X,N_), preference(P,_,_,for(X),T), W = @get(T,0) }; input(M_,R_,N_).
+_p_error_type(less(weight),no_naming,M_,N_) :- input(M_,R_,N_).
+_p_error_type(less(weight),no_ordering,M_,N_) :- input(M_,R_,N_).
+_p_error_type(less(weight),no_condition,M_,N_) :- input(M_,R_,N_).
+_p_error_type(less(weight),no_sets,M_,N_) :- input(M_,R_,N_).
+_p_error_type(less(weight),yes_weights,M_,N_) :- input(M_,R_,N_).
+_p_many(P,M_,N_) :- preference(P,lexico); 2 <= #sum { 1,Q: preference(P,_,_,name(Q),_) }; input(M_,R_,N_).
+better(P,M_,N_) :- preference(P,lexico); better(R,M_,N_); preference(P,_,_,name(R),L); eq(Q,M_,N_): preference(P,_,_,name(Q),LL), LL > L, _p_many(P,M_,N_); input(M_,R_,N_).
+bettereq(P,M_,N_) :- preference(P,lexico); 1 <= #sum { 1: better(P,M_,N_); 1: eq(P,M_,N_) }; input(M_,R_,N_).
+eq(P,M_,N_) :- preference(P,lexico); eq(Q,M_,N_): preference(P,_,_,name(Q),_); input(M_,R_,N_).
+worseeq(P,M_,N_) :- preference(P,lexico); 1 <= #sum { 1: worse(P,M_,N_); 1: eq(P,M_,N_) }; input(M_,R_,N_).
+worse(P,M_,N_) :- preference(P,lexico); worse(R,M_,N_); preference(P,_,_,name(R),L); eq(Q,M_,N_): preference(P,_,_,name(Q),LL), LL > L, _p_many(P,M_,N_); input(M_,R_,N_).
+unc(P,M_,N_) :- preference(P,lexico); not bettereq(P,M_,N_); not worseeq(P,M_,N_); input(M_,R_,N_).
+_p_error_type(lexico,no_formulas,M_,N_) :- input(M_,R_,N_).
+_p_error_type(lexico,no_ordering,M_,N_) :- input(M_,R_,N_).
+_p_error_type(lexico,no_condition,M_,N_) :- input(M_,R_,N_).
+_p_error_type(lexico,no_sets,M_,N_) :- input(M_,R_,N_).
+_p_error_type(lexico,(min_weight_length,1),M_,N_) :- input(M_,R_,N_).
+_p_error_type(lexico,(max_weight_length,1),M_,N_) :- input(M_,R_,N_).
+_p_error_type(lexico,naming_unique_weights,M_,N_) :- input(M_,R_,N_).
+better(P,M_,N_) :- preference(P,more(cardinality)); -1 >= #sum { -1,X: holds(X,M_), preference(P,_,_,for(X),_); 1,X: holds(X,N_), preference(P,_,_,for(X),_) }; input(M_,R_,N_).
+bettereq(P,M_,N_) :- preference(P,more(cardinality)); 0 >= #sum { -1,X: holds(X,M_), preference(P,_,_,for(X),_); 1,X: holds(X,N_), preference(P,_,_,for(X),_) }; input(M_,R_,N_).
+eq(P,M_,N_) :- preference(P,more(cardinality)); 0 <= #sum { -1,X: holds(X,M_), preference(P,_,_,for(X),_); 1,X: holds(X,N_), preference(P,_,_,for(X),_) } <= 0; input(M_,R_,N_).
+worseeq(P,M_,N_) :- preference(P,more(cardinality)); 0 <= #sum { -1,X: holds(X,M_), preference(P,_,_,for(X),_); 1,X: holds(X,N_), preference(P,_,_,for(X),_) }; input(M_,R_,N_).
+worse(P,M_,N_) :- preference(P,more(cardinality)); 1 <= #sum { -1,X: holds(X,M_), preference(P,_,_,for(X),_); 1,X: holds(X,N_), preference(P,_,_,for(X),_) }; input(M_,R_,N_).
+_p_error_type(more(cardinality),no_naming,M_,N_) :- input(M_,R_,N_).
+_p_error_type(more(cardinality),no_ordering,M_,N_) :- input(M_,R_,N_).
+_p_error_type(more(cardinality),no_condition,M_,N_) :- input(M_,R_,N_).
+_p_error_type(more(cardinality),no_weights,M_,N_) :- input(M_,R_,N_).
+_p_error_type(more(cardinality),no_sets,M_,N_) :- input(M_,R_,N_).
+better(P,M_,N_) :- preference(P,more(weight)); -1 >= #sum { -W,T: holds(X,M_), preference(P,_,_,for(X),T), W = @get(T,0); W,T: holds(X,N_), preference(P,_,_,for(X),T), W = @get(T,0) }; input(M_,R_,N_).
+bettereq(P,M_,N_) :- preference(P,more(weight)); 0 >= #sum { -W,T: holds(X,M_), preference(P,_,_,for(X),T), W = @get(T,0); W,T: holds(X,N_), preference(P,_,_,for(X),T), W = @get(T,0) }; input(M_,R_,N_).
+eq(P,M_,N_) :- preference(P,more(weight)); 0 <= #sum { -W,T: holds(X,M_), preference(P,_,_,for(X),T), W = @get(T,0); W,T: holds(X,N_), preference(P,_,_,for(X),T), W = @get(T,0) } <= 0; input(M_,R_,N_).
+worseeq(P,M_,N_) :- preference(P,more(weight)); 0 <= #sum { -W,T: holds(X,M_), preference(P,_,_,for(X),T), W = @get(T,0); W,T: holds(X,N_), preference(P,_,_,for(X),T), W = @get(T,0) }; input(M_,R_,N_).
+worse(P,M_,N_) :- preference(P,more(weight)); 1 <= #sum { -W,T: holds(X,M_), preference(P,_,_,for(X),T), W = @get(T,0); W,T: holds(X,N_), preference(P,_,_,for(X),T), W = @get(T,0) }; input(M_,R_,N_).
+_p_error_type(more(weight),no_naming,M_,N_) :- input(M_,R_,N_).
+_p_error_type(more(weight),no_ordering,M_,N_) :- input(M_,R_,N_).
+_p_error_type(more(weight),no_condition,M_,N_) :- input(M_,R_,N_).
+_p_error_type(more(weight),no_sets,M_,N_) :- input(M_,R_,N_).
+_p_error_type(more(weight),yes_weights,M_,N_) :- input(M_,R_,N_).
+_p_error_type(neg,no_formulas,M_,N_) :- input(M_,R_,N_).
+_p_error_type(neg,no_weights,M_,N_) :- input(M_,R_,N_).
+_p_error_type(neg,no_ordering,M_,N_) :- input(M_,R_,N_).
+_p_error_type(neg,no_condition,M_,N_) :- input(M_,R_,N_).
+_p_error_type(neg,no_sets,M_,N_) :- input(M_,R_,N_).
+_p_error_type(neg,single,M_,N_) :- input(M_,R_,N_).
+_p_many(P,M_,N_) :- preference(P,pareto); 2 <= #sum { 1,Q: preference(P,_,_,name(Q),_) }; input(M_,R_,N_).
+better(P,M_,N_) :- preference(P,pareto); bettereq(Q,M_,N_): preference(P,_,_,name(Q),_), _p_many(P,M_,N_); better(R,M_,N_); preference(P,_,_,name(R),_); input(M_,R_,N_).
+bettereq(P,M_,N_) :- preference(P,pareto); bettereq(Q,M_,N_): preference(P,_,_,name(Q),_); input(M_,R_,N_).
+eq(P,M_,N_) :- preference(P,pareto); eq(Q,M_,N_): preference(P,_,_,name(Q),_); input(M_,R_,N_).
+worseeq(P,M_,N_) :- preference(P,pareto); worseeq(Q,M_,N_): preference(P,_,_,name(Q),_); input(M_,R_,N_).
+worse(P,M_,N_) :- preference(P,pareto); worseeq(Q,M_,N_): preference(P,_,_,name(Q),_), _p_many(P,M_,N_); worse(R,M_,N_); preference(P,_,_,name(R),_); input(M_,R_,N_).
+unc(P,M_,N_) :- preference(P,pareto); not bettereq(P,M_,N_); not worseeq(P,M_,N_); input(M_,R_,N_).
+_p_error_type(pareto,no_formulas,M_,N_) :- input(M_,R_,N_).
+_p_error_type(pareto,no_weights,M_,N_) :- input(M_,R_,N_).
+_p_error_type(pareto,no_ordering,M_,N_) :- input(M_,R_,N_).
+_p_error_type(pareto,no_condition,M_,N_) :- input(M_,R_,N_).
+_p_error_type(pareto,no_sets,M_,N_) :- input(M_,R_,N_).
+_p_poset(P,X,M_,N_) :- preference(P,poset); preference(P,_,_,for(X),_); input(M_,R_,N_).
+_p_poset(P,X,Y,M_,N_) :- preference(P,poset); preference(P,I,1,for(X),_); preference(P,I,2,for(Y),_); input(M_,R_,N_).
+#const tc_poset = 1.
+_p_poset(P,X,Y,M_,N_) :- preference(P,poset); _p_poset(P,X,Z,M_,N_); _p_poset(P,Z,Y,M_,N_); tc_poset = 1; input(M_,R_,N_).
+better(P,X,M_,N_) :- preference(P,poset); _p_poset(P,X,M_,N_); holds(X,M_); not holds(X,N_); input(M_,R_,N_).
+_p_notbetter(P,M_,N_) :- preference(P,poset); _p_poset(P,X,M_,N_); not holds(X,M_); holds(X,N_); not better(P,Y,M_,N_): _p_poset(P,Y,X,M_,N_); input(M_,R_,N_).
+better(P,M_,N_) :- preference(P,poset); better(P,_,M_,N_); not _p_notbetter(P,M_,N_); input(M_,R_,N_).
+bettereq(P,M_,N_) :- preference(P,poset); 1 <= #sum { 1: eq(P,M_,N_); 1: better(P,M_,N_) }; input(M_,R_,N_).
+eq(P,M_,N_) :- preference(P,poset); holds(X,M_): _p_poset(P,X,M_,N_), holds(X,N_); not holds(X,M_): _p_poset(P,X,M_,N_), not holds(X,N_); input(M_,R_,N_).
+worseeq(P,M_,N_) :- preference(P,poset); 1 <= #sum { 1: eq(P,M_,N_); 1: worse(P,M_,N_) }; input(M_,R_,N_).
+worse(P,X,M_,N_) :- preference(P,poset); _p_poset(P,X,M_,N_); holds(X,N_); not holds(X,M_); input(M_,R_,N_).
+_p_notworse(P,M_,N_) :- preference(P,poset); _p_poset(P,X,M_,N_); not holds(X,N_); holds(X,M_); not worse(P,Y,M_,N_): _p_poset(P,Y,X,M_,N_); input(M_,R_,N_).
+worse(P,M_,N_) :- preference(P,poset); 1 <= #sum { 1: worse(P,X,M_,N_) }; not _p_notworse(P,M_,N_); input(M_,R_,N_).
+unc(P,M_,N_) :- preference(P,poset); not bettereq(P,M_,N_); not worseeq(P,M_,N_); input(M_,R_,N_).
+_p_error_type(poset,no_naming,M_,N_) :- input(M_,R_,N_).
+_p_error_type(poset,no_weights,M_,N_) :- input(M_,R_,N_).
+_p_error_type(poset,no_sets,M_,N_) :- input(M_,R_,N_).
+_p_error_type(poset,no_condition,M_,N_) :- input(M_,R_,N_).
+_p_error(("preference:",P,": error: preference specification error, type 'poset', ","the order relation defined by the preference elements must be acyclic."),M_,N_) :- preference(P,poset); _p_poset(P,X,X,M_,N_); input(M_,R_,N_).
+#defined better/2.
+better(P,M_,N_) :- preference(P,subset); not holds(X,M_): preference(P,_,_,for(X),_), not holds(X,N_); 1 <= #sum { 1: not holds(X,M_), holds(X,N_), preference(P,_,_,for(X),_) }; input(M_,R_,N_).
+bettereq(P,M_,N_) :- preference(P,subset); not holds(X,M_): preference(P,_,_,for(X),_), not holds(X,N_); input(M_,R_,N_).
+eq(P,M_,N_) :- preference(P,subset); bettereq(P,M_,N_); worseeq(P,M_,N_); input(M_,R_,N_).
+worseeq(P,M_,N_) :- preference(P,subset); holds(X,M_): preference(P,_,_,for(X),_), holds(X,N_); input(M_,R_,N_).
+worse(P,M_,N_) :- preference(P,subset); holds(X,M_): preference(P,_,_,for(X),_), holds(X,N_); 1 <= #sum { 1: holds(X,M_), not holds(X,N_), preference(P,_,_,for(X),_) }; input(M_,R_,N_).
+unc(P,M_,N_) :- preference(P,subset); not bettereq(P,M_,N_); not worseeq(P,M_,N_); input(M_,R_,N_).
+_p_error_type(subset,no_naming,M_,N_) :- input(M_,R_,N_).
+_p_error_type(subset,no_ordering,M_,N_) :- input(M_,R_,N_).
+_p_error_type(subset,no_condition,M_,N_) :- input(M_,R_,N_).
+_p_error_type(subset,no_weights,M_,N_) :- input(M_,R_,N_).
+_p_error_type(subset,no_sets,M_,N_) :- input(M_,R_,N_).
+better(P,M_,N_) :- preference(P,superset); holds(X,M_): preference(P,_,_,for(X),_), holds(X,N_); 1 <= #sum { 1: holds(X,M_), not holds(X,N_), preference(P,_,_,for(X),_) }; input(M_,R_,N_).
+bettereq(P,M_,N_) :- preference(P,superset); holds(X,M_): preference(P,_,_,for(X),_), holds(X,N_); input(M_,R_,N_).
+eq(P,M_,N_) :- preference(P,superset); bettereq(P,M_,N_); worseeq(P,M_,N_); input(M_,R_,N_).
+worseeq(P,M_,N_) :- preference(P,superset); not holds(X,M_): preference(P,_,_,for(X),_), not holds(X,N_); input(M_,R_,N_).
+worse(P,M_,N_) :- preference(P,superset); not holds(X,M_): preference(P,_,_,for(X),_), not holds(X,N_); 1 <= #sum { 1: not holds(X,M_), holds(X,N_), preference(P,_,_,for(X),_) }; input(M_,R_,N_).
+unc(P,M_,N_) :- preference(P,superset); not bettereq(P,M_,N_); not worseeq(P,M_,N_); input(M_,R_,N_).
+_p_error_type(superset,no_naming,M_,N_) :- input(M_,R_,N_).
+_p_error_type(superset,no_ordering,M_,N_) :- input(M_,R_,N_).
+_p_error_type(superset,no_condition,M_,N_) :- input(M_,R_,N_).
+_p_error_type(superset,no_weights,M_,N_) :- input(M_,R_,N_).
+_p_error_type(superset,no_sets,M_,N_) :- input(M_,R_,N_).
+_p_level(P,L,M_,N_) :- preference(P,clingo_minimize); preference(P,_,_,_,T); L = @get(T,1); input(M_,R_,N_).
+_p_two_levels(P,M_,N_) :- preference(P,clingo_minimize); _p_level(P,L,M_,N_); _p_level(P,LL,M_,N_); LL > L; input(M_,R_,N_).
+_p_required_level(P,better,M_,N_) :- preference(P,clingo_minimize); input(M_,R_,N_).
+_p_required_level(P,eq,M_,N_) :- preference(P,clingo_minimize); _p_two_levels(P,M_,N_); input(M_,R_,N_).
+better(P,M_,N_) :- preference(P,clingo_minimize); _p_level(P,L,M_,N_); better(P,L,M_,N_); _p_eq(P,LL,M_,N_): _p_level(P,LL,M_,N_), LL > L; input(M_,R_,N_).
+_p_required(P,eq,M_,N_) :- preference(P,clingo_minimize); input(M_,R_,N_).
+bettereq(P,M_,N_) :- preference(P,clingo_minimize); better(P,M_,N_); input(M_,R_,N_).
+bettereq(P,M_,N_) :- preference(P,clingo_minimize); eq(P,M_,N_); input(M_,R_,N_).
+_p_required_level(P,eq,M_,N_) :- preference(P,clingo_minimize); input(M_,R_,N_).
+eq(P,M_,N_) :- preference(P,clingo_minimize); _p_eq(P,L,M_,N_): _p_level(P,L,M_,N_); input(M_,R_,N_).
+_p_required(P,eq,M_,N_) :- preference(P,clingo_minimize); input(M_,R_,N_).
+worseeq(P,M_,N_) :- preference(P,clingo_minimize); worse(P,M_,N_); input(M_,R_,N_).
+worseeq(P,M_,N_) :- preference(P,clingo_minimize); eq(P,M_,N_); input(M_,R_,N_).
+_p_required_level(P,worse,M_,N_) :- preference(P,clingo_minimize); input(M_,R_,N_).
+_p_required_level(P,eq,M_,N_) :- preference(P,clingo_minimize); _p_two_levels(P,M_,N_); input(M_,R_,N_).
+worse(P,M_,N_) :- preference(P,clingo_minimize); _p_level(P,L,M_,N_); worse(P,L,M_,N_); _p_eq(P,LL,M_,N_): _p_level(P,LL,M_,N_), LL > L; input(M_,R_,N_).
+better(P,L,M_,N_) :- preference(P,clingo_minimize); _p_required_level(P,better,M_,N_); _p_level(P,L,M_,N_); 1 <= #sum { -W,T: holds(X,M_), preference(P,_,_,for(X),T), W = @get(T,0), L = @get(T,1); W,T: holds(X,N_), preference(P,_,_,for(X),T), W = @get(T,0), L = @get(T,1) }; input(M_,R_,N_).
+_p_eq(P,L,M_,N_) :- preference(P,clingo_minimize); _p_required_level(P,eq,M_,N_); _p_level(P,L,M_,N_); 0 <= #sum { -W,T: holds(X,M_), preference(P,_,_,for(X),T), W = @get(T,0), L = @get(T,1); W,T: holds(X,N_), preference(P,_,_,for(X),T), W = @get(T,0), L = @get(T,1) } <= 0; input(M_,R_,N_).
+worse(P,L,M_,N_) :- preference(P,clingo_minimize); _p_required_level(P,worse,M_,N_); _p_level(P,L,M_,N_); -1 >= #sum { -W,T: holds(X,M_), preference(P,_,_,for(X),T), W = @get(T,0), L = @get(T,1); W,T: holds(X,N_), preference(P,_,_,for(X),T), W = @get(T,0), L = @get(T,1) }; input(M_,R_,N_).
+_p_error_type(clingo_minimize,no_naming,M_,N_) :- input(M_,R_,N_).
+_p_error_type(clingo_minimize,no_ordering,M_,N_) :- input(M_,R_,N_).
+_p_error_type(clingo_minimize,no_condition,M_,N_) :- input(M_,R_,N_).
+_p_error_type(clingo_minimize,no_sets,M_,N_) :- input(M_,R_,N_).
+_p_error_type(clingo_minimize,yes_weights,M_,N_) :- input(M_,R_,N_).
+_p_group(P,@get(T,0),M_,N_) :- preference(P,maxmin); preference(P,_,_,_,T); input(M_,R_,N_).
+_p_value_h'(P,V,M_,N_) :- preference(P,maxmin); V = #min { VV: _p_value_h'(P,G,VV,M_,N_) }; input(M_,R_,N_).
+_p_value_h'(P,G,V,M_,N_) :- preference(P,maxmin); _p_group(P,G,M_,N_); V = #sum { W,T: holds(X,N_), preference(P,_,_,for(X),T), G = @get(T,0), W = @get(T,1) }; input(M_,R_,N_).
+_p_bettereq(P,G,M_,N_) :- preference(P,maxmin); _p_group(P,G,M_,N_); _p_value_h'(P,V,M_,N_); V <= #sum { W,T: holds(X,M_), preference(P,_,_,for(X),T), G = @get(T,0), W = @get(T,1) }; input(M_,R_,N_).
+_p_worseeq(P,G,M_,N_) :- preference(P,maxmin); _p_group(P,G,M_,N_); _p_value_h'(P,V,M_,N_); V >= #sum { W,T: holds(X,M_), preference(P,_,_,for(X),T), G = @get(T,0), W = @get(T,1) }; input(M_,R_,N_).
+better(P,M_,N_) :- preference(P,maxmin); _p_group(P,_,M_,N_); not _p_worseeq(P,G,M_,N_): _p_group(P,G,M_,N_); input(M_,R_,N_).
+bettereq(P,M_,N_) :- preference(P,maxmin); _p_bettereq(P,G,M_,N_): _p_group(P,G,M_,N_); input(M_,R_,N_).
+eq(P,M_,N_) :- preference(P,maxmin); bettereq(P,M_,N_); worseeq(P,M_,N_); input(M_,R_,N_).
+worseeq(P,M_,N_) :- preference(P,maxmin); _p_worseeq(P,G,M_,N_); input(M_,R_,N_).
+worseeq(P,M_,N_) :- preference(P,maxmin); not _p_group(P,_,M_,N_); input(M_,R_,N_).
+worse(P,M_,N_) :- preference(P,maxmin); _p_worseeq(P,G,M_,N_); not _p_bettereq(P,G,M_,N_); input(M_,R_,N_).
+_p_error_type(maxmin,no_naming,M_,N_) :- input(M_,R_,N_).
+_p_error_type(maxmin,no_ordering,M_,N_) :- input(M_,R_,N_).
+_p_error_type(maxmin,no_condition,M_,N_) :- input(M_,R_,N_).
+_p_error_type(maxmin,no_sets,M_,N_) :- input(M_,R_,N_).
+_p_error_type(maxmin,(min_weight_length,2),M_,N_) :- input(M_,R_,N_).
+#defined group/2.
+_p_group(P,@get(T,0),M_,N_) :- preference(P,minmax); preference(P,_,_,_,T); input(M_,R_,N_).
+_p_value_h'(P,V,M_,N_) :- preference(P,minmax); V = #max { VV: _p_value_h'(P,G,VV,M_,N_) }; input(M_,R_,N_).
+_p_value_h'(P,G,V,M_,N_) :- preference(P,minmax); _p_group(P,G,M_,N_); V = #sum { W,T: holds(X,N_), preference(P,_,_,for(X),T), G = @get(T,0), W = @get(T,1) }; input(M_,R_,N_).
+_p_bettereq(P,G,M_,N_) :- preference(P,minmax); _p_group(P,G,M_,N_); _p_value_h'(P,V,M_,N_); V >= #sum { W,T: holds(X,M_), preference(P,_,_,for(X),T), G = @get(T,0), W = @get(T,1) }; input(M_,R_,N_).
+_p_worseeq(P,G,M_,N_) :- preference(P,minmax); _p_group(P,G,M_,N_); _p_value_h'(P,V,M_,N_); V <= #sum { W,T: holds(X,M_), preference(P,_,_,for(X),T), G = @get(T,0), W = @get(T,1) }; input(M_,R_,N_).
+better(P,M_,N_) :- preference(P,minmax); _p_group(P,_,M_,N_); not _p_worseeq(P,G,M_,N_): _p_group(P,G,M_,N_); input(M_,R_,N_).
+bettereq(P,M_,N_) :- preference(P,minmax); _p_bettereq(P,G,M_,N_): _p_group(P,G,M_,N_); input(M_,R_,N_).
+eq(P,M_,N_) :- preference(P,minmax); bettereq(P,M_,N_); worseeq(P,M_,N_); input(M_,R_,N_).
+worseeq(P,M_,N_) :- preference(P,minmax); _p_worseeq(P,G,M_,N_); input(M_,R_,N_).
+worseeq(P,M_,N_) :- preference(P,minmax); not _p_group(P,_,M_,N_); input(M_,R_,N_).
+worse(P,M_,N_) :- preference(P,minmax); _p_worseeq(P,G,M_,N_); not _p_bettereq(P,G,M_,N_); input(M_,R_,N_).
+_p_error_type(minmax,no_naming,M_,N_) :- input(M_,R_,N_).
+_p_error_type(minmax,no_ordering,M_,N_) :- input(M_,R_,N_).
+_p_error_type(minmax,no_condition,M_,N_) :- input(M_,R_,N_).
+_p_error_type(minmax,no_sets,M_,N_) :- input(M_,R_,N_).
+_p_error_type(minmax,(min_weight_length,2),M_,N_) :- input(M_,R_,N_).
+#defined group/2.
+#heuristic holds(X) : heuristic(P,X,V,M); optimize(P). [V@0,M]
+wc(P,L) :- wc(P,_,L,_,_).
+bit(P,L,B) :- wc(P,L); S = #sum { W,T: wc(P,W,L,T,X), W > 0; -W,T: wc(P,W,L,T,X), W < 0 }; B = (0..(@log2up((S+1))-1)).
+{ holds(bit(P,L,B)) } :- wc(P,L); bit(P,L,B).
+#false :- wc(P,L); 0 != #sum { -@exp2(B): holds(bit(P,L,B)); W,T: wc(P,W,L,T,X), W > 0, holds(X); -W,T: wc(P,W,L,T,X), W < 0, not holds(X) }.
+heuristic(P,bit(P,L1,B),((1+B)+S),false) :- wc(P,L1); bit(P,L1,B); S = #sum { L3,L2: levels_per_level(P,L2,L3), L2 < L1 }.
+levels_per_level(P,L1,L2) :- wc(P,L1); L2 = #sum { 1,B: bit(P,L1,B) }.
+levels(P,L1) :- wc(P,_); L1 = #sum { L3,L2: levels_per_level(P,L2,L3) }.
+#defined bit/3.
+#defined wc/5.
+#defined wc/2.
+heuristic(P,X,1,false) :- preference(P,subset); preference(P,_,_,for(X),_).
+levels(P,1) :- preference(P,subset).
+heuristic(P,X,1,true) :- preference(P,superset); preference(P,_,_,for(X),_).
+levels(P,1) :- preference(P,superset).
+wc(P,1,1,X,X) :- preference(P,less(cardinality)); preference(P,_,_,for(X),_).
+levels(P,1) :- preference(P,less(cardinality)).
+wc(P,-1,1,X,X) :- preference(P,more(cardinality)); preference(P,_,_,for(X),_).
+levels(P,1) :- preference(P,more(cardinality)).
+wc(P,@get(T,0),1,T,X) :- preference(P,less(weight)); preference(P,_,_,for(X),T).
+levels(P,1) :- preference(P,less(weight)).
+wc(P,-@get(T,0),1,T,X) :- preference(P,more(weight)); preference(P,_,_,for(X),T).
+levels(P,1) :- preference(P,more(weight)).
+level(P,L1,L) :- preference(P,clingo_minimize); preference(P,_,_,_,T); L1 = @get(T,1); L = #sum { 1,L2: preference(P,_,_,_,TT), L2 = @get(TT,1), L2 <= L1 }.
+wc(P,W,LL,T,X) :- preference(P,clingo_minimize); preference(P,_,_,for(X),T); W = @get(T,0); L = @get(T,1); level(P,L,LL).
+levels(P,L) :- preference(P,clingo_minimize); L = #max { LL: level(P,_,LL); 0 }.
+poset(P,X) :- preference(P,poset); preference(P,_,_,for(X),_).
+poset(P,X,Y) :- preference(P,poset); preference(P,I,1,for(X),_); preference(P,I,2,for(Y),_).
+#const heuristic_tc_poset = 1.
+poset(P,X,Y) :- preference(P,poset); poset(P,X,Z); poset(P,Z,Y); heuristic_tc_poset = 1.
+#const heuristic_poset = 2.
+heuristic(P,X,1,true) :- preference(P,poset); heuristic_poset = 1; poset(P,X); assigned(P,Y): poset(P,Y,X).
+assigned(P,X) :- preference(P,poset); heuristic_poset = 1; poset(P,X); holds(X).
+assigned(P,X) :- preference(P,poset); heuristic_poset = 1; poset(P,X); not holds(X).
+levels(P,1) :- preference(P,poset); heuristic_poset = 1.
+step(P,X,1) :- preference(P,poset); heuristic_poset = 2; poset(P,X).
+step(P,X,(S+1)) :- preference(P,poset); heuristic_poset = 2; step(P,X,S); step(P,Y,S); poset(P,Y,X).
+max_step(P,S) :- preference(P,poset); heuristic_poset = 2; step(P,_,S); not step(P,_,(S+1)).
+heuristic(P,X,((M-S)+1),true) :- preference(P,poset); heuristic_poset = 2; max_step(P,M); step(P,X,S); not step(P,X,(S+1)).
+levels(P,M) :- preference(P,poset); heuristic_poset = 2; max_step(P,M).
+cost(P,X,(C+1)) :- preference(P,poset); heuristic_poset = 3; poset(P,X); C = #sum { CC,Y: poset(P,X,Y), cost(P,Y,CC) }.
+wc(P,-C,1,X,X) :- cost(P,X,C); heuristic_poset = 3.
+#defined step/3.
+rule(P,Id,L) :- preference(P,aso); preference(P,Id,_,_,_); L = #max { H: preference(P,Id,H,_,_) }; L > 1.
+index(P,Id,(1..(L-1))) :- rule(P,Id,L).
+#const heuristic_aso = 1.
+opt12(P) :- preference(P,aso); heuristic_aso = 1.
+opt12(P) :- preference(P,aso); heuristic_aso = 2.
+holds(aso(P,Id,Idx)) :- preference(P,aso); opt12(P); index(P,Id,Idx); not holds(X); preference(P,Id,0,for(X),_).
+holds(aso(P,Id,Idx)) :- preference(P,aso); opt12(P); index(P,Id,Idx); not holds(X): preference(P,Id,H,for(X),_), H != 0.
+holds(aso(P,Id,Idx)) :- preference(P,aso); opt12(P); index(P,Id,Idx); Idx >= Pos; holds(X); preference(P,Id,Pos,for(X),_); Pos != 0.
+heuristic(P,aso(P,Id,Idx),1,true) :- preference(P,aso); heuristic_aso = 1; index(P,Id,Idx).
+levels(P,1) :- preference(P,aso); heuristic_aso = 1.
+pos(P,N,Id1) :- preference(P,aso); heuristic_aso = 2; rule(P,Id1,_); N = @get_sequence(("heuristic_aso",P),Id1).
+heuristic(P,aso(P,Id,Idx),N,true) :- preference(P,aso); heuristic_aso = 2; index(P,Id,Idx); pos(P,N,Id).
+levels(P,N) :- preference(P,aso); heuristic_aso = 2; pos(P,N,_); not pos(P,(N+1),_).
+holds(aso(P,Id,1)) :- preference(P,aso); heuristic_aso = 3; rule(P,Id,L); not holds(X); preference(P,Id,0,for(X),_).
+holds(aso(P,Id,1)) :- preference(P,aso); heuristic_aso = 3; rule(P,Id,L); not holds(X): preference(P,Id,Idx,for(X),_), Idx != 0.
+holds(aso(P,Id,Idx)) :- preference(P,aso); heuristic_aso = 3; rule(P,Id,L); L > Idx; holds(X); preference(P,Id,Idx,for(X),_); Idx != 0; not holds(aso(P,Id,Idx')): Idx' = (1..(Idx-1)).
+max_index(P,I) :- preference(P,aso); heuristic_aso = 3; rule(P,_,I); not rule(P,_,(I+1)).
+heuristic(P,aso(P,Id,Idx),((I-Idx)+1),true) :- preference(P,aso); heuristic_aso = 3; index(P,Id,Idx); max_index(P,I).
+levels(P,I) :- preference(P,aso); heuristic_aso = 3; max_index(P,I).
+#defined rule/3.
+#defined pos/3.
+as_minmax(P) :- preference(P,minmax); preference(P,_,_,for(X),T).
+elem(P,@get(T,0),@get(T,1),T,X) :- preference(P,minmax); preference(P,_,_,for(X),T).
+as_minmax(P) :- preference(P,maxmin); preference(P,_,_,for(X),T).
+elem(P,@get(T,0),-@get(T,1),T,X) :- preference(P,maxmin); preference(P,_,_,for(X),T).
+bit(P,G,B) :- as_minmax(P); elem(P,G,_,_,_); S = #sum { W,T: elem(P,G,W,T,X), W > 0; -W,T: elem(P,G,W,T,X), W < 0 }; B = (0..(@log2up((S+1))-1)).
+{ true(bit(P,G,B)) } :- as_minmax(P); bit(P,G,B).
+#false :- as_minmax(P); elem(P,G,_,_,_); 0 != #sum { -@exp2(B): true(bit(P,G,B)); W,T: elem(P,G,W,T,X), W > 0, holds(X); -W,T: elem(P,G,W,T,X), W < 0, not holds(X) }.
+holds(bit(P,B)) :- as_minmax(P); true(bit(P,G,B)); not not_max(P,G,B).
+not_max(P,G,(B-1)) :- as_minmax(P); not true(bit(P,G,B)); holds(bit(P,B)); B > 0; elem(P,G,_,_,_).
+not_max(P,G,(B-1)) :- as_minmax(P); not_max(P,G,B); B > 0.
+heuristic(P,bit(P,B),(B+1),false) :- as_minmax(P); bit(P,_,B).
+levels(P,L) :- as_minmax(P); L = #sum { 1,B: bit(P,_,B) }.
+#defined as_minmax/1.
+#defined elem/5.
+#defined bit/3.
+heuristic(P,X,L,MM) :- preference(P,neg); preference(P,_,_,name(PP),_); heuristic(PP,X,L,M); inverse(P,M,MM).
+inverse(P,true,false) :- preference(P,neg).
+inverse(P,false,true) :- preference(P,neg).
+levels(P,L) :- preference(P,neg); preference(P,_,_,name(PP),_); levels(PP,L).
+heuristic(P,X,(L+S),M) :- as_lexico(P); level(P,P1,L1); heuristic(P1,X,L,M); S = #sum { LS2,P2,L2: level(P,P2,L2), L2 < L1, levels(P2,LS2) }.
+max_level(P,MAX) :- as_lexico(P); MAX = #max { L: level(P,_,L) }.
+sum_levels(P,(MIN-1),0) :- as_lexico(P); MIN = #min { L: level(P,_,L) }.
+sum_levels(P,(L+1),S) :- as_lexico(P); sum_levels(P,L,S); max_level(P,MAX); L < MAX.
+sum_levels(P,(L+1),(SS+S)) :- as_lexico(P); sum_levels(P,L,S); level(P,P1,(L+1)); levels(P1,SS).
+levels(P,S) :- as_lexico(P); max_level(P,MAX); S = #max { SS: sum_levels(P,MAX,SS); 0 }.
+#defined as_lexico/1.
+#defined level/3.
+as_lexico(P) :- preference(P,lexico).
+level(P,P1,L) :- preference(P,lexico); preference(P,_,_,name(P1),L).
+#const heuristic_pareto = 2.
+heuristic(P,X,L,M) :- preference(P,pareto); heuristic_pareto = 1; preference(P,_,_,name(P1),_); heuristic(P1,X,L,M).
+as_lexico(P) :- preference(P,pareto); heuristic_pareto = 2.
+level(P,P1,L) :- preference(P,pareto); heuristic_pareto = 2; preference(P,_,_,name(P1),_); L = #sum { 1,P2: preference(P,_,_,name(P2),_), P2 <= P1 }.
+#const heuristic_and = 2.
+heuristic(P,X,L,M) :- preference(P,and); heuristic_and = 1; preference(P,_,_,name(P1),_); heuristic(P1,X,L,M).
+as_lexico(P) :- preference(P,and); heuristic_and = 2.
+level(P,P1,L) :- preference(P,and); heuristic_and = 2; preference(P,_,_,name(P1),_); L = #sum { 1,P2: preference(P,_,_,name(P2),_), P2 <= P1 }.
+:~ wc(P,W,L,T,X); optimize(P); holds(X). [W@L,T]
+#defined wc/5.
+wc(P,1,1,X,X) :- preference(P,subset); preference(P,_,_,for(X),_).
+levels(P,1) :- preference(P,subset).
+wc(P,-1,1,X,X) :- preference(P,superset); preference(P,_,_,for(X),_).
+levels(P,1) :- preference(P,superset).
+wc(P,1,1,X,X) :- preference(P,less(cardinality)); preference(P,_,_,for(X),_).
+levels(P,1) :- preference(P,less(cardinality)).
+wc(P,-1,1,X,X) :- preference(P,more(cardinality)); preference(P,_,_,for(X),_).
+levels(P,1) :- preference(P,more(cardinality)).
+wc(P,W,1,T,X) :- preference(P,less(weight)); preference(P,_,_,for(X),T); W = @get(T,0).
+levels(P,1) :- preference(P,less(weight)).
+wc(P,-W,1,T,X) :- preference(P,more(weight)); preference(P,_,_,for(X),T); W = @get(T,0).
+levels(P,1) :- preference(P,more(weight)).
+level(P,L1,L) :- preference(P,clingo_minimize); preference(P,_,_,_,T); L1 = @get(T,1); L = #sum { 1,L2: preference(P,_,_,_,TT), L2 = @get(TT,1), L2 <= L1 }.
+wc(P,W,LL,T,X) :- preference(P,clingo_minimize); preference(P,_,_,for(X),T); W = @get(T,0); L = @get(T,1); level(P,L,LL).
+levels(P,L) :- preference(P,clingo_minimize); L = #max { LL: level(P,_,LL); 0 }.
+as_minmax(P) :- preference(P,minmax); preference(P,_,_,for(X),T).
+elem(P,@get(T,0),@get(T,1),T,X) :- preference(P,minmax); preference(P,_,_,for(X),T).
+as_minmax(P) :- preference(P,maxmin); preference(P,_,_,for(X),T).
+elem(P,@get(T,0),-@get(T,1),T,X) :- preference(P,maxmin); preference(P,_,_,for(X),T).
+bit(P,G,B) :- as_minmax(P); elem(P,G,_,_,_); S = #sum { W,T: elem(P,G,W,T,X), W > 0; -W,T: elem(P,G,W,T,X), W < 0 }; B = (0..(@log2up((S+1))-1)).
+{ true(bit(P,G,B)) } :- as_minmax(P); bit(P,G,B).
+#false :- as_minmax(P); elem(P,G,_,_,_); 0 != #sum { -@exp2(B): true(bit(P,G,B)); W,T: elem(P,G,W,T,X), W > 0, holds(X); -W,T: elem(P,G,W,T,X), W < 0, not holds(X) }.
+holds(bit(P,B)) :- as_minmax(P); true(bit(P,G,B)); not not_max(P,G,B).
+not_max(P,G,(B-1)) :- as_minmax(P); not true(bit(P,G,B)); holds(bit(P,B)); B > 0; elem(P,G,_,_,_).
+not_max(P,G,(B-1)) :- as_minmax(P); not_max(P,G,B); B > 0.
+wc(P,1,(B+1),0,bit(P,B)) :- as_minmax(P); bit(P,_,B).
+levels(P,L) :- as_minmax(P); L = #sum { 1,B: bit(P,_,B) }.
+#defined as_minmax/1.
+#defined elem/5.
+#defined bit/3.
+rule(P,Id,L) :- preference(P,aso); preference(P,Id,_,_,_); L = #max { H: preference(P,Id,H,_,_) }; L > 1.
+index(P,Id,(1..(L-1))) :- rule(P,Id,L).
+#const approx_aso = 1.
+opt12(P) :- preference(P,aso); approx_aso = 1.
+opt12(P) :- preference(P,aso); approx_aso = 2.
+holds(aso(P,Id,Idx)) :- preference(P,aso); opt12(P); index(P,Id,Idx); not holds(X); preference(P,Id,0,for(X),_).
+holds(aso(P,Id,Idx)) :- preference(P,aso); opt12(P); index(P,Id,Idx); not holds(X): preference(P,Id,H,for(X),_), H != 0.
+holds(aso(P,Id,Idx)) :- preference(P,aso); opt12(P); index(P,Id,Idx); Idx >= Pos; holds(X); preference(P,Id,Pos,for(X),_); Pos != 0.
+levels(P,1) :- preference(P,aso); approx_aso = 1.
+wc(P,-1,1,(Id,Idx),aso(P,Id,Idx)) :- preference(P,aso); approx_aso = 1; index(P,Id,Idx).
+pos(P,N,Id) :- preference(P,aso); approx_aso = 2; rule(P,Id,_); N = @get_sequence(("weak_aso",P),Id).
+levels(P,L) :- preference(P,aso); approx_aso = 2; L = #sum { 1,Id: rule(P,Id,_) }.
+wc(P,-1,N,Idx,aso(P,Id,Idx)) :- preference(P,aso); approx_aso = 2; index(P,Id,Idx); pos(P,N,Id).
+holds(aso(P,Id,1)) :- preference(P,aso); approx_aso = 3; rule(P,Id,L); not holds(X); preference(P,Id,0,for(X),_).
+holds(aso(P,Id,1)) :- preference(P,aso); approx_aso = 3; rule(P,Id,L); not holds(X): preference(P,Id,Idx,for(X),_), Idx != 0.
+holds(aso(P,Id,Idx)) :- preference(P,aso); approx_aso = 3; rule(P,Id,L); L > Idx; holds(X); preference(P,Id,Idx,for(X),_); Idx != 0; not holds(aso(P,Id,Idx')): Idx' = (1..(Idx-1)).
+levels(P,L) :- preference(P,aso); approx_aso = 3; rule(P,_,L); not rule(P,_,(L+1)).
+wc(P,-1,((L-Idx)+1),Id,aso(P,Id,Idx)) :- preference(P,aso); approx_aso = 3; index(P,Id,Idx); levels(P,L).
+#defined rule/3.
+#defined pos/3.
+poset(P,X) :- preference(P,poset); preference(P,_,_,for(X),_).
+poset(P,X,Y) :- preference(P,poset); preference(P,I,1,for(X),_); preference(P,I,2,for(Y),_).
+#const approx_tc_poset = 1.
+poset(P,X,Y) :- preference(P,poset); poset(P,X,Z); poset(P,Z,Y); approx_tc_poset = 1.
+#const approx_poset = 2.
+step(P,X,1) :- preference(P,poset); approx_poset = 1; poset(P,X).
+step(P,X,(S+1)) :- preference(P,poset); approx_poset = 1; step(P,X,S); step(P,Y,S); poset(P,Y,X).
+levels(P,S) :- preference(P,poset); approx_poset = 1; step(P,_,S); not step(P,_,(S+1)).
+wc(P,-1,-S,X,X) :- preference(P,poset); approx_poset = 1; step(P,X,S); not step(P,X,(S+1)).
+cost(P,X,(C+1)) :- preference(P,poset); approx_poset = 2; poset(P,X); C = #sum { CC,Y: poset(P,X,Y), cost(P,Y,CC) }.
+levels(P,1) :- preference(P,poset); approx_poset = 2.
+wc(P,-C,1,X,X) :- preference(P,poset); approx_poset = 2; cost(P,X,C).
+#defined step/3.
+wc(P,-W,L,T,X) :- preference(P,neg); preference(P,_,_,name(PP),_); wc(PP,W,L,T,X).
+levels(P,L) :- preference(P,neg); preference(P,_,_,name(PP),_); levels(PP,L).
+wc(P,W,(L+S),T,X) :- as_lexico(P); level(P,P1,L1); wc(P1,W,L,T,X); S = #sum { LS2,P2,L2: level(P,P2,L2), L2 < L1, levels(P2,LS2) }.
+max_level(P,MAX) :- as_lexico(P); MAX = #max { L: level(P,_,L) }.
+sum_levels(P,(MIN-1),0) :- as_lexico(P); MIN = #min { L: level(P,_,L) }.
+sum_levels(P,(L+1),S) :- as_lexico(P); sum_levels(P,L,S); max_level(P,MAX); L < MAX.
+sum_levels(P,(L+1),(SS+S)) :- as_lexico(P); sum_levels(P,L,S); level(P,P1,(L+1)); levels(P1,SS).
+levels(P,S) :- as_lexico(P); max_level(P,MAX); S = #max { SS: sum_levels(P,MAX,SS); 0 }.
+#defined as_lexico/1.
+#defined level/3.
+as_lexico(P) :- preference(P,lexico).
+level(P,P1,L) :- preference(P,lexico); preference(P,_,_,name(P1),L).
+#const approx_pareto = 2.
+wc(P,W,L,T,X) :- preference(P,pareto); approx_pareto = 1; preference(P,_,_,name(P1),_); wc(P1,W,L,T,X).
+as_lexico(P) :- preference(P,pareto); approx_pareto = 2.
+level(P,P1,L) :- preference(P,pareto); approx_pareto = 2; preference(P,_,_,name(P1),_); L = #sum { 1,P2: preference(P,_,_,name(P2),_), P2 <= P1 }.
+#const approx_and = 2.
+wc(P,W,L,T,X) :- preference(P,and); approx_and = 1; preference(P,_,_,name(P1),_); wc(P1,W,L,T,X).
+as_lexico(P) :- preference(P,and); approx_and = 2.
+level(P,P1,L) :- preference(P,and); approx_and = 2; preference(P,_,_,name(P1),_); L = #sum { 1,P2: preference(P,_,_,name(P2),_), P2 <= P1 }.
+#const cp_tree = 0.
+#const cp_nontree_diameter = 0.
+#const cp_nontree_parallel = 0.
+#const cp_tree_encoding = 2.
+parallel(P) :- preference(P,cp); cp_tree = 0; cp_nontree_parallel = 1.
+tree(P) :- preference(P,cp); cp_tree = 1.
+flips(P) :- preference(P,cp); cp_tree = 1; cp_tree_encoding = 0.
+loops(P) :- preference(P,cp); cp_tree = 1; cp_tree_encoding = (1..2).
+fills(P) :- preference(P,cp); cp_tree = 1; cp_tree_encoding = 2.
+h(P,A) :- preference(P,cp); preference(P,_,_,for(atom(A)),_); holds(atom(A)).
+h(P,A) :- preference(P,cp); preference(P,_,_,for(neg(atom(A))),_); not holds(neg(atom(A))); not preference(P,_,_,for(atom(A)),_).
+h'(P,A) :- preference(P,cp); preference(P,_,_,for(atom(A)),_); holds'(atom(A)).
+h'(P,A) :- preference(P,cp); preference(P,_,_,for(neg(atom(A))),_); not holds'(neg(atom(A))); not preference(P,_,_,for(atom(A)),_).
+atom(P,A) :- preference(P,cp); preference(P,_,_,for(atom(A)),_).
+atom(P,A) :- preference(P,cp); preference(P,_,_,for(neg(atom(A))),_).
+lits(P,atom(A),A,true) :- preference(P,cp); atom(P,A).
+lits(P,neg(atom(A)),A,false) :- preference(P,cp); atom(P,A).
+post(P,Id,A,VA) :- preference(P,cp); preference(P,Id,1,for(L),_); lits(P,L,A,VA).
+pre(P,Id,A,VA) :- preference(P,cp); preference(P,Id,0,for(L),_); lits(P,L,A,VA).
+required(P,eq) :- preference(P,cp).
+bettereq(P) :- preference(P,cp); better(P).
+bettereq(P) :- preference(P,cp); eq(P).
+eq(P) :- preference(P,cp); h(P,A): h'(P,A); h'(P,A): h(P,A).
+required(P,eq) :- preference(P,cp).
+worseeq(P) :- preference(P,cp); worse(P).
+worseeq(P) :- preference(P,cp); eq(P).
+rel(P,better) :- preference(P,cp).
+rel(P,worse) :- preference(P,cp); required(P,worse).
+diameter(P,((2**N)-1)) :- preference(P,cp); not tree(P); N = { atom(P,A) }; cp_nontree_diameter = 0.
+diameter(P,(N**2)) :- preference(P,cp); not tree(P); N = { atom(P,A) }; cp_nontree_diameter = tree.
+diameter(P,cp_nontree_diameter) :- preference(P,cp); not tree(P); cp_nontree_diameter != 0; cp_nontree_diameter != tree.
+unsat(P,R) :- preference(P,cp); rel(P,R); diameter(P,0).
+better(P) :- preference(P,cp); not tree(P); not unsat(P,better); not eq(P).
+worse(P) :- preference(P,cp); not tree(P); not unsat(P,worse); not eq(P).
+time(P,(1..D)) :- preference(P,cp); diameter(P,D); rel(P,_).
+tr(P,A,B) :- preference(P,cp); parallel(P); pre(P,Id,A,_); post(P,Id,B,_).
+tr(P,A,C) :- preference(P,cp); parallel(P); pre(P,Id,A,_); post(P,Id,B,_); tr(P,B,C).
+forall(P) :- preference(P,cp); parallel(P); tr(P,A,A).
+1 <= { occ(P,R,Id,T): post(P,Id,_,_); occ(P,R,wait,T): T > 1 } <= 1 :- preference(P,cp); time(P,T); rel(P,R); not parallel(P).
+1 <= { occ(P,R,Id,T): post(P,Id,_,_); occ(P,R,wait,T): T > 1 } :- preference(P,cp); time(P,T); rel(P,R); parallel(P).
+unsat(P,R) :- occ(P,R,wait,T); occ(P,R,A,T); A != wait; parallel(P).
+unsat(P,R) :- preference(P,cp); not occ(P,R,wait,T); occ(P,R,wait,(T-1)); time(P,T).
+holds(P,R,A,0) :- preference(P,cp); rel(P,R); R = better; not tree(P); atom(P,A); h'(P,A).
+holds(P,R,A,0) :- preference(P,cp); rel(P,R); R = worse; not tree(P); atom(P,A); h(P,A).
+holds(P,R,A,T) :- preference(P,cp); occ(P,R,Id,T); post(P,Id,A,true).
+holds(P,R,A,T) :- preference(P,cp); holds(P,R,A,(T-1)); time(P,T); not occ(P,R,Id,T): post(P,Id,A,false).
+unsat(P,R) :- preference(P,cp); occ(P,R,Id,T); post(P,Id,A,true); holds(P,R,A,(T-1)).
+unsat(P,R) :- preference(P,cp); occ(P,R,Id,T); post(P,Id,A,false); not holds(P,R,A,(T-1)).
+unsat(P,R) :- preference(P,cp); occ(P,R,Id,T); pre(P,Id,A,true); not holds(P,R,A,(T-1)).
+unsat(P,R) :- preference(P,cp); occ(P,R,Id,T); pre(P,Id,A,false); holds(P,R,A,(T-1)).
+unsat(P,R) :- preference(P,cp); occ(P,R,Id,T); pre(P,Id,A,true); not holds(P,R,A,T); forall(P).
+unsat(P,R) :- preference(P,cp); occ(P,R,Id,T); pre(P,Id,A,false); holds(P,R,A,T); forall(P).
+unsat(P,R) :- preference(P,cp); rel(P,R); R = better; time(P,T); not time(P,(T+1)); holds(P,R,A,T); not h(P,A).
+unsat(P,R) :- preference(P,cp); rel(P,R); R = better; time(P,T); not time(P,(T+1)); not holds(P,R,A,T); h(P,A).
+unsat(P,R) :- preference(P,cp); rel(P,R); R = worse; time(P,T); not time(P,(T+1)); holds(P,R,A,T); not h'(P,A).
+unsat(P,R) :- preference(P,cp); rel(P,R); R = worse; time(P,T); not time(P,(T+1)); not holds(P,R,A,T); h'(P,A).
+better(P) :- preference(P,cp); tree(P); not unsat(P,better).
+worse(P) :- preference(P,cp); required(P,worse); tree(P); not unsat(P,worse).
+edge(P,A,AA) :- preference(P,cp); tree(P); pre(P,Id1,A,_); post(P,Id1,AA,V1); post(P,Id2,AA,V2); Id1 != Id2; V1 != V2.
+eq(P,A) :- preference(P,cp); tree(P); atom(P,A); not h(P,A); not h'(P,A).
+eq(P,A) :- preference(P,cp); tree(P); atom(P,A); h(P,A); h'(P,A).
+eqchange(P,A,AA) :- preference(P,cp); flips(P); edge(P,A,AA); not eq(P,A); eq(P,AA).
+eqchange(P,A,AA) :- preference(P,cp); flips(P); edge(P,A,AA); eq(P,A); not eq(P,AA).
+freeflip(P,R,A,AA) :- preference(P,cp); tree(P); rel(P,R); edge(P,A,AA); pre(P,Id,A,VA); post(P,Id,AA,VAA); 1 != #sum { 1,0: VA = true; 1,1: h'(P,A), R = better; 1,1: h(P,A), R = worse }; 1 = #sum { 1,0: VAA = true; 1,1: h'(P,AA), R = better; 1,1: h(P,AA), R = worse }.
+flips(P,R,A,F) :- preference(P,cp); flips(P); rel(P,R); atom(P,A); not edge(P,A,_); F = { not eq(P,A) }.
+flips(P,R,A,F) :- preference(P,cp); edge(P,A,AA); flips(P,R,AA,F); maxflips(P,AA,MF); F <= MF; not eqchange(P,A,AA).
+flips(P,R,A,(F-1)) :- preference(P,cp); edge(P,A,AA); flips(P,R,AA,F); maxflips(P,AA,MF); F <= MF; eqchange(P,A,AA); F > 0; freeflip(P,R,A,AA).
+flips(P,R,A,(F+1)) :- preference(P,cp); edge(P,A,AA); flips(P,R,AA,F); maxflips(P,AA,MF); F <= MF; eqchange(P,A,AA); F = 0.
+flips(P,R,A,(F+1)) :- preference(P,cp); edge(P,A,AA); flips(P,R,AA,F); maxflips(P,AA,MF); F <= MF; eqchange(P,A,AA); not freeflip(P,R,A,AA).
+maxflips(P,A,F) :- preference(P,cp); tree(P); atom(P,A); not edge(P,_,A); F = { not eq(P,A) }.
+maxflips(P,A,(F+1)) :- preference(P,cp); edge(P,AA,A); maxflips(P,AA,F).
+unsat(P,R) :- preference(P,cp); flips(P,R,A,F); maxflips(P,A,MF); F > MF.
+unsat(P,R) :- preference(P,cp); tree(P); rel(P,R); eq(P,A): atom(P,A).
+unsat(P,R) :- preference(P,cp); tree(P); rel(P,R); atom(P,A); not edge(P,_,A); not eq(P,A); 1 != #sum { 1,0: post(P,Id,A,true); 1,1: h'(P,A), R = better; 1,1: h(P,A), R = worse }.
+unsat(P,R) :- preference(P,cp); atom(P,A); not edge(P,_,A); flips(P,R,A,F); eq(P,A); F != 0.
+unsat(P,R) :- preference(P,cp); atom(P,A); not edge(P,_,A); flips(P,R,A,F); not eq(P,A); F != 1.
+loops(P,R,A,0) :- preference(P,cp); loops(P); rel(P,R); atom(P,A); not edge(P,A,_).
+loops(P,R,A,(L-1)) :- preference(P,cp); edge(P,A,AA); loops(P,R,AA,L); maxloops(P,AA,ML); L <= ML; L > 0.
+loops(P,R,A,L) :- preference(P,cp); edge(P,A,AA); loops(P,R,AA,L); maxloops(P,AA,ML); L <= ML; #false: freeflip(P,R,A,AA), not eq(P,A), eq(P,AA), L > 0.
+loops(P,R,A,(L+1)) :- preference(P,cp); edge(P,A,AA); loops(P,R,AA,L); maxloops(P,AA,ML); L <= ML; not freeflip(P,R,A,AA); eq(P,A); not eq(P,AA).
+loops(P,R,A,(L-1)) :- preference(P,cp); fills(P); loops(P,R,A,L); L > 0.
+maxloops(P,A,(F/2)) :- preference(P,cp); loops(P); maxflips(P,A,F).
+unsat(P,R) :- preference(P,cp); loops(P,R,A,L); maxloops(P,A,ML); L > ML.
+unsat(P,R) :- preference(P,cp); atom(P,A); not edge(P,_,A); loops(P,R,A,L); L > 0.
+error_type(cp,no_weights).
+error_type(cp,no_naming).
+error_type(cp,ordering_max_length(2)).
+error_type(cp,no_sets((1..2))).
+error(("preference:",P,": error: preference specification error, type '",T,"' requires constant cp_tree to have a value between 0 and 1.")) :- preference(P,T); T = cp; cp_tree != 0; cp_tree != 1.
+error(("preference:",P,": error: preference specification error, type '",T,"' requires constant cp_nontree_parallel to have a value between 0 and 1.")) :- preference(P,T); T = cp; cp_nontree_parallel != 0; cp_nontree_parallel != 1.
+error(("preference:",P,": error: preference specification error, type '",T,"' requires constant cp_tree_encoding to have a value between 0 and 2.")) :- preference(P,T); T = cp; cp_tree_encoding != 0; cp_tree_encoding != 1; cp_tree_encoding != 2.
+error(("preference:",P,": error: preference specification error, type '",T,"' requires literals.")) :- preference(P,T); T = cp; preference(P,_,_,for(X),_); not lits(P,X,_,_).
+error(("preference:",P,": error: preference specification error, type '",T,"' requires literals at positions 1 and 2 to be contrary. Position 2 may be left empty. ")) :- preference(P,T); T = cp; preference(P,E,1,for(X),_); lits(P,X,AX,VX); preference(P,E,2,for(Y),_); lits(P,Y,AY,VY); 1 <= { AX != AY; VX = VY }.
+error(("preference:",P,": error: preference specification error, type '",T,"' does not allow atoms in the first position of an element to appear in its condition.")) :- preference(P,T); T = cp; preference(P,E,1,for(X),_); lits(P,X,A,VX); preference(P,E,0,for(Y),_); lits(P,Y,A,VY).
+error(("preference:",P,": error: preference specification error, type '",T,"' requires the cp net to be consistent.")) :- preference(P,T); T = cp; post(P,Id1,A,VA1); post(P,Id2,A,VA2); Id1 > Id2; VA1 != VA2; #false: pre(P,Id1,B,VB1), pre(P,Id2,B,VB2), VB1 != VB2.
+error(("preference:",P,": error: preference specification error, tree cp nets do not allow sets in the condition.")) :- preference(P,T); T = cp; tree(P); preference(P,E,S,X,_); preference(P,E,S,Y,_); S = 0; X > Y.
+error(("preference:",P,": error: preference specification error, tree cp nets require that every atom either appears in exactly one head without condition, or in exactly two heads with conditions that are contrary literals.")) :- preference(P,T); T = cp; tree(P); post(P,Id1,A,VA); not pre(P,Id1,_,_); not 1 = { post(P,I,A,V) }.
+error(("preference:",P,": error: preference specification error, tree cp nets require that every atom either appears in exactly one head without condition, or in exactly two heads with conditions that are contrary literals.")) :- preference(P,T); T = cp; tree(P); post(P,Id1,A,VA); pre(P,Id1,_,_); not 2 = { post(P,I,A,V) }.
+error(("preference:",P,": error: preference specification error, tree cp nets require that every atom either appears in exactly one head without condition, or in exactly two heads with conditions that are contrary literals.")) :- preference(P,T); T = cp; tree(P); post(P,Id1,A,VA1); pre(P,Id1,B1,VB1); post(P,Id2,A,VA2); pre(P,Id2,B2,VB2); Id1 > Id2; 1 <= { B1 != B2; VB1 = VB2 }.
+error(("preference:",P,": error: preference specification error, tree cp nets require that every atom has at most one parent in the corresponding graph.")) :- preference(P,T); T = cp; tree(P); edge(P,A1,A); edge(P,A2,A); A1 > A2.
+acyclic(P,M) :- preference(P,cp); tree(P); M = ("preference:",P,": error: preference specification error, tree cp nets require that the corresponding graph is acyclic.").
+tr(P,A,B) :- preference(P,cp); acyclic(P,_); pre(P,Id,A,_); post(P,Id,B,_).
+tr(P,A,C) :- preference(P,cp); acyclic(P,_); pre(P,Id,A,_); post(P,Id,B,_); tr(P,B,C).
+error(M) :- preference(P,T); T = cp; acyclic(P,M); tr(P,A,A).
+#defined rel/2.
+#defined pre/4.
+#defined post/4.
+#defined edge/3.
+#defined lits/4.
+#defined acyclic/2.
+h(P,A) :- preference(P,cp); preference(P,_,_,for(atom(A)),_); holds(atom(A)).
+h(P,A) :- preference(P,cp); preference(P,_,_,for(neg(atom(A))),_); not holds(neg(atom(A))); not preference(P,_,_,for(atom(A)),_).
+atom(P,A) :- preference(P,cp); preference(P,_,_,for(atom(A)),_).
+atom(P,A) :- preference(P,cp); preference(P,_,_,for(neg(atom(A))),_).
+lits(P,atom(A),A,true) :- preference(P,cp); atom(P,A).
+lits(P,neg(atom(A)),A,false) :- preference(P,cp); atom(P,A).
+post(P,Id,A,VA) :- preference(P,cp); preference(P,Id,1,for(L),_); lits(P,L,A,VA).
+pre(P,Id,A,VA) :- preference(P,cp); preference(P,Id,0,for(L),_); lits(P,L,A,VA).
+edge(P,A,AA) :- preference(P,cp); pre(P,Id,A,_); post(P,Id,AA,_).
+cond(P,A) :- preference(P,cp); atom(P,A); post(P,Id,A,true); h(P,AA): pre(P,Id,AA,true); not h(P,AA): pre(P,Id,AA,false).
+holds(cp(A)) :- preference(P,cp); atom(P,A); h(P,A); cond(P,A).
+holds(cp(A)) :- preference(P,cp); atom(P,A); not h(P,A); not cond(P,A).
+poset(P,cp(A)) :- preference(P,cp); atom(P,A).
+poset(P,cp(A),cp(AA)) :- preference(P,cp); edge(P,A,AA).
+#const approx_tc_cp = 1.
+poset(P,X,Y) :- preference(P,cp); poset(P,X,Z); poset(P,Z,Y); approx_tc_cp = 1.
+#const approx_cp = 1.
+step(P,X,1) :- preference(P,cp); approx_cp = 1; poset(P,X).
+step(P,X,(S+1)) :- preference(P,cp); approx_cp = 1; step(P,X,S); step(P,Y,S); poset(P,Y,X).
+levels(P,S) :- preference(P,cp); approx_cp = 1; step(P,_,S); not step(P,_,(S+1)).
+wc(P,-1,-S,X,X) :- preference(P,cp); approx_cp = 1; step(P,X,S); not step(P,X,(S+1)).
+cost(P,X,(C+1)) :- preference(P,cp); approx_cp = 2; poset(P,X); C = #sum { CC,Y: poset(P,X,Y), cost(P,Y,CC) }.
+levels(P,1) :- preference(P,cp); approx_cp = 2.
+wc(P,-C,1,X,X) :- preference(P,cp); approx_cp = 2; cost(P,X,C).
+#defined pre/4.
+#defined post/4.
+#defined step/3.
+h(P,A) :- preference(P,cp); preference(P,_,_,for(atom(A)),_); holds(atom(A)).
+h(P,A) :- preference(P,cp); preference(P,_,_,for(neg(atom(A))),_); not holds(neg(atom(A))); not preference(P,_,_,for(atom(A)),_).
+atom(P,A) :- preference(P,cp); preference(P,_,_,for(atom(A)),_).
+atom(P,A) :- preference(P,cp); preference(P,_,_,for(neg(atom(A))),_).
+lits(P,atom(A),A,true) :- preference(P,cp); atom(P,A).
+lits(P,neg(atom(A)),A,false) :- preference(P,cp); atom(P,A).
+post(P,Id,A,VA) :- preference(P,cp); preference(P,Id,1,for(L),_); lits(P,L,A,VA).
+pre(P,Id,A,VA) :- preference(P,cp); preference(P,Id,0,for(L),_); lits(P,L,A,VA).
+edge(P,A,AA) :- preference(P,cp); pre(P,Id,A,_); post(P,Id,AA,_).
+cond(P,A) :- preference(P,cp); atom(P,A); post(P,Id,A,true); h(P,AA): pre(P,Id,AA,true); not h(P,AA): pre(P,Id,AA,false).
+holds(cp(A)) :- preference(P,cp); atom(P,A); not h(P,A); not cond(P,A).
+holds(cp(A)) :- preference(P,cp); atom(P,A); h(P,A); cond(P,A).
+poset(P,cp(A)) :- preference(P,cp); atom(P,A).
+poset(P,cp(A),cp(AA)) :- preference(P,cp); edge(P,A,AA).
+#const heuristic_tc_cp = 1.
+poset(P,X,Y) :- preference(P,cp); poset(P,X,Z); poset(P,Z,Y); heuristic_tc_cp = 1.
+#const heuristic_cp = 1.
+heuristic(P,X,1,true) :- preference(P,cp); heuristic_cp = 1; poset(P,X); assigned(P,Y): poset(P,Y,X).
+assigned(P,X) :- preference(P,cp); heuristic_cp = 1; poset(P,X); holds(X).
+assigned(P,X) :- preference(P,cp); heuristic_cp = 1; poset(P,X); not holds(X).
+levels(P,1) :- preference(P,cp); heuristic_cp = 1.
+step(P,X,1) :- preference(P,cp); heuristic_cp = 2; poset(P,X).
+step(P,X,(S+1)) :- preference(P,cp); heuristic_cp = 2; step(P,X,S); step(P,Y,S); poset(P,Y,X).
+max_step(P,S) :- preference(P,cp); heuristic_cp = 2; step(P,_,S); not step(P,_,(S+1)).
+heuristic(P,X,((M-S)+1),true) :- preference(P,cp); heuristic_cp = 2; max_step(P,M); step(P,X,S); not step(P,X,(S+1)).
+levels(P,M) :- preference(P,cp); heuristic_cp = 2; max_step(P,M).
+cost(P,X,(C+1)) :- preference(P,cp); heuristic_cp = 3; poset(P,X); C = #sum { CC,Y: poset(P,X,Y), cost(P,Y,CC) }.
+wc(P,-C,1,X,X) :- cost(P,X,C); heuristic_cp = 3.
+#defined pre/4.
+#defined post/4.
+#defined step/3.
 
 for(X) :- for(and(X,Y)).
 for(Y) :- for(and(X,Y)).
@@ -22,70 +592,25 @@ output(M,worse,N) :- worse(P,M,N).
 output(M,eq,N) :- eq(P,M,N).
 output(M,unc,N) :- unc(P,M,N).
 :~ input(M,R,N); not output(M,R,N). [1@1,M,N]
-#const maxEle = 15.
-#const maxLen = 2.
-_g_st(1).
-preference(P,betterthan) :- _g_st(P).
-_g_el(X) :- X = (1..maxEle).
-1 >= { preference(P,(P,EL),1,for(X),()): _g_possfor(X) } :- _g_el(EL); _g_st(P).
-1 <= { preference(P,(P,EL),2,for(Y),()): _g_possfor(Y) } <= 1 :- preference(P,(P,EL),1,for(X),()).
-_g_clauseLen((1..maxLen)).
-_g_possfor_aux(1,atom(X)) :- atom(X).
-_g_possfor_aux(L,and(X,Y)) :- _g_possfor_aux(L1,X); _g_possfor_aux(L2,Y); _g_clauseLen(L); X != Y; (L1+L2) = L.
-_g_possfor(X) :- _g_possfor_aux(L,X).
+#show.
+#show output/3.
+#const statements = 1.
+#const maxEle = 10.
+_g_type(poset).
+_g_st(P) :- P = (1..statements).
+_g_el(E) :- E = (1..maxEle).
+1 = { preference(P,T): _g_type(T) } :- _g_st(P).
+1 >= { preference(P,(P,E),1,for(atom(X)),()): atom(X) } :- _g_el(E); _g_st(P).
+1 >= { preference(P,(P,E),2,for(atom(Y)),()): atom(Y), X != Y } :- _g_el(E); _g_st(P); preference(_,(_,E),1,for(atom(X)),_).
 #show preference/2.
 #show preference/5.
-#show.
 _e_pref(7,9,3,0).
 _e_pref(7,7,9,0).
 _e_pref(7,9,1,0).
-_e_pref(7,10,9,1).
-_e_pref(7,7,5,0).
-_e_pref(7,8,4,0).
-_e_pref(7,10,5,0).
-_e_pref(7,6,7,0).
-_e_pref(7,10,2,0).
-_e_pref(7,10,9,0).
-_e_pref(7,5,3,0).
-_e_pref(7,8,2,0).
-_e_pref(7,7,4,0).
-_e_pref(7,7,3,0).
-_e_pref(7,8,7,0).
-_e_pref(7,10,4,0).
-_e_pref(7,3,4,1).
-_e_pref(7,2,5,0).
-_e_pref(7,7,1,0).
-_e_pref(7,6,10,1).
-_e_pref(7,10,7,0).
-_e_pref(7,8,1,0).
-_e_pref(7,2,9,0).
-_e_pref(7,6,4,0).
-_e_pref(7,9,4,0).
-_e_pref(7,6,1,0).
-_e_pref(7,8,10,0).
-_e_pref(7,10,3,0).
-_e_pref(7,6,10,0).
-_e_pref(7,8,3,0).
-_e_pref(7,1,5,0).
-_e_pref(7,6,9,0).
-_e_pref(7,8,6,0).
-_e_pref(7,9,5,0).
-_e_pref(7,6,4,1).
-_e_pref(7,6,5,0).
-_e_pref(7,7,2,0).
-_e_pref(7,3,4,0).
 _e_pref(7,1,3,0).
-_e_pref(7,2,1,0).
-_e_pref(7,6,2,0).
-_e_pref(7,2,4,0).
-_e_pref(7,8,5,0).
-_e_pref(7,9,1,1).
-_e_pref(7,2,3,0).
-_e_pref(7,5,4,0).
-_e_pref(7,6,3,0).
-_e_pref(7,8,9,0).
-_e_pref(7,1,4,0).
-_e_pref(7,10,1,0).
+_e_pref(7,7,1,0).
+_e_pref(7,7,3,0).
+#show.
 _e_activate_user(7).
 _e_car(1,2,1,1,2).
 _e_car(2,1,2,4,1).
