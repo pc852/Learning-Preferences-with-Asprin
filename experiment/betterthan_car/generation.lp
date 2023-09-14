@@ -22,8 +22,3 @@ possfor_aux(L,and(X,Y)) :- possfor_aux(L1,X), possfor_aux(L2,Y), clauseLen(L), X
 
 possfor(X) :- possfor_aux(L,X). 
 
-
-#show preference/2.
-#show preference/5.
-#show.
-

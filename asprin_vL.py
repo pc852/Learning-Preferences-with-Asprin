@@ -449,8 +449,10 @@ class AsprinLearn(Application):
         self.prefEle = []
         self.prefNames= []
         self.outBuffer = []
+        self.forbid_unc   = Flag(False)
         self.forbid_equal = Flag(False)
         self.forbid_worse = Flag(False)
+        self.unique_output = Flag(False)
         self.enable_ele_opt = Flag(False)
         self.print_clingo_input = Flag(False)
         self.print_asprin_vL_output = Flag(False)
@@ -458,15 +460,19 @@ class AsprinLearn(Application):
 
     def register_options(self, options:ApplicationOptions):
         group = 'asprin-vL Options'
-        options.add_flag(group, 'printinput', 'Print input to clingo',
+        options.add_flag(group, 'print_input', 'Print input to clingo',
                          self.print_clingo_input)
-        options.add_flag(group, 'printoutput', 'Print output from asprin_vL',
+        options.add_flag(group, 'print_output', 'Print output from asprin_vL',
                          self.print_asprin_vL_output)
-        options.add_flag(group, 'forbidequal', 'Forbid preference relation of eq, i.e. :- output(M,eq,N).',
+        options.add_flag(group, 'forbid_equal', 'Forbid preference relation of eq, i.e. :- output(M,eq,N).',
                          self.forbid_equal)
-        options.add_flag(group, 'forbidworse', 'Forbid preference relation of worse, i.e. :- output(M,worse,N).',
+        options.add_flag(group, 'forbid_worse', 'Forbid preference relation of worse, i.e. :- output(M,worse,N).',
                          self.forbid_worse)
-        options.add_flag(group, 'minele',
+        options.add_flag(group, 'forbid_uncomparable', 'Forbid preference relation of uncomparable, i.e. :- output(M,unc,N).',
+                         self.forbid_unc)
+        options.add_flag(group, 'unique_output', 'Forbid multiple output labels for any input example pairs.',
+                         self.unique_output)
+        options.add_flag(group, 'min_element',
                          'Minimize the number of preference elements, i.e. #minimize{1@0,K: preference(_,(_,K),_,_,_)}.',
                          self.enable_ele_opt)
     
@@ -521,10 +527,14 @@ class AsprinLearn(Application):
                 outFile.writelines(self.outBuffer)
                 
         with ProgramBuilder(ctl) as bld:
-            if self.forbid_equal.flag == True:
+            if self.forbid_equal.flag   == True:
                 parse_string("#program backend. :- output(M,eq,N).", bld.add)
-            if self.forbid_worse.flag == True:
+            if self.forbid_worse.flag   == True:
                 parse_string("#program backend. :- output(M,worse,N).", bld.add)
+            if self.forbid_unc.flag     == True:
+                parse_string("#program backend. :- output(M,unc,N).", bld.add)
+            if self.unique_output.flag  == True:
+                parse_string("#program backend. :- output(M,R1,N), output(M,R2,N), R1!=R2.", bld.add)
             if self.enable_ele_opt.flag == True:
                 parse_string("#program backend. #minimize{1@0,K: preference(_,(_,K),_,_,_)}.", bld.add)
             
