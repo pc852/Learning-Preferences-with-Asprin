@@ -1,4 +1,4 @@
-%#program examples.
+#program examples.
 
 %#show (A,B,C) : pref(A,B,C,1), not pref(A,B,C,0), not pref(A,C,B,0).
 %#show.

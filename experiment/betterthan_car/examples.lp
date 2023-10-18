@@ -1,6 +1,8 @@
 #program examples.
+#const user = 11.
 
-activate_user(7).
+activate_user(user).
+%perfert users are: 4,7,11,15,17,19,38,39,42,43,51,52,55
 
 % car(Item ID, BodyType, Transmission, Engin Capacity, Fuel Consumed).
 % BodyType:        1 for Sedan  , 2 for SUV
@@ -23,8 +25,5 @@ in(hasTransmission(X),M) :- car(M,_,X,_,_).
 in(hasEngineCap(X),M)    :- car(M,_,_,X,_).
 in(hasFuelCons(X),M)     :- car(M,_,_,_,X).
 
-input(B,better,C) :- pref(A,B,C,0).
-
-%#show input/3.
-#show.
+input(B,better,C) :- pref(A,B,C,0), activate_user(A).
 

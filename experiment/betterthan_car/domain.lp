@@ -7,3 +7,4 @@ atom(hasTransmission(1..2)).
 atom(hasEngineCap(1..5)).
 atom(hasFuelCons(1..2)).
 
+

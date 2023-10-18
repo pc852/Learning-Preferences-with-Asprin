@@ -1,0 +1,127 @@
+asprin_vL version 1.0
+Reading from stdin
+-:168:3-30: info: atom does not occur in any rule head:
+  preference(#X0,#P1,#P2,name(#X3),#P4)
+
+-:178:3-24: info: atom does not occur in any rule head:
+  preference(#X0,#P1,0,#P2,#P3)
+
+-:193:3-31: info: atom does not occur in any rule head:
+  preference(#X0,#P1,#P2,name(#X3),#X4)
+
+-:274:36-48: info: atom does not occur in any rule head:
+  _p_rule(#X0,#X1,#P2,#X3,#X4)
+
+-:548:34-45: info: atom does not occur in any rule head:
+  better(#X0,#P1,#X2,#X3)
+
+-:725:35-45: info: atom does not occur in any rule head:
+  _p_group(#X0,#P1,#X2,#X3)
+
+-:854:38-65: info: atom does not occur in any rule head:
+  preference(#X0,#X1,0,for(#X2),#P3)
+
+-:926:50-58: info: atom does not occur in any rule head:
+  _p_rel(#X0,#P1,#X2,#X3)
+
+-:930:46-59: info: atom does not occur in any rule head:
+  _p_pre(#X0,#X1,#X2,#P3,#X4,#X5)
+
+-:930:61-75: info: atom does not occur in any rule head:
+  _p_post(#X0,#X1,#X2,#P3,#X4,#X5)
+
+-:936:23-37: info: atom does not occur in any rule head:
+  _p_post(#X0,#X1,#P2,#P3,#X4,#X5)
+
+-:1035:74-85: info: atom does not occur in any rule head:
+  _p_edge(#X0,#X1,#P2,#X3,#X4)
+
+-:1061:64-75: info: atom does not occur in any rule head:
+  _p_edge(#X0,#P1,#X2,#X3,#X4)
+
+-:1181:35-48: info: atom does not occur in any rule head:
+  _p_lits(#X0,#X1,#P2,#P3,#X4,#X5)
+
+-:1215:25-39: info: atom does not occur in any rule head:
+  _p_pre(#X0,#X1,#P2,#P3,#X4,#X5)
+
+-:1237:33-45: info: atom does not occur in any rule head:
+  _p_acyclic(#X0,#P1,#X2,#X3)
+
+-:85:1-16: info: no atoms over signature occur in program:
+  output/3
+
+-:77:25-37: info: atom does not occur in any rule head:
+  forbid_worse
+
+-:78:25-37: info: atom does not occur in any rule head:
+  forbid_equal
+
+-:79:25-35: info: atom does not occur in any rule head:
+  forbid_unc
+
+Solving...
+Answer: 1
+preference(1,(1,1),1,for(neg(atom(hasBodyType(1)))),()) preference(1,(1,2),1,for(neg(atom(hasBodyType(1)))),()) preference(1,(1,3),1,for(neg(atom(hasBodyType(1)))),()) preference(1,(1,4),1,for(neg(atom(hasBodyType(1)))),()) preference(1,(1,5),1,for(neg(atom(hasBodyType(1)))),()) preference(1,(1,6),1,for(neg(atom(hasBodyType(1)))),()) preference(1,(1,7),1,for(neg(atom(hasBodyType(1)))),()) preference(1,(1,8),1,for(neg(atom(hasBodyType(1)))),()) preference(1,(1,9),1,for(neg(atom(hasBodyType(1)))),()) preference(1,(1,10),1,for(neg(atom(hasBodyType(1)))),()) preference(1,(1,11),1,for(neg(atom(hasBodyType(1)))),()) preference(1,(1,12),1,for(neg(atom(hasBodyType(1)))),()) preference(1,(1,1),2,for(atom(hasEngineCap(1))),()) preference(1,(1,2),2,for(atom(hasBodyType(1))),()) preference(1,(1,3),2,for(atom(hasEngineCap(2))),()) preference(1,(1,4),2,for(atom(hasEngineCap(3))),()) preference(1,(1,5),2,for(atom(hasEngineCap(4))),()) preference(1,(1,6),2,for(atom(hasEngineCap(5))),()) preference(1,(1,7),2,for(atom(hasFuelCons(1))),()) preference(1,(1,8),2,for(atom(hasFuelCons(2))),()) preference(1,(1,9),2,for(atom(hasFuelCons(2))),()) preference(1,(1,10),2,for(atom(hasFuelCons(2))),()) preference(1,(1,11),2,for(atom(hasFuelCons(2))),()) preference(1,(1,12),2,for(atom(hasFuelCons(2))),()) preference(1,poset) output(8,better,9) output(7,worse,6) output(9,worse,10) output(2,unc,7) output(4,unc,3) output(5,unc,1)
+Optimization: 5 12
+Answer: 2
+preference(1,(1,12),1,for(neg(atom(hasEngineCap(2)))),()) preference(1,poset) output(8,better,9) output(2,better,7) output(9,worse,10) output(5,worse,1) output(7,eq,6) output(4,eq,3)
+Optimization: 4 1
+Answer: 3
+preference(1,(1,12),1,for(neg(atom(hasEngineCap(2)))),()) preference(1,(1,12),2,for(neg(atom(hasBodyType(2)))),()) preference(1,poset) output(7,better,6) output(8,better,9) output(2,better,7) output(9,worse,10) output(5,worse,1) output(4,eq,3)
+Optimization: 3 1
+Answer: 4
+preference(1,(1,6),1,for(neg(atom(hasEngineCap(3)))),()) preference(1,(1,11),1,for(neg(atom(hasFuelCons(2)))),()) preference(1,(1,12),1,for(neg(atom(hasEngineCap(1)))),()) preference(1,(1,11),2,for(neg(atom(hasEngineCap(1)))),()) preference(1,(1,12),2,for(neg(atom(hasBodyType(2)))),()) preference(1,(1,6),2,for(atom(hasEngineCap(4))),()) preference(1,poset) output(7,better,6) output(9,better,10) output(8,better,9) output(5,better,1) output(2,better,7) output(4,better,3)
+Optimization: 0 3
+Progression : 0 [1;3] (Error: 2)
+Progression : 0 [2;3] (Error: 0.5)
+*** Info : (asprin_vL): Sending shutdown signal...
+Traceback (most recent call last):
+  File "clingo/application.py", line 359, in _pyclingo_application_main
+  File "asprin_vL.py", line 598, in main
+  File "clingo/control.py", line 805, in solve
+  File "clingo/solving.py", line 527, in get
+  File "clingo/_internal.py", line 44, in _c_call
+  File "clingo/_internal.py", line 75, in _handle_error
+RuntimeError: solving stopped by signal
+*** ERROR: (asprin_vL): solving stopped by signal
+*** Info : (asprin_vL): Shutdown completed in 1.017 seconds
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 4+
+  Optimum    : unknown
+Optimization : 0 3
+Calls        : 1
+Time         : 600.281s (Solving: 582.71s 1st Model: 5.65s Unsat: 0.00s)
+CPU Time     : 2195.678s
+Threads      : 4        (Winner: 4)
+
+Choices      : 612511   (Domain: 800)
+Conflicts    : 24470    (Analyzed: 24468)
+Restarts     : 50       (Average: 489.36 Last: 3787)
+Model-Level  : 355.0   
+Problems     : 7        (Average Length: 0.57 Splits: 0)
+Lemmas       : 2203927  (Deleted: 2134260)
+  Binary     : 28       (Ratio:   0.00%)
+  Ternary    : 829      (Ratio:   0.04%)
+  Conflict   : 24468    (Average Length:  852.8 Ratio:   1.11%) 
+  Loop       : 2178244  (Average Length:   33.2 Ratio:  98.83%) 
+  Other      : 1215     (Average Length:   43.1 Ratio:   0.06%) 
+  Distributed: 405      (Ratio:   0.02% Average LBD: 3.05) 
+  Integrated : 1215     (Ratio: 300.00% Unit: 72 Average Jumps: 852.89)
+Backjumps    : 24468    (Average: 20.95 Max: 4670 Sum: 512688)
+  Executed   : 24444    (Average: 20.95 Max: 4670 Sum: 512640 Ratio:  99.99%)
+  Bounded    : 24       (Average:  2.00 Max:   2 Sum:     48 Ratio:   0.01%)
+
+Rules        : 1548961 
+  Choice     : 25      
+  Minimize   : 2       
+Atoms        : 10623   
+Bodies       : 1447001 
+  Count      : 24      
+Equivalences : 16297    (Atom=Atom: 4510 Body=Body: 3203 Other: 8584)
+Tight        : No       (SCCs: 6 Non-Hcfs: 0 Nodes: 63756 Gammas: 0)
+Variables    : 1414743  (Eliminated:    0 Frozen: 66129)
+Constraints  : 8423543  (Binary:  82.8% Ternary:   0.8% Other:  16.3%)
+

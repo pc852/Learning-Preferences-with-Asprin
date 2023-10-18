@@ -34,7 +34,8 @@ class Xformer():
                                 ("worse",3),    ("worse",4),    ("worse",5), \
                                 ("worseeq",3),  ("worseeq",4),  ("worseeq",5), \
                                 ("eq",3),       ("eq",4),       ("eq",5), \
-                                ("unc",3),      ("unc",4),      ("unc",5), ("holds",2), ("output",3)],'_b_')
+                                ("unc",3),      ("unc",4),      ("unc",5), ("holds",2), ("output",3), \
+                                ("forbid_worse",0), ("forbid_unc",0), ("forbid_equal",0), ("forbid_diff",0)],'_b_')
         
         self.BIC = InputChecker([("atom",1), ("model",1), ("in",2), ("input",3), ("preference",2), ("preference",5),\
                                 ("better",3), ("better",4), ("better",5), \
@@ -56,18 +57,8 @@ class Xformer():
     def process(self, stm: AST):
         if stm.ast_type == ASTType.Program:
             if stm.name == "preference":
-                if stm.parameters and str(stm.parameters[0]) != "cp":
-                    self._state = "preferences"
-                    self._builder.add(stm)
-                    self._prefNames.append(str(stm.parameters[0]))
-                #elif stm.parameters and str(stm.parameters[0]) == "cp":
-                    #self._state = ""
-                    #pass
-                else:
-                    #self._state = "preferences"
-                    #self._builder.add(stm)
-                    self._state = ""
-                    pass
+                self._state = "preference"
+                self._builder.add(stm)
             elif stm.name == "backend":
                 self._state = "backend"
                 self._builder.add(stm)
@@ -82,7 +73,7 @@ class Xformer():
                 self._builder.add(stm)
             else:
                 self._state = "others"
-                self._builder.add(stm)
+                #self._builder.add(stm)
 
         else:
             if self._state == "domain":
@@ -121,7 +112,7 @@ class Xformer():
                     self._builder.add(stm)
                     self._outBuffer.append("\n" + str(stm))
                     
-            elif self._state == "preferences":
+            elif self._state == "preference":
                 if stm.ast_type == ASTType.Rule:
                     temp = self.PPA(self.PVA(self.PPM(self.PIC(stm))))
                     self._builder.add(temp)
@@ -130,8 +121,9 @@ class Xformer():
                     self._builder.add(stm)
                     self._outBuffer.append("\n" + str(stm))
             else:
+                pass
                 #self._builder.add(stm)
-                self._outBuffer.append("\n" + str(stm))
+                #self._outBuffer.append("\n" + str(stm))
 
 class PredicateModifier(Transformer): #adds correpsonding prefix to internal predicates of each program.
     def __init__(self, pred_list: list, prefix: str):
@@ -435,7 +427,7 @@ class PrintPref(): #prints final preference statement including type and element
             self._inst_lst = [x for x in self._inst_lst if x[0] != st]
             
         if self._toWrite == True:
-            with open("asprin_vL_out.txt","w") as outFile:
+            with open("asprin_vL_out.lp","w") as outFile:
                 for stm in self.prefStms:
                     outFile.writelines(stm)
 
@@ -449,32 +441,44 @@ class AsprinLearn(Application):
         self.prefEle = []
         self.prefNames= []
         self.outBuffer = []
+        self.smodel = []
+        self.learned_instances = []
+        self.timeout = 600
+        self.start_time = 0
         self.forbid_unc   = Flag(False)
         self.forbid_equal = Flag(False)
         self.forbid_worse = Flag(False)
-        self.unique_output = Flag(False)
+        self.forbid_diff = Flag(False)
         self.enable_ele_opt = Flag(False)
         self.print_clingo_input = Flag(False)
-        self.print_asprin_vL_output = Flag(False)
+        self.print_output_statement = Flag(False)
+        self.print_output_instances = Flag(False)
         
-
+    def parse_timeout(self, value):
+        self.timeout = float(value)
+        return True
+    
     def register_options(self, options:ApplicationOptions):
         group = 'asprin-vL Options'
-        options.add_flag(group, 'print_input', 'Print input to clingo',
+        options.add_flag(group, 'print_input', 'Print input that is given to clingo',
                          self.print_clingo_input)
-        options.add_flag(group, 'print_output', 'Print output from asprin_vL',
-                         self.print_asprin_vL_output)
-        options.add_flag(group, 'forbid_equal', 'Forbid preference relation of eq, i.e. :- output(M,eq,N).',
+        options.add_flag(group, 'print_output_statement', 'Print output preference statement from asprin_vL',
+                         self.print_output_statement)
+        options.add_flag(group, 'print_output_instances', 'Print output preference instances from asprin_vL',
+                         self.print_output_instances)
+        options.add_flag(group, 'forbid_equal', 'Forbid output preference relation of eq.',
                          self.forbid_equal)
-        options.add_flag(group, 'forbid_worse', 'Forbid preference relation of worse, i.e. :- output(M,worse,N).',
+        options.add_flag(group, 'forbid_worse', 'Forbid output preference relation of worse.',
                          self.forbid_worse)
-        options.add_flag(group, 'forbid_uncomparable', 'Forbid preference relation of uncomparable, i.e. :- output(M,unc,N).',
+        options.add_flag(group, 'forbid_uncomparable', 'Forbid output preference relation of uncomparable.',
                          self.forbid_unc)
-        options.add_flag(group, 'unique_output', 'Forbid multiple output labels for any input example pairs.',
-                         self.unique_output)
+        options.add_flag(group, 'forbid_diff', 'Forbid multiple output labels for any input example pairs.',
+                         self.forbid_diff)
         options.add_flag(group, 'min_element',
-                         'Minimize the number of preference elements, i.e. #minimize{1@0,K: preference(_,(_,K),_,_,_)}.',
+                         'Minimize the number of preference elements after maximizing output accuracy.',
                          self.enable_ele_opt)
+        options.add     (group, 'timeout', 'Set a limit on solving time in seconds.',
+                         self.parse_timeout)
     
     def get(self, atuple, index):
         try:
@@ -506,6 +510,39 @@ class AsprinLearn(Application):
         return self.forAtoms
 
     def main(self, ctl, files):
+        
+        def save_model(m=None):
+            if m == None:
+                return False
+            else:
+                self.prefType = []
+                self.prefEle = []
+                self.learned_instances = []
+                for lit in m.symbols(shown=True):
+                    if lit.name == "preference":
+                        if len(lit.arguments) == 2:
+                            #prefType elements e.g. ['p','subset'] from preference(p,subset).
+                            self.prefType.append([str(lit.arguments[0]),str(lit.arguments[1])])
+                            self.learned_instances.append(lit)
+                        elif len(lit.arguments) == 5:
+                            #prefEle elements e.g. ['p2','(1,2,())','1','for(atom(a(1)))','()'] from
+                            #preference(p2,(2,3,()),1,for(atom(a(3))),()).
+                            self.prefEle.append([str(lit.arguments[0]),str(lit.arguments[1]),\
+                            str(lit.arguments[2]),str(lit.arguments[3]),str(lit.arguments[4])])
+                            self.learned_instances.append(lit)
+            
+            PrintPref(self.prefType, self.prefEle, self.print_output_statement.flag).main()
+            
+            if self.print_output_instances.flag == True:
+                with open("learned_preference_instances.lp", "w+") as f:
+                    f.write("#program generation.\n")
+                    for i in self.learned_instances:
+                        f.write(str(i) + ".\n")
+            
+            if (time.time() - self.start_time) > self.timeout:
+                print("Time limit reached")
+                return False
+                        
         part1 = []
         part2 = []
 
@@ -515,9 +552,25 @@ class AsprinLearn(Application):
         with ProgramBuilder(ctl) as bld:
             trans = Xformer(bld, self.prefNames, self.outBuffer)
             parse_files(files, trans.process)
+            
+        if self.forbid_equal.flag   == True:
+            ctl.add("backend", [], "forbid_equal.")
+            self.outBuffer.append("\n" + "#program backend. forbid_equal.")
+        if self.forbid_worse.flag   == True:
+            ctl.add("backend", [], "forbid_worse.")
+            self.outBuffer.append("\n" + "#program backend. forbid_worse.")
+        if self.forbid_unc.flag     == True:
+            ctl.add("backend", [], "forbid_backend.")
+            self.outBuffer.append("\n" + "#program backend. forbid_unc.")
+        if self.forbid_diff.flag    == True:
+            ctl.add("backend", [], "forbid_diff.")
+            self.outBuffer.append("\n" + "#program backend. forbid_diff.")
+        if self.enable_ele_opt.flag == True:
+            ctl.add("backend", [], "min_element.")
+            self.outBuffer.append("\n" + "#program backend. min_element.")
         
         if self.print_clingo_input.flag== True:
-            with open("clingo_in.txt","w") as outFile:
+            with open("clingo_in.lp","w") as outFile:
                 for i in range(len(self.outBuffer)):
                     if self.outBuffer[i] == "\n#show /0.":
                         self.outBuffer[i] = "\n#show."
@@ -525,50 +578,24 @@ class AsprinLearn(Application):
                         self.outBuffer[i] = "\n"
                 self.outBuffer.append("\nfor(X) :- preference(_,_,_,for(X),_).")
                 outFile.writelines(self.outBuffer)
+                for line in self.outBuffer:
+                    print(line)
+                return
                 
-        with ProgramBuilder(ctl) as bld:
-            if self.forbid_equal.flag   == True:
-                parse_string("#program backend. :- output(M,eq,N).", bld.add)
-            if self.forbid_worse.flag   == True:
-                parse_string("#program backend. :- output(M,worse,N).", bld.add)
-            if self.forbid_unc.flag     == True:
-                parse_string("#program backend. :- output(M,unc,N).", bld.add)
-            if self.unique_output.flag  == True:
-                parse_string("#program backend. :- output(M,R1,N), output(M,R2,N), R1!=R2.", bld.add)
-            if self.enable_ele_opt.flag == True:
-                parse_string("#program backend. #minimize{1@0,K: preference(_,(_,K),_,_,_)}.", bld.add)
-            
-            
+                        
         part1.append(('examples', []))
         part1.append(('generation', []))
         part1.append(('domain', []))
-
+        
         ctl.ground(part1, context=self)
         self.forAtoms = [y.symbol.arguments[3].arguments[0] for y in ctl.symbolic_atoms.by_signature("preference", 5)]
-
-
+        
         part2.append(('backend', []))
-        for name in self.prefNames:
-            part2.append(('preference',[clingo.symbol.Function(name)]))
+        part2.append(('preference',[]))
         ctl.ground(part2, context=self)
-
-        with ctl.solve(yield_=True) as hnd: #solve and save preference instances for printing
-            for m in hnd:
-                self.prefType = []
-                self.prefEle = []
-                for lit in m.symbols(shown=True):
-                    if lit.name == "preference":
-                        if len(lit.arguments) == 2:
-                            #prefType elements e.g. ['p','subset'] from preference(p,subset).
-                            self.prefType.append([str(lit.arguments[0]),str(lit.arguments[1])])
-                        elif len(lit.arguments) == 5:
-                            #prefEle elements e.g. ['p2','(1,2,())','1','for(atom(a(1)))','()'] from
-                            #preference(p2,(2,3,()),1,for(atom(a(3))),()).
-                            self.prefEle.append([str(lit.arguments[0]),str(lit.arguments[1]),\
-                            str(lit.arguments[2]),str(lit.arguments[3]),str(lit.arguments[4])])
-            print(hnd.get())
         
-        PrintPref(self.prefType, self.prefEle, self.print_asprin_vL_output.flag).main()
-        
+        self.start_time = time.time()
+        ctl.solve(on_model=save_model) #solve and save preference instances for printing
+            
 #newOptions = ClingoOptions()
 clingo.clingo_main(AsprinLearn(), sys.argv[1:])
