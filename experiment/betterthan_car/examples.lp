@@ -1,5 +1,5 @@
 #program examples.
-#const user = 11.
+#const user = 51.
 
 activate_user(user).
 %perfert users are: 4,7,11,15,17,19,38,39,42,43,51,52,55

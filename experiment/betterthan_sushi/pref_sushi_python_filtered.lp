@@ -1,4 +1,5 @@
 % pref(<sushi ID>, better, <sushi ID>, <user ID>).
+% users whose scoring and ranking of the items are consistent (no worse-ranked item with higher score than a better-ranked item) 
 pref(22,better,31,1).
 pref(22,better,60,1).
 pref(22,better,21,1).

@@ -21,7 +21,7 @@ output(M,unc,N)   :-    unc(P,M,N).
 :- output(M, worse, N), forbid_worse.
 :- output(M, eq,    N), forbid_equal.
 :- output(M, unc  , N), forbid_unc.
-:- output(M, R1    ,N), forbid_diff, output(M,R2,N), R1!=R2.
+:- output(M, R1    ,N), forbid_diff, input(M,R2,N), R1!=R2.
 #minimize{1@0,K: preference(_,(_,K),_,_,_), min_element}.
 
 #show preference/2.

@@ -1,8 +1,7 @@
 #program examples.
+#const user = 1.
 
-#const user_num = 1.
-
-activate_user(1..user_num).
+activate_user(user).
 
 in(hasStyle(X),M)     :- sushi(M,X,_,_,_,_,_,_).
 in(hasMajorGrp(X),M)  :- sushi(M,_,X,_,_,_,_,_).

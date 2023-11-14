@@ -1,5 +1,8 @@
 #program examples.
-#const val = 1.
+#const user = 51.
+
+activate_user(user).
+%perfert users are: 4,7,11,15,17,19,38,39,42,43,51,52,55
 
 car(1,2,1,1,2).
 car(2,1,2,4,1).
@@ -17,4 +20,5 @@ in(hasTransmission(X),M) :- car(M,_,X,_,_).
 in(hasEngineCap(X),M)    :- car(M,_,_,X,_).
 in(hasFuelCons(X),M)     :- car(M,_,_,_,X).
 
-input(B,better,C) :- pref(B,C,V), V != val.
+input(B,better,C) :- pref(A,B,C,0), activate_user(A), B != 5, B != 6, C != 5, C != 6.
+
