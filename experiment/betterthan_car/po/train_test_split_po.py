@@ -13,23 +13,26 @@ class App(Application):
     
     def __init__(self):
         self.users = [4,7,11,15,17,19,38,39,42,43,51,52,55] #perfert users are: 4,7,11,15,17,19,38,39,42,43,51,52,55
+        self.valset = [1,2,3,4,5,6,7,8,9,10]
         self.forBenchmark = True #whether to generate for benchmarking, i.e. all program parts and training set in one .lp file
-        self.dataset_name = '../dataset_wo56_v7'
+        self.dataset_name = '../dataset_10fold'
         self.gen_files = [("../generation/generation_lw.lp","less_weight"),\
                           ("../generation/generation_aso.lp","aso"),\
-                          ("../generation/generation_poset.lp","poset")]
-                          #("../generation/generation_combined.lp","combined")]
+			  			  ("../generation/generation_poset.lp","poset")]
+               #("../generation/generation_bt.lp","bt")]           
         
         #input files prefs_base.lp prefs_po.lp
         self.dom_file = "../domain.lp"
         self.exT_file = "examples_train.lp"
         self.bkd_file = "../../../backend.lp"
+        #self.lib_file = "../lib.lp"
         self.lib_file = "../../../asprin_vL_lib.lp"
         self.stratum_lst = []
         self.indices = []
         self.pref = []
         self.in_files = []
         self.curr_user = 0
+        self.curr_valset = 0
         self.curr_gen  = ""
         self.gen_code = []
         self.dom_code = []
@@ -46,7 +49,7 @@ class App(Application):
             
             if self.forBenchmark == True:
                 for idx, i in enumerate(self.gen_files): 
-                    dir = self.dataset_name + '/training_po/user' + str(self.curr_user) + '/' + i[1]
+                    dir = self.dataset_name + '/val' + str(self.curr_valset) + '/training_po/user' + str(self.curr_user) + '/' + i[1]
                     if os.path.exists(dir):
                         shutil.rmtree(dir)
                     os.makedirs(dir)
@@ -65,7 +68,7 @@ class App(Application):
                         f.writelines(self.bkd_code)
                         f.writelines(self.lib_code)
                                     
-                    dir = self.dataset_name + '/validation_po/user' + str(self.curr_user) + '/' + i[1]
+                    dir = self.dataset_name + '/val' + str(self.curr_valset) + '/validation_po/user' + str(self.curr_user) + '/' + i[1]
                     if os.path.exists(dir):
                         shutil.rmtree(dir)
                     os.makedirs(dir)
@@ -82,7 +85,7 @@ class App(Application):
                         f.writelines(self.exT_code)
                         f.writelines(self.bkd_code)
                         f.writelines(self.lib_code)
-                    
+                    """
                     #below is optional block for secondary validation set generation    
                     dir = self.dataset_name + '/validation_po2/user' + str(self.curr_user) + '/' + i[1]
                     if os.path.exists(dir):
@@ -101,7 +104,7 @@ class App(Application):
                         f.writelines(self.exT_code)
                         f.writelines(self.bkd_code)
                         f.writelines(self.lib_code)
-                            
+                   """         
                 return False
             
             elif self.forBenchmark == False:
@@ -138,20 +141,23 @@ class App(Application):
             self.lib_code = f.readlines()
         
         for i in self.users:
-            self.curr_user= i
-            ctl = Control()
-            
-            for path in self.in_files:
-                ctl.load(path)
-            if not self.in_files:
-                ctl.load("-")
-            prg = "user(" + str(i) + ")."
-            ctl.add("base",[],prg)
-            ctl.add("base",[],"#show.")   
-            ctl.add("base",[],"#show pref/3.")
-            ctl.ground([("base", [])], context=self)
-            
-            ctl.solve(on_model=save_model)
+        	for j in self.valset:
+        		self.curr_user = i
+        		self.curr_valset = j
+        		ctl = Control()
+        		
+        		for path in self.in_files:
+        			ctl.load(path)
+        		if not self.in_files:
+        			ctl.load("-")
+        		prg1 = "user(" + str(i) + ")."
+        		prg2 = "val(" + str(j) + ")."
+        		ctl.add("base",[],prg1)
+        		ctl.add("base",[],prg2)
+        		ctl.add("base",[],"#show.")  
+        		ctl.add("base",[],"#show pref/3.")
+        		ctl.ground([("base", [])], context=self)
+        		ctl.solve(on_model=save_model)
 
 if __name__ == "__main__":
     clingo_main(App(), sys.argv[1:])
