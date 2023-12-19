@@ -36,10 +36,15 @@ transitiveErrorTrio(A,B,C,D) :- transitiveTrio(A,B,C,D), pref_true(A,D,B).
 transitiveErrorTrio(A,C,B,D) :- transitiveErrorTrio(A,B,C,D).
 transitiveErrorUnique(A,B,C,D) :- transitiveErrorTrio(A,B,C,D), B<C, C<D.
 
+only_control(A,B,C)	:- only_ct(A,B,C).
+bad_users(A) 		:- activate_user(A), mismatch(A,_,_).
 good_users(A) 		:- not transitiveErrorUnique(A,_,_,_), activate_user(A).
-perfect_users(A)	:- good_users(A),  {pref(A,B,C,1):pref(A,C,B,0)} = 0, {pref(A,B,C,0):activate_user(A),model(B),model(C)} = 45.
+consistent_users(A) :- good_users(A), {pref(A,B,C,1):pref(A,C,B,0)} = 0.
+perfect_users(A)	:- consistent_users(A), {pref(A,B,C,0):activate_user(A),model(B),model(C)} = 45.
 
 
-%#show transitiveErrorUnique/4.
-#show good_users/1.
+%#show bad_users/1.
+%#show only_control/3.
+%#show good_users/1.
+%#show consistent_users/1.
 #show perfect_users/1.
