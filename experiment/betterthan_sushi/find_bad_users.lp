@@ -1,15 +1,17 @@
-activate_user(0..4999).
+activate_user(0..10).
 
-transitiveTrio(A,B,C,D) :- pref(B,better,C,A), pref_true(C,better,D,A).
-transitiveErrorTrio(A,B,C,D) :- transitiveTrio(A,B,C,D), pref(D,better,B,A).
-transitiveErrorTrio(A,C,B,D) :- transitiveErrorTrio(A,B,C,D).
-transitiveErrorUnique(A,B,C,D) :- transitiveErrorTrio(A,B,C,D), B<C, C<D.
+transitiveTrio(A,B,C,D) :- pref(B,better,C,A), pref(C,better,D,A), activate_user(A).
+transitiveErrorTrio(A,B,C,D) :- transitiveTrio(A,B,C,D), pref(D,better,B,A), activate_user(A).
+transitiveErrorTrio(A,C,B,D) :- transitiveErrorTrio(A,B,C,D), activate_user(A).
+transitiveErrorUnique(A,B,C,D) :- transitiveErrorTrio(A,B,C,D), B<C, C<D, activate_user(A).
 
-bad_users(A) 		:- transitiveErrorUnique(A,_,_,_), activate_user(A).
-%perfect_users(A)	:- {pref(B,better,C,A):activate_user(A),model(B),model(C)} = 45, good_users(A).
+bad_users(A,transitiveError) 		:- transitiveErrorUnique(A,_,_,_), activate_user(A).
 
-#show bad_users/1.
-%#show perfect_users/1.
+#show transitiveTrio/4.
+#show transitiveErrorTrio/4.
+#show bad_users/2.
+
+
 
 model(0..99).
 % sushi(<ID>, <style>, <major grp>, <minor grp>, <oiliness 0-100>, <often eaten? 0-100>, <price >=100>, <often sold? 0-100>).

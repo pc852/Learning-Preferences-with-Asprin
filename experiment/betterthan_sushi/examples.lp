@@ -15,7 +15,7 @@ input(B,better,C) :- pref(B,better,C,A), activate_user(A).
 #show.
 
 
-% sushi(<ID>, <style>, <major grp>, <minor grp>, <oiliness 0-100>, <often eaten? 0-100>, <price >=100>, <often sold? 0-100>).
+% sushi(<ID>, <style 0-1>, <major grp 0-1>, <minor grp 0-11>, <oiliness 0-100 (originally 0-4)>, <often eaten? 0-100 (originally 0-3)>, <price >=100>, <often sold? 0-100 (originally 0-1)>).
 sushi(0,1,0,6,68,71,183,84).
 sushi(1,1,0,3,23,66,199,88).
 sushi(2,1,0,1,44,78,187,88).

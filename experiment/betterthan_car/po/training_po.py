@@ -10,7 +10,7 @@ import shutil
 import os
 
 
-users = [4,7,11,15,17,19,38,39,42,43,51,52,55] #perfert users are: 4,7,11,15,17,19,38,39,42,43,51,52,55
+users = [11,15,17,19,21,23,26,3,32,38,39,4,42,43,44,45,51,52,53,55,7] #perfert users are: 4,7,11,15,17,19,38,39,42,43,51,52,55 #altered are 3,21,23,26,32,44,45,53
 output_1 = '../dataset_10fold_poset_min/training_po_min_v9/user'
 #gen_types = ["bt"]
 gen_types = ["poset"]#"aso","less_weight"]
