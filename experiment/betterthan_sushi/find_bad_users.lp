@@ -1,4 +1,4 @@
-activate_user(0..10).
+activate_user(0..4999).
 
 transitiveTrio(A,B,C,D) :- pref(B,better,C,A), pref(C,better,D,A), activate_user(A).
 transitiveErrorTrio(A,B,C,D) :- transitiveTrio(A,B,C,D), pref(D,better,B,A), activate_user(A).
@@ -7,9 +7,9 @@ transitiveErrorUnique(A,B,C,D) :- transitiveErrorTrio(A,B,C,D), B<C, C<D, activa
 
 bad_users(A,transitiveError) 		:- transitiveErrorUnique(A,_,_,_), activate_user(A).
 
-#show transitiveTrio/4.
+%#show transitiveTrio/4.
 #show transitiveErrorTrio/4.
-#show bad_users/2.
+%#show bad_users/2.
 
 
 

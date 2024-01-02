@@ -41,10 +41,9 @@ el(E) :- E=1..maxEle.
 :- preference(_,(_,E),2,X,_), preference(_,(_,E),4,X,_).
 
 
-possfor(atom(X)) 					:- atom(X).
-%possfor(neg(atom(X)))				:- atom(X).
-possfor(and(atom(X),atom(Y))) 		:- atom(X), atom(Y), X != Y.
-%possfor(and(atom(X),neg(atom(Y)))) 	:- atom(X), atom(Y), X != Y.
+%possfor(atom(X)) 					:- atom(X).
+possfor(neg(atom(X)))				:- atom(X).
+%possfor(and(atom(X),atom(Y))) 		:- atom(X), atom(Y), X != Y.
 
 
 

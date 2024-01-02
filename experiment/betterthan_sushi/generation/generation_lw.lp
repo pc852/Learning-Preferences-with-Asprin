@@ -3,7 +3,7 @@
 #const maxEle = 12.
 
 type(less(weight)).
-weight(1..10).
+weight(1..8).
 
 st(P) :- P=1..statements.
 el(E) :- E=1..maxEle.
@@ -12,5 +12,5 @@ el(E) :- E=1..maxEle.
 { preference(P,(P,E),1,for(X),(W)) : possfor(X),weight(W) } 1 :- el(E), st(P).
 :- preference(_,(_,E1),1,for(X),(_)) , preference(_,(_,E2),1,for(X),(_)), E1 != E2.
 
-possfor(atom(X))				:- atom(X).
-%possfor(neg(atom(X))) 			:- atom(X).
+%possfor(atom(X))				:- atom(X).
+possfor(neg(atom(X))) 			:- atom(X).

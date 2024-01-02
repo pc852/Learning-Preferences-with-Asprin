@@ -1,7 +1,4 @@
 #program examples.
-#const user = 1.
-
-activate_user(user).
 
 in(hasStyle(X),M)     :- sushi(M,X,_,_,_,_,_,_).
 in(hasMajorGrp(X),M)  :- sushi(M,_,X,_,_,_,_,_).
@@ -20,11 +17,9 @@ in(hasPrice(3),M)     :- sushi(M,_,_,_,_,_,X,_), X>=250.
 in(hasOftenSold(0),M) :- sushi(M,_,_,_,_,_,_,X), X>0, X<=25.
 in(hasOftenSold(1),M) :- sushi(M,_,_,_,_,_,_,X), X>25, X<=50.
 in(hasOftenSold(2),M) :- sushi(M,_,_,_,_,_,_,X), X>50, X<=75.
-in(hasOftenSold(3),M) :- sushi(M,_,_,_,_,_,_,X), X>50, X<=100.
+in(hasOftenSold(3),M) :- sushi(M,_,_,_,_,_,_,X), X>75, X<=100.
 
-input(B,better,C) :- pref(B,better,C,A), activate_user(A).
-#show.
-
+input(B,better,C) :- pref(B,C,_).
 
 % sushi(<ID>, <style 0-1>, <major grp 0-1>, <minor grp 0-11>, <oiliness 0-100 (originally 0-4)>, <often eaten? 0-100 (originally 0-3)>, <price >=100>, <often sold? 0-100 (originally 0-1)>).
 sushi(0,1,0,6,68,71,183,84).
