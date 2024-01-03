@@ -11,6 +11,7 @@ el(E) :- E=1..maxEle.
  { preference(P,(P,E),1,for(X), ()) : possfor(X) } 1:- el(E), st(P).
  { preference(P,(P,E),2,for(X), ()) : possfor(X) } 1:- el(E), st(P).
  { preference(P,(P,E),3,for(X), ()) : possfor(X) } 1:- el(E), st(P).
+ { preference(P,(P,E),4,for(X), ()) : possfor(X) } 1:- el(E), st(P).
  { preference(P,(P,E),0,for(X), ()) : possfor(X) } 1:- el(E), st(P).
  
 :- not preference(_,(_,E),1,_,_), preference(_,(_,E),0,_,_).
@@ -19,6 +20,10 @@ el(E) :- E=1..maxEle.
 
 :- not preference(_,(_,E),1,_,_), preference(_,(_,E),3,_,_).
 :- not preference(_,(_,E),2,_,_), preference(_,(_,E),3,_,_).
+
+:- not preference(_,(_,E),1,_,_), preference(_,(_,E),4,_,_).
+:- not preference(_,(_,E),2,_,_), preference(_,(_,E),4,_,_).
+:- not preference(_,(_,E),3,_,_), preference(_,(_,E),4,_,_).
 
 
 :- preference(_,(_,E),0,X,_), preference(_,(_,E),1,X,_).
@@ -29,6 +34,11 @@ el(E) :- E=1..maxEle.
 :- preference(_,(_,E),1,X,_), preference(_,(_,E),3,X,_).
 :- preference(_,(_,E),0,X,_), preference(_,(_,E),3,X,_).
 :- preference(_,(_,E),3,X,_), preference(_,(_,E),2,X,_).
+
+:- preference(_,(_,E),1,X,_), preference(_,(_,E),4,X,_).
+:- preference(_,(_,E),0,X,_), preference(_,(_,E),4,X,_).
+:- preference(_,(_,E),2,X,_), preference(_,(_,E),4,X,_).
+:- preference(_,(_,E),3,X,_), preference(_,(_,E),4,X,_).
 
 
 

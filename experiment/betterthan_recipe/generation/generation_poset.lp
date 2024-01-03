@@ -20,6 +20,6 @@ ele(E,X,Y) :- preference(_,(_,E),1,for(X),_) , preference(_,(_,E),2,for(Y),_).
 :- ele(E1,X,Y), ele(E2,X,Y), E1 != E2.
 
 possfor(atom(X)) 			:- atom(X).
-%possfor(neg(atom(X)))		:- atom(X).
+possfor(neg(atom(X)))		:- atom(X).
 
 
