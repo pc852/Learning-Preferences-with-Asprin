@@ -1,6 +1,6 @@
 %#const user=5.
 %users from 0 - 4999.
-user(0..10).
+user(0..200).
 
 model(B,A) :- pref(B,better,_,A), user(A).
 model(C,A) :- pref(_,better,C,A), user(A).

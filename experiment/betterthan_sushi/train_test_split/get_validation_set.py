@@ -13,7 +13,7 @@ class App(Application):
     
     def __init__(self):
         self.users = [] #to be obtained by method save_users
-        self.dataset_name = '../dataset_asprin_v3'
+        self.dataset_name = '../dataset_trial'
         self.gen_files = [("../generation/generation_aso.lp","aso"),\
                           ("../generation/generation_lw.lp","less_weight"),\
                           ("../generation/generation_poset.lp","poset")]
