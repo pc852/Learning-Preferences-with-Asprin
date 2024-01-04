@@ -1,0 +1,86 @@
+asprin_vL version 1.0
+Reading from stdin
+-:1279:3-30: info: atom does not occur in any rule head:
+  preference(#X0,#P1,#P2,name(#X3),#P4)
+
+-:1289:3-24: info: atom does not occur in any rule head:
+  preference(#X0,#P1,0,#P2,#P3)
+
+-:1304:3-31: info: atom does not occur in any rule head:
+  preference(#X0,#P1,#P2,name(#X3),#X4)
+
+-:1385:36-48: info: atom does not occur in any rule head:
+  _p_rule(#X0,#X1,#P2,#X3,#X4)
+
+-:1659:34-45: info: atom does not occur in any rule head:
+  better(#X0,#P1,#X2,#X3)
+
+-:1836:35-45: info: atom does not occur in any rule head:
+  _p_group(#X0,#P1,#X2,#X3)
+
+-:1965:38-65: info: atom does not occur in any rule head:
+  preference(#X0,#X1,0,for(#X2),#P3)
+
+-:2037:50-58: info: atom does not occur in any rule head:
+  _p_rel(#X0,#P1,#X2,#X3)
+
+-:2041:46-59: info: atom does not occur in any rule head:
+  _p_pre(#X0,#X1,#X2,#P3,#X4,#X5)
+
+-:2041:61-75: info: atom does not occur in any rule head:
+  _p_post(#X0,#X1,#X2,#P3,#X4,#X5)
+
+-:2047:23-37: info: atom does not occur in any rule head:
+  _p_post(#X0,#X1,#P2,#P3,#X4,#X5)
+
+-:2146:74-85: info: atom does not occur in any rule head:
+  _p_edge(#X0,#X1,#P2,#X3,#X4)
+
+-:2172:64-75: info: atom does not occur in any rule head:
+  _p_edge(#X0,#P1,#X2,#X3,#X4)
+
+-:2292:35-48: info: atom does not occur in any rule head:
+  _p_lits(#X0,#X1,#P2,#P3,#X4,#X5)
+
+-:2326:25-39: info: atom does not occur in any rule head:
+  _p_pre(#X0,#X1,#P2,#P3,#X4,#X5)
+
+-:2348:33-45: info: atom does not occur in any rule head:
+  _p_acyclic(#X0,#P1,#X2,#X3)
+
+-:1196:1-16: info: no atoms over signature occur in program:
+  output/3
+
+-:1188:25-37: info: atom does not occur in any rule head:
+  forbid_worse
+
+-:1189:25-37: info: atom does not occur in any rule head:
+  forbid_equal
+
+-:1190:25-35: info: atom does not occur in any rule head:
+  forbid_unc
+
+Solving...
+Answer: 1
+output(67,eq,17) preference(1,poset) output(86,eq,52) output(52,eq,25) output(25,eq,78) output(62,eq,8) output(8,eq,75) output(75,eq,94) output(55,eq,17) output(76,eq,67) output(67,eq,51) output(51,eq,52) output(52,eq,57) output(57,eq,8) output(8,eq,91) output(91,eq,55) output(8,eq,55) output(62,eq,91) output(57,eq,91) output(52,eq,8) output(86,eq,57) output(51,eq,57) output(67,eq,52) output(76,eq,51) output(91,eq,17) output(8,eq,94) output(62,eq,75) output(57,eq,75) output(52,eq,78) output(86,eq,25) output(51,eq,25) output(67,eq,25) output(76,eq,25) output(86,eq,78) output(51,eq,78) output(67,eq,78) output(52,eq,75) output(86,eq,75) output(51,eq,75) output(62,eq,94) output(57,eq,94) output(52,eq,94) output(8,eq,17) output(62,eq,17) output(57,eq,17) output(76,eq,52) output(67,eq,57) output(76,eq,57) output(86,eq,8) output(51,eq,8) output(67,eq,8) output(52,eq,91) output(86,eq,91) output(51,eq,91) output(62,eq,55) output(57,eq,55) output(52,eq,55) output(86,eq,55) output(51,eq,55) output(67,eq,55) output(76,eq,55) output(67,eq,91) output(76,eq,91) output(76,eq,8) output(52,eq,17) output(86,eq,17) output(51,eq,17) output(76,eq,17) output(86,eq,94) output(51,eq,94) output(67,eq,94) output(76,eq,94) output(67,eq,75) output(76,eq,75) output(76,eq,78)
+Optimization: 74 0
+Answer: 2
+output(67,eq,17) preference(1,(1,9),1,for(neg(atom(hasPrep(7)))),()) preference(1,(1,9),2,for(neg(atom(hasCost(1)))),()) preference(1,poset) output(75,better,94) output(91,better,55) output(91,better,17) output(51,better,55) output(57,better,55) output(52,better,55) output(67,better,55) output(8,better,55) output(62,better,55) output(86,better,55) output(76,better,55) output(25,worse,78) output(8,worse,75) output(8,worse,91) output(62,worse,91) output(57,worse,91) output(62,worse,75) output(57,worse,75) output(52,worse,78) output(86,worse,78) output(51,worse,78) output(67,worse,78) output(52,worse,75) output(86,worse,75) output(51,worse,75) output(52,worse,91) output(86,worse,91) output(51,worse,91) output(67,worse,91) output(76,worse,91) output(67,worse,75) output(76,worse,75) output(76,worse,78) output(55,worse,17) output(86,eq,52) output(52,eq,25) output(62,eq,8) output(76,eq,67) output(67,eq,51) output(51,eq,52) output(52,eq,57) output(57,eq,8) output(52,eq,8) output(86,eq,57) output(51,eq,57) output(67,eq,52) output(76,eq,51) output(8,eq,94) output(86,eq,25) output(51,eq,25) output(67,eq,25) output(76,eq,25) output(62,eq,94) output(57,eq,94) output(52,eq,94) output(8,eq,17) output(62,eq,17) output(57,eq,17) output(76,eq,52) output(67,eq,57) output(76,eq,57) output(86,eq,8) output(51,eq,8) output(67,eq,8) output(76,eq,8) output(52,eq,17) output(86,eq,17) output(51,eq,17) output(76,eq,17) output(86,eq,94) output(51,eq,94) output(67,eq,94) output(76,eq,94)
+Optimization: 63 1
+Answer: 3
+output(67,eq,17) preference(1,(1,9),1,for(neg(atom(hasPrep(7)))),()) preference(1,(1,9),2,for(neg(atom(hasCost(2)))),()) preference(1,poset) output(25,better,78) output(8,better,75) output(8,better,91) output(62,better,91) output(57,better,91) output(62,better,75) output(57,better,75) output(52,better,78) output(86,better,78) output(51,better,78) output(67,better,78) output(52,better,75) output(86,better,75) output(51,better,75) output(52,better,91) output(86,better,91) output(51,better,91) output(67,better,91) output(76,better,91) output(67,better,75) output(76,better,75) output(76,better,78) output(91,better,55) output(51,better,55) output(57,better,55) output(52,better,55) output(67,better,55) output(8,better,55) output(62,better,55) output(86,better,55) output(76,better,55) output(75,worse,94) output(91,worse,17) output(55,worse,17) output(86,eq,52) output(52,eq,25) output(62,eq,8) output(76,eq,67) output(67,eq,51) output(51,eq,52) output(52,eq,57) output(57,eq,8) output(52,eq,8) output(86,eq,57) output(51,eq,57) output(67,eq,52) output(76,eq,51) output(8,eq,94) output(86,eq,25) output(51,eq,25) output(67,eq,25) output(76,eq,25) output(62,eq,94) output(57,eq,94) output(52,eq,94) output(8,eq,17) output(62,eq,17) output(57,eq,17) output(76,eq,52) output(67,eq,57) output(76,eq,57) output(86,eq,8) output(51,eq,8) output(67,eq,8) output(76,eq,8) output(52,eq,17) output(86,eq,17) output(51,eq,17) output(76,eq,17) output(86,eq,94) output(51,eq,94) output(67,eq,94) output(76,eq,94)
+Optimization: 43 1
+Answer: 4
+output(67,eq,17) preference(1,(1,9),1,for(neg(atom(hasPrep(6)))),()) preference(1,(1,9),2,for(neg(atom(hasCost(1)))),()) preference(1,poset) output(25,better,78) output(8,better,75) output(8,better,91) output(62,better,91) output(62,better,75) output(86,better,78) output(51,better,78) output(67,better,78) output(86,better,75) output(51,better,75) output(86,better,91) output(51,better,91) output(67,better,91) output(76,better,91) output(67,better,75) output(76,better,75) output(76,better,78) output(75,better,94) output(51,better,52) output(51,better,57) output(51,better,94) output(67,better,94) output(86,better,52) output(86,better,57) output(76,better,52) output(76,better,57) output(67,better,52) output(8,better,94) output(62,better,94) output(67,better,57) output(86,better,94) output(76,better,94) output(91,worse,55) output(91,worse,17) output(57,worse,91) output(57,worse,75) output(52,worse,78) output(52,worse,75) output(52,worse,91) output(52,worse,25) output(57,worse,8) output(52,worse,8) output(57,worse,55) output(52,worse,55) output(57,worse,17) output(52,worse,17) output(62,eq,8) output(55,eq,17) output(76,eq,67) output(67,eq,51) output(52,eq,57) output(8,eq,55) output(76,eq,51) output(86,eq,25) output(51,eq,25) output(67,eq,25) output(76,eq,25) output(57,eq,94) output(52,eq,94) output(8,eq,17) output(62,eq,17) output(86,eq,8) output(51,eq,8) output(67,eq,8) output(62,eq,55) output(86,eq,55) output(51,eq,55) output(67,eq,55) output(76,eq,55) output(76,eq,8) output(86,eq,17) output(51,eq,17) output(76,eq,17)
+Optimization: 42 1
+Answer: 5
+output(67,eq,17) preference(1,(1,9),1,for(neg(atom(hasPrep(6)))),()) preference(1,(1,9),2,for(neg(atom(hasCost(2)))),()) preference(1,poset) output(25,better,78) output(8,better,75) output(8,better,91) output(62,better,91) output(57,better,91) output(62,better,75) output(57,better,75) output(52,better,78) output(86,better,78) output(51,better,78) output(67,better,78) output(52,better,75) output(86,better,75) output(51,better,75) output(52,better,91) output(86,better,91) output(51,better,91) output(67,better,91) output(76,better,91) output(67,better,75) output(76,better,75) output(76,better,78) output(51,better,52) output(51,better,57) output(51,better,94) output(67,better,94) output(86,better,52) output(86,better,57) output(76,better,52) output(76,better,57) output(67,better,52) output(8,better,94) output(62,better,94) output(67,better,57) output(86,better,94) output(76,better,94) output(75,worse,94) output(91,worse,55) output(91,worse,17) output(52,worse,25) output(57,worse,8) output(52,worse,8) output(57,worse,55) output(52,worse,55) output(57,worse,17) output(52,worse,17) output(62,eq,8) output(55,eq,17) output(76,eq,67) output(67,eq,51) output(52,eq,57) output(8,eq,55) output(76,eq,51) output(86,eq,25) output(51,eq,25) output(67,eq,25) output(76,eq,25) output(57,eq,94) output(52,eq,94) output(8,eq,17) output(62,eq,17) output(86,eq,8) output(51,eq,8) output(67,eq,8) output(62,eq,55) output(86,eq,55) output(51,eq,55) output(67,eq,55) output(76,eq,55) output(76,eq,8) output(86,eq,17) output(51,eq,17) output(76,eq,17)
+Optimization: 38 1
+Answer: 6
+output(67,eq,17) preference(1,(1,9),1,for(neg(atom(hasPrep(1)))),()) preference(1,(1,9),2,for(neg(atom(hasCost(2)))),()) preference(1,poset) output(25,better,78) output(8,better,75) output(8,better,91) output(62,better,91) output(57,better,91) output(86,better,78) output(51,better,78) output(67,better,78) output(86,better,75) output(51,better,75) output(52,better,91) output(86,better,91) output(51,better,91) output(67,better,91) output(76,better,91) output(67,better,75) output(76,better,75) output(76,better,78) output(75,better,94) output(51,better,52) output(51,better,57) output(51,better,55) output(51,better,94) output(67,better,55) output(67,better,94) output(86,better,52) output(86,better,57) output(76,better,52) output(76,better,57) output(8,better,55) output(67,better,52) output(8,better,94) output(67,better,57) output(86,better,55) output(76,better,55) output(86,better,94) output(76,better,94) output(91,worse,55) output(91,worse,17) output(62,worse,75) output(57,worse,75) output(52,worse,78) output(52,worse,75) output(52,worse,25) output(55,worse,17) output(62,worse,17) output(57,worse,8) output(52,worse,8) output(57,worse,17) output(52,worse,17) output(62,worse,8) output(76,eq,67) output(67,eq,51) output(52,eq,57) output(76,eq,51) output(86,eq,25) output(51,eq,25) output(67,eq,25) output(76,eq,25) output(62,eq,94) output(57,eq,94) output(52,eq,94) output(8,eq,17) output(86,eq,8) output(51,eq,8) output(67,eq,8) output(62,eq,55) output(57,eq,55) output(52,eq,55) output(76,eq,8) output(86,eq,17) output(51,eq,17) output(76,eq,17)
+Optimization: 37 1
+Answer: 7
+output(67,eq,17) preference(1,(1,1),1,for(neg(atom(hasPrep(7)))),()) preference(1,(1,4),1,for(atom(hasPrep(3))),()) preference(1,(1,1),2,for(atom(hasCost(1))),()) preference(1,(1,4),2,for(atom(hasPrep(5))),()) preference(1,poset) output(25,better,78) output(8,better,75) output(8,better,91) output(62,better,91) output(57,better,91) output(62,better,75) output(57,better,75) output(52,better,78) output(86,better,78) output(51,better,78) output(67,better,78) output(52,better,75) output(86,better,75) output(51,better,75) output(52,better,91) output(86,better,91) output(51,better,91) output(67,better,91) output(76,better,91) output(67,better,75) output(76,better,75) output(76,better,78) output(91,better,55) output(67,better,51) output(76,better,51) output(51,better,55) output(57,better,8) output(67,better,25) output(57,better,94) output(57,better,55) output(52,better,55) output(67,better,55) output(67,better,94) output(86,better,52) output(86,better,25) output(76,better,25) output(76,better,52) output(8,better,55) output(57,better,17) output(62,better,55) output(67,better,52) output(8,better,94) output(62,better,94) output(86,better,55) output(76,better,55) output(86,better,94) output(76,better,94) output(75,worse,94) output(91,worse,17) output(51,worse,57) output(51,worse,8) output(51,worse,17) output(55,worse,17) output(86,worse,57) output(76,worse,57) output(52,worse,8) output(52,worse,57) output(67,worse,57) output(52,worse,17) output(52,eq,25) output(62,eq,8) output(76,eq,67) output(51,eq,52) output(51,eq,25) output(52,eq,94) output(8,eq,17) output(62,eq,17) output(86,eq,8) output(67,eq,8) output(76,eq,8) output(86,eq,17) output(76,eq,17) output(51,eq,94)
+Optimization: 27 2
+*** Info : (asprin_vL): Sending shutdown signal...
+*** Info : (asprin_vL): Queueing signal...
