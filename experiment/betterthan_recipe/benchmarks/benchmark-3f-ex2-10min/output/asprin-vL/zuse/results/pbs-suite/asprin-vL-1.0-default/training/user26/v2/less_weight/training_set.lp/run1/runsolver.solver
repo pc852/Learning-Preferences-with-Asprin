@@ -1,0 +1,264 @@
+asprin_vL version 1.0
+Reading from stdin
+-:1223:3-30: info: atom does not occur in any rule head:
+  preference(#X0,#P1,#P2,name(#X3),#P4)
+
+-:1233:3-24: info: atom does not occur in any rule head:
+  preference(#X0,#P1,0,#P2,#P3)
+
+-:1248:3-31: info: atom does not occur in any rule head:
+  preference(#X0,#P1,#P2,name(#X3),#X4)
+
+-:1329:36-48: info: atom does not occur in any rule head:
+  _p_rule(#X0,#X1,#P2,#X3,#X4)
+
+-:1590:65-91: info: atom does not occur in any rule head:
+  preference(#X0,#X1,2,for(#X2),#P3)
+
+-:1603:34-45: info: atom does not occur in any rule head:
+  better(#X0,#P1,#X2,#X3)
+
+-:1780:35-45: info: atom does not occur in any rule head:
+  _p_group(#X0,#P1,#X2,#X3)
+
+-:1909:38-65: info: atom does not occur in any rule head:
+  preference(#X0,#X1,0,for(#X2),#P3)
+
+-:1981:50-58: info: atom does not occur in any rule head:
+  _p_rel(#X0,#P1,#X2,#X3)
+
+-:1985:46-59: info: atom does not occur in any rule head:
+  _p_pre(#X0,#X1,#X2,#P3,#X4,#X5)
+
+-:1985:61-75: info: atom does not occur in any rule head:
+  _p_post(#X0,#X1,#X2,#P3,#X4,#X5)
+
+-:1991:23-37: info: atom does not occur in any rule head:
+  _p_post(#X0,#X1,#P2,#P3,#X4,#X5)
+
+-:2090:74-85: info: atom does not occur in any rule head:
+  _p_edge(#X0,#X1,#P2,#X3,#X4)
+
+-:2116:64-75: info: atom does not occur in any rule head:
+  _p_edge(#X0,#P1,#X2,#X3,#X4)
+
+-:2236:35-48: info: atom does not occur in any rule head:
+  _p_lits(#X0,#X1,#P2,#P3,#X4,#X5)
+
+-:2270:25-39: info: atom does not occur in any rule head:
+  _p_pre(#X0,#X1,#P2,#P3,#X4,#X5)
+
+-:2292:33-45: info: atom does not occur in any rule head:
+  _p_acyclic(#X0,#P1,#X2,#X3)
+
+-:1140:1-16: info: no atoms over signature occur in program:
+  output/3
+
+-:1132:25-37: info: atom does not occur in any rule head:
+  forbid_worse
+
+-:1133:25-37: info: atom does not occur in any rule head:
+  forbid_equal
+
+Solving...
+Answer: 1
+preference(1,less(weight)) output(10,eq,39) output(39,eq,82) output(82,eq,80) output(88,eq,65) output(65,eq,33) output(68,eq,22) output(46,eq,60) output(60,eq,39) output(39,eq,47) output(52,eq,68) output(83,eq,55) output(55,eq,74) output(83,eq,74) output(10,eq,47) output(60,eq,47) output(46,eq,39) output(52,eq,22) output(88,eq,33) output(39,eq,80) output(10,eq,82) output(60,eq,82) output(46,eq,82) output(10,eq,80) output(60,eq,80) output(46,eq,80) output(46,eq,47)
+Optimization: 26 0
+Answer: 2
+preference(1,(1,14),1,for(atom(hasIngredient(7))),1) preference(1,less(weight)) output(10,better,39) output(10,better,47) output(46,better,60) output(46,better,39) output(46,better,47) output(88,better,65) output(52,better,68) output(52,better,22) output(60,worse,82) output(60,worse,80) output(39,worse,82) output(39,worse,80) output(65,worse,33) output(82,eq,80) output(68,eq,22) output(60,eq,39) output(39,eq,47) output(83,eq,55) output(55,eq,74) output(83,eq,74) output(60,eq,47) output(88,eq,33) output(10,eq,82) output(46,eq,82) output(10,eq,80) output(46,eq,80)
+Optimization: 18 1
+Answer: 3
+preference(1,(1,14),1,for(atom(hasIngredient(9))),1) preference(1,less(weight)) output(46,better,39) output(46,better,82) output(46,better,47) output(60,better,39) output(60,better,47) output(60,better,82) output(88,better,65) output(83,better,55) output(52,better,22) output(68,better,22) output(10,worse,80) output(39,worse,80) output(55,worse,74) output(82,worse,80) output(65,worse,33) output(10,eq,39) output(39,eq,82) output(46,eq,60) output(39,eq,47) output(52,eq,68) output(83,eq,74) output(10,eq,47) output(88,eq,33) output(10,eq,82) output(60,eq,80) output(46,eq,80)
+Optimization: 16 1
+Answer: 4
+preference(1,(1,13),1,for(atom(hasCategory(2))),1) preference(1,(1,14),1,for(atom(hasIngredient(7))),1) preference(1,less(weight)) output(10,better,39) output(10,better,47) output(10,better,80) output(46,better,60) output(46,better,39) output(46,better,80) output(46,better,47) output(88,better,65) output(82,better,80) output(52,better,68) output(52,better,22) output(60,worse,82) output(39,worse,82) output(65,worse,33) output(68,eq,22) output(60,eq,39) output(39,eq,47) output(83,eq,55) output(55,eq,74) output(83,eq,74) output(60,eq,47) output(88,eq,33) output(39,eq,80) output(10,eq,82) output(46,eq,82) output(60,eq,80)
+Optimization: 15 2
+Answer: 5
+preference(1,(1,1),1,for(atom(hasCategory(4))),1) preference(1,(1,3),1,for(atom(hasPrepTime(2))),1) preference(1,(1,4),1,for(atom(hasPrep(3))),1) preference(1,(1,5),1,for(atom(hasCost(4))),1) preference(1,(1,6),1,for(atom(hasCategory(2))),1) preference(1,(1,7),1,for(atom(hasCost(5))),1) preference(1,(1,8),1,for(atom(hasCategory(5))),1) preference(1,(1,9),1,for(atom(hasPrep(4))),1) preference(1,(1,10),1,for(atom(hasIngredient(5))),1) preference(1,(1,11),1,for(atom(hasDifficulty(4))),1) preference(1,(1,12),1,for(atom(hasIngredient(8))),1) preference(1,(1,13),1,for(atom(hasIngredient(4))),1) preference(1,less(weight)) output(10,better,47) output(10,better,82) output(10,better,80) output(46,better,82) output(46,better,80) output(46,better,47) output(60,better,47) output(60,better,82) output(60,better,80) output(88,better,65) output(88,better,33) output(39,better,82) output(39,better,47) output(39,better,80) output(55,better,74) output(83,worse,55) output(10,eq,39) output(82,eq,80) output(65,eq,33) output(68,eq,22) output(46,eq,60) output(60,eq,39) output(52,eq,68) output(83,eq,74) output(46,eq,39) output(52,eq,22)
+Optimization: 11 12
+Answer: 6
+preference(1,(1,1),1,for(atom(hasCategory(3))),8) preference(1,(1,2),1,for(atom(hasDifficulty(1))),8) preference(1,(1,3),1,for(atom(hasPrep(7))),1) preference(1,(1,4),1,for(atom(hasPrepTime(2))),8) preference(1,(1,5),1,for(atom(hasCategory(4))),8) preference(1,(1,6),1,for(atom(hasCost(3))),1) preference(1,(1,7),1,for(atom(hasCost(5))),8) preference(1,(1,8),1,for(atom(hasCost(4))),8) preference(1,(1,9),1,for(atom(hasCost(1))),1) preference(1,(1,10),1,for(atom(hasPrep(3))),1) preference(1,(1,11),1,for(atom(hasPrep(5))),8) preference(1,(1,12),1,for(atom(hasCategory(2))),1) preference(1,(1,14),1,for(atom(hasPrep(6))),8) preference(1,less(weight)) output(10,better,39) output(10,better,47) output(10,better,82) output(10,better,80) output(46,better,60) output(46,better,39) output(46,better,82) output(46,better,80) output(46,better,47) output(60,better,39) output(60,better,47) output(60,better,82) output(60,better,80) output(39,better,47) output(39,better,80) output(82,better,80) output(83,better,55) output(83,better,74) output(52,better,68) output(52,better,22) output(88,worse,33) output(65,worse,33) output(39,eq,82) output(88,eq,65) output(68,eq,22) output(55,eq,74)
+Optimization: 6 13
+Answer: 7
+preference(1,(1,1),1,for(atom(hasCategory(4))),1) preference(1,(1,2),1,for(atom(hasPrep(7))),1) preference(1,(1,3),1,for(atom(hasPrep(0))),1) preference(1,(1,5),1,for(atom(hasCost(1))),1) preference(1,(1,7),1,for(atom(hasPrep(3))),8) preference(1,(1,8),1,for(atom(hasPrepTime(2))),6) preference(1,(1,9),1,for(atom(hasCost(3))),8) preference(1,(1,10),1,for(atom(hasCost(4))),8) preference(1,(1,11),1,for(atom(hasCost(5))),7) preference(1,(1,12),1,for(atom(hasDifficulty(1))),8) preference(1,(1,13),1,for(atom(hasCategory(2))),7) preference(1,(1,14),1,for(atom(hasCategory(3))),6) preference(1,less(weight)) output(10,better,39) output(10,better,47) output(10,better,82) output(10,better,80) output(46,better,60) output(46,better,39) output(46,better,82) output(46,better,80) output(46,better,47) output(60,better,39) output(60,better,47) output(60,better,82) output(60,better,80) output(88,better,65) output(88,better,33) output(39,better,82) output(39,better,47) output(39,better,80) output(55,better,74) output(82,better,80) output(83,better,55) output(83,better,74) output(52,better,68) output(52,better,22) output(65,better,33) output(68,better,22)
+Optimization: 0 12
+Progression : 0 [ 1;12] (Error: 11)
+Progression : 0 [ 2;12] (Error: 5)
+Answer: 8
+preference(1,(1,1),1,for(atom(hasPrep(5))),6) preference(1,(1,2),1,for(atom(hasPrep(6))),6) preference(1,(1,3),1,for(atom(hasCategory(3))),6) preference(1,(1,4),1,for(atom(hasPrep(7))),2) preference(1,(1,5),1,for(atom(hasCategory(4))),1) preference(1,(1,6),1,for(atom(hasCategory(2))),2) preference(1,(1,7),1,for(atom(hasDifficulty(1))),6) preference(1,(1,8),1,for(atom(hasPrepTime(1))),2) preference(1,(1,9),1,for(atom(hasPrepTime(2))),1) preference(1,(1,10),1,for(atom(hasCost(1))),4) preference(1,(1,12),1,for(atom(hasCost(4))),3) preference(1,less(weight)) output(10,better,39) output(10,better,47) output(10,better,82) output(10,better,80) output(46,better,60) output(46,better,39) output(46,better,82) output(46,better,80) output(46,better,47) output(60,better,39) output(60,better,47) output(60,better,82) output(60,better,80) output(88,better,65) output(88,better,33) output(39,better,82) output(39,better,47) output(39,better,80) output(55,better,74) output(82,better,80) output(83,better,55) output(83,better,74) output(52,better,68) output(52,better,22) output(65,better,33) output(68,better,22)
+Optimization: 0 11
+Answer: 9
+preference(1,(1,1),1,for(atom(hasDifficulty(2))),3) preference(1,(1,2),1,for(atom(hasIngredient(9))),4) preference(1,(1,3),1,for(atom(hasIngredient(7))),3) preference(1,(1,4),1,for(atom(hasIngredient(12))),4) preference(1,(1,6),1,for(atom(hasDifficulty(1))),6) preference(1,(1,9),1,for(atom(hasCategory(2))),6) preference(1,(1,11),1,for(atom(hasPrepTime(2))),1) preference(1,(1,12),1,for(atom(hasCategory(4))),2) preference(1,(1,13),1,for(atom(hasCategory(3))),3) preference(1,(1,14),1,for(atom(hasPrep(0))),1) preference(1,less(weight)) output(10,better,39) output(10,better,47) output(10,better,82) output(10,better,80) output(46,better,60) output(46,better,39) output(46,better,82) output(46,better,80) output(46,better,47) output(60,better,39) output(60,better,47) output(60,better,82) output(60,better,80) output(88,better,65) output(88,better,33) output(39,better,82) output(39,better,47) output(39,better,80) output(55,better,74) output(82,better,80) output(83,better,55) output(83,better,74) output(52,better,68) output(52,better,22) output(65,better,33) output(68,better,22)
+Optimization: 0 10
+Answer: 10
+preference(1,(1,1),1,for(atom(hasCost(1))),6) preference(1,(1,2),1,for(atom(hasCategory(3))),7) preference(1,(1,3),1,for(atom(hasCost(4))),6) preference(1,(1,4),1,for(atom(hasPrep(7))),6) preference(1,(1,5),1,for(atom(hasCategory(4))),8) preference(1,(1,6),1,for(atom(hasDifficulty(1))),8) preference(1,(1,7),1,for(atom(hasPrepTime(1))),2) preference(1,(1,9),1,for(atom(hasPrepTime(2))),1) preference(1,(1,14),1,for(atom(hasCategory(2))),7) preference(1,less(weight)) output(10,better,39) output(10,better,47) output(10,better,82) output(10,better,80) output(46,better,60) output(46,better,39) output(46,better,82) output(46,better,80) output(46,better,47) output(60,better,39) output(60,better,47) output(60,better,82) output(60,better,80) output(88,better,65) output(88,better,33) output(39,better,82) output(39,better,47) output(39,better,80) output(55,better,74) output(82,better,80) output(83,better,55) output(83,better,74) output(52,better,68) output(52,better,22) output(65,better,33) output(68,better,22)
+Optimization: 0 9
+*** Info : (asprin_vL): Sending shutdown signal...
+*** Info : (asprin_vL): Queueing signal...
+Traceback (most recent call last):
+  File "clingo/application.py", line 359, in _pyclingo_application_main
+  File "asprin_vL.py", line 598, in main
+  File "clingo/control.py", line 805, in solve
+  File "clingo/solving.py", line 527, in get
+  File "clingo/_internal.py", line 44, in _c_call
+  File "clingo/_internal.py", line 75, in _handle_error
+RuntimeError: solving stopped by signal
+*** ERROR: (asprin_vL): solving stopped by signal
+*** Info : (asprin_vL): Shutdown completed in 0.632 seconds
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 10+
+  Optimum    : unknown
+Optimization : 0 9
+Calls        : 1
+Time         : 598.510s (Solving: 596.22s 1st Model: 0.02s Unsat: 0.00s)
+CPU Time     : 2342.454s
+Threads      : 4        (Winner: 4)
+
+Choices      : 11908826 (Domain: 373043)
+Conflicts    : 7304169  (Analyzed: 7304167)
+Restarts     : 8122     (Average: 899.31 Last: 232520)
+Model-Level  : 37.0    
+Problems     : 7        (Average Length: 0.57 Splits: 0)
+Lemmas       : 7317433  (Deleted: 6945966)
+  Binary     : 1288     (Ratio:   0.02%)
+  Ternary    : 1824     (Ratio:   0.02%)
+  Conflict   : 7304167  (Average Length:  594.7 Ratio:  99.82%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 13266    (Average Length:   80.7 Ratio:   0.18%) 
+  Distributed: 4426     (Ratio:   0.06% Average LBD: 3.42) 
+  Integrated : 13278    (Ratio: 300.00% Unit: 9 Average Jumps: 6.33)
+Backjumps    : 7304167  (Average:  1.43 Max: 1469 Sum: 10427974)
+  Executed   : 7304166  (Average:  1.43 Max: 1469 Sum: 10427953 Ratio: 100.00%)
+  Bounded    : 1        (Average: 21.00 Max:  21 Sum:     21 Ratio:   0.00%)
+
+Rules        : 344640  
+  Choice     : 15      
+  Minimize   : 2       
+Atoms        : 13158   
+Bodies       : 18815   
+  Sum        : 52      
+  Count      : 14      
+Equivalences : 6760     (Atom=Atom: 273 Body=Body: 118 Other: 6369)
+Tight        : Yes
+Variables    : 17031    (Eliminated:    0 Frozen: 7707)
+Constraints  : 367312   (Binary:  96.5% Ternary:   2.5% Other:   1.0%)
+
+No preference instances learned!
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  1 :: atom(hasIngredient(7)) 
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  1 :: atom(hasIngredient(9)) 
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  1 :: atom(hasCategory(2)) ; 
+  1 :: atom(hasIngredient(7)) 
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  1 :: atom(hasCategory(4)) ; 
+  1 :: atom(hasPrepTime(2)) ; 
+  1 :: atom(hasPrep(3)) ; 
+  1 :: atom(hasCost(4)) ; 
+  1 :: atom(hasCategory(2)) ; 
+  1 :: atom(hasCost(5)) ; 
+  1 :: atom(hasCategory(5)) ; 
+  1 :: atom(hasPrep(4)) ; 
+  1 :: atom(hasIngredient(5)) ; 
+  1 :: atom(hasDifficulty(4)) ; 
+  1 :: atom(hasIngredient(8)) ; 
+  1 :: atom(hasIngredient(4)) 
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  8 :: atom(hasCategory(3)) ; 
+  8 :: atom(hasDifficulty(1)) ; 
+  1 :: atom(hasPrep(7)) ; 
+  8 :: atom(hasPrepTime(2)) ; 
+  8 :: atom(hasCategory(4)) ; 
+  1 :: atom(hasCost(3)) ; 
+  8 :: atom(hasCost(5)) ; 
+  8 :: atom(hasCost(4)) ; 
+  1 :: atom(hasCost(1)) ; 
+  1 :: atom(hasPrep(3)) ; 
+  8 :: atom(hasPrep(5)) ; 
+  1 :: atom(hasCategory(2)) ; 
+  8 :: atom(hasPrep(6)) 
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  1 :: atom(hasCategory(4)) ; 
+  1 :: atom(hasPrep(7)) ; 
+  1 :: atom(hasPrep(0)) ; 
+  1 :: atom(hasCost(1)) ; 
+  8 :: atom(hasPrep(3)) ; 
+  6 :: atom(hasPrepTime(2)) ; 
+  8 :: atom(hasCost(3)) ; 
+  8 :: atom(hasCost(4)) ; 
+  7 :: atom(hasCost(5)) ; 
+  8 :: atom(hasDifficulty(1)) ; 
+  7 :: atom(hasCategory(2)) ; 
+  6 :: atom(hasCategory(3)) 
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  6 :: atom(hasPrep(5)) ; 
+  6 :: atom(hasPrep(6)) ; 
+  6 :: atom(hasCategory(3)) ; 
+  2 :: atom(hasPrep(7)) ; 
+  1 :: atom(hasCategory(4)) ; 
+  2 :: atom(hasCategory(2)) ; 
+  6 :: atom(hasDifficulty(1)) ; 
+  2 :: atom(hasPrepTime(1)) ; 
+  1 :: atom(hasPrepTime(2)) ; 
+  4 :: atom(hasCost(1)) ; 
+  3 :: atom(hasCost(4)) 
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  3 :: atom(hasDifficulty(2)) ; 
+  4 :: atom(hasIngredient(9)) ; 
+  3 :: atom(hasIngredient(7)) ; 
+  4 :: atom(hasIngredient(12)) ; 
+  6 :: atom(hasDifficulty(1)) ; 
+  6 :: atom(hasCategory(2)) ; 
+  1 :: atom(hasPrepTime(2)) ; 
+  2 :: atom(hasCategory(4)) ; 
+  3 :: atom(hasCategory(3)) ; 
+  1 :: atom(hasPrep(0)) 
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  6 :: atom(hasCost(1)) ; 
+  7 :: atom(hasCategory(3)) ; 
+  6 :: atom(hasCost(4)) ; 
+  6 :: atom(hasPrep(7)) ; 
+  8 :: atom(hasCategory(4)) ; 
+  8 :: atom(hasDifficulty(1)) ; 
+  2 :: atom(hasPrepTime(1)) ; 
+  1 :: atom(hasPrepTime(2)) ; 
+  7 :: atom(hasCategory(2)) 
+}.
