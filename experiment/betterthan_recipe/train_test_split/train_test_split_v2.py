@@ -12,22 +12,25 @@ enable_python()
 class App(Application):
     
     def __init__(self):
-        self.users = [0,1,2,3,4,6,7,8,9,10,11,13,14,17,19,20,21,22,26,27,28,29,30,31,32,33,34,35,36,37,38,40,41,43,44,45,46,47,48,52,53]
+        self.users = [10,17,26,29,32,36,44,47,48,8]
         self.val_set = [] # tbd through code
         self.forBenchmark = True #whether to generate for benchmarking, i.e. all program parts and training set in one .lp file
-        self.dataset_name = '../dataset_trial'
+        self.dataset_name = '../dataset_10m_g2e2'
         self.gen_files = [("../generation/generation_aso.lp","aso"),\
                           ("../generation/generation_lw.lp","less_weight"),\
                           ("../generation/generation_poset.lp","poset")]
         
         #input files tts_1.lp tts_2.lp tts_3.lp
-        self.val = 3 #change
-        self.dom_file = "../domain.lp"
-        self.exT_file = "../examples_v1.lp"
+        self.val_tup = [(1,"tts_1.lp"),(2,"tts_2.lp"),(3,"tts_3.lp")] #change
+        self.val = 0
+        self.dom_file = "../domain_v2.lp"
+        self.exT_file = "../examples_v2.lp"
         self.bkd_file = "../../../backend.lp"
         self.lib_file = "../../../asprin_vL_lib.lp"
-        self.std_infiles = ["../recipes.lp","../preparations.lp", \
-                            "../sort1.lp", "../sort2.lp","../sort3.lp"]
+        self.std_infiles = ["../recipes.lp","../preparations.lp",\
+                            "../sort1.lp", "../sort2.lp","../sort3.lp",\
+                            "../metaclass.lp", "../ingredients.lp"]
+        self.train_size = []
         self.indices = []
         self.pref = []
         self.in_files = []
@@ -57,10 +60,12 @@ class App(Application):
                     
                     f.writelines(self.gen_code[idx])
                     f.write("#program examples.\n")
+                    t_cnt = 0
                     for k in dataset:
                         if k.name == "pref" and str(k.arguments[2]) == str(0):
                             f.write(str(k) + ".\n")
-                            
+                            t_cnt += 1
+                    self.train_size.append(str(t_cnt)+"\n")
                     f.writelines(self.dom_code)
                     f.writelines(self.exT_code)
                     f.writelines(self.bkd_code)
@@ -106,22 +111,28 @@ class App(Application):
             self.lib_code = f.readlines()
         
         for i in self.users:
-            self.curr_user= i
-            ctl = Control()
+            for v in self.val_tup:
+                self.val = v[0]
+                self.curr_user= i
+                ctl = Control()
+                
+                #for path in self.in_files:
+                    #ctl.load(path)
+                #if not self.in_files:
+                    #ctl.load("-")
+                for path in self.std_infiles:
+                    ctl.load(path)
+                ctl.load(v[1])
+                prg1 = "user(" + str(i) + ")."
+                ctl.add("base",[],prg1)
+                ctl.add("base",[],"#show.")   
+                ctl.add("base",[],"#show pref/3.")
+                ctl.ground([("base", [])], context=self)
             
-            for path in self.in_files:
-                ctl.load(path)
-            if not self.in_files:
-                ctl.load("-")
-            for path in self.std_infiles:
-                ctl.load(path)
-            prg1 = "user(" + str(i) + ")."
-            ctl.add("base",[],prg1)
-            ctl.add("base",[],"#show.")   
-            ctl.add("base",[],"#show pref/3.")
-            ctl.ground([("base", [])], context=self)
+                ctl.solve(on_model=save_model)
         
-            ctl.solve(on_model=save_model)
-        
+        with open(self.dataset_name + "/train_sizes.txt", "w") as f:
+            f.writelines(self.train_size)
+            
 if __name__ == "__main__":
     clingo_main(App(), sys.argv[1:])

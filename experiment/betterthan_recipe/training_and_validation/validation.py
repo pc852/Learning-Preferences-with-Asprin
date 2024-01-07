@@ -12,7 +12,7 @@ import os
 
 users = [0,1,10,11,13,14,17,19,2,20,21,22,26,27,28,29,3,30,31,32,33,34,35,36,37,38,4,40,41,43,44,45,46,47,48,52,53,6,7,8,9]         															  
 val_ind = [1,2,3]
-dir1 = '../dataset_3f_gen2'  															  
+dir1 = '../dataset_3f_ex2'  															  
 val1 = '/validation/user'
 val2 = '/v'
 val3 = '/validation_set.lp'
@@ -54,7 +54,8 @@ with open(dir1+"/val_results.txt","w") as f:
 					val_err = tmp[0]
 				else:
 					print("error!")
-					exit_prg()
+					val_err = "\n"
+					#exit_prg()
 				print("val = ", val_err)
 				
 				f.writelines(val_err+"\n")
