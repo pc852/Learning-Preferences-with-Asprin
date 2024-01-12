@@ -13,14 +13,14 @@ class App(Application):
     
     def __init__(self):
         self.users = [] #to be obtained by method save_users
-        self.dataset_name = '../dataset_trial'
+        self.dataset_name = '../dataset_1f_ex2'
         self.gen_files = [("../generation/generation_aso.lp","aso"),\
                           ("../generation/generation_lw.lp","less_weight"),\
                           ("../generation/generation_poset.lp","poset")]
         
         #input files tts.lp
         self.dom_file = "../domain.lp"
-        self.exT_file = "../examples_v3.lp"
+        self.exT_file = "../examples_v1.lp"
         self.bkd_file = "../../../backend.lp"
         self.lib_file = "../../../asprin_vL_lib.lp"
         self.find_good_users = "../find_good_users.lp"

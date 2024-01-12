@@ -37,7 +37,7 @@ class App(Application):
             return tuple(map(int, str(number)))
             
         def print_train_results(users):
-            dir1 = '../dataset_1f_gen2' 
+            dir1 = '../dataset_1f_ex2_10min' 
             output_1 = '/asprin-vL-1.0-default/training/user'
             output_2 = '/training_set.lp/run1/runsolver.solver'
             #gen_types = ["bt"]

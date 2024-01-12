@@ -3,7 +3,7 @@
 #const maxEle = 14.
 
 type(less(weight)).
-weight(1..10).
+weight(1..12).
 
 st(P) :- P=1..statements.
 el(E) :- E=1..maxEle.

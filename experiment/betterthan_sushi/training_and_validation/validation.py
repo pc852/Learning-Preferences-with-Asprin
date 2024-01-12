@@ -37,7 +37,7 @@ class App(Application):
             return tuple(map(int, str(number)))
             
         def print_val_results(users):                                                             
-            dir1 = '../dataset_1f'                                                                
+            dir1 = '../dataset_1f_ex2_10min'                                                                
             val1 = '/validation/user'
             val2 = '/validation_set.lp'
             out1 = '/asprin-vL-1.0-default/training/user'

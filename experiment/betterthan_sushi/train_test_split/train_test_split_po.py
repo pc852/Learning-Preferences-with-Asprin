@@ -12,25 +12,25 @@ enable_python()
 class App(Application):
     
     def __init__(self):
-        self.users = [] #to be obtained by method save_users
+        self.users = [i for i in range(100,110)] #to be obtained by method save_users
+        self.valset = [1,10,2,3,4,5,6,7,8,9]
         self.forBenchmark = True #whether to generate for benchmarking, i.e. all program parts and training set in one .lp file
-        self.dataset_name = 'dataset'
-        self.gen_files = [("../generation/generation_lw.lp","less_weight"),\
-                          ("../generation/generation_aso.lp","aso"),\
+        self.dataset_name = '../dataset_final_trial_100'
+        self.gen_files = [("../generation/generation_aso.lp","aso"),\
+                          ("../generation/generation_lw.lp","less_weight"),\
                           ("../generation/generation_poset.lp","poset")]
         
         #input files prefs_base.lp prefs_po.lp
-        self.dom_file = "../domain.lp"
-        self.exT_file = "../examples.lp"
+        self.dom_file = "../domain_v2.lp"
+        self.exT_file = "../examples_v4.lp"
         self.bkd_file = "../../../backend.lp"
         self.lib_file = "../../../asprin_vL_lib.lp"
-        self.find_good_users = "../find_good_users.lp"
-        self.score = "../score.lp"
-        self.prefs_base = "../prefs_base.lp"
+        self.prefs_base = "../prefs_100.lp"
         self.indices = []
         self.pref = []
         self.in_files = []
         self.curr_user = 0
+        self.curr_val = 0
         self.curr_gen  = ""
         self.gen_code = []
         self.dom_code = []
@@ -40,27 +40,20 @@ class App(Application):
     
   
     def main(self, ctl, files):
-        
-        def save_users(m=None):
-            ans = [y for y in m.symbols(shown=True)]
-            for k in ans:
-                if k.name == "good_user":
-                    self.users.append(str(k.arguments[0]))
-            print(len(self.users))
-					
+                        
         def save_model(m=None):
-
             dataset = [y for y in m.symbols(shown=True)]
             
             if self.forBenchmark == True:
                 for idx, i in enumerate(self.gen_files): 
-                    dir = self.dataset_name + '/training_po/user' + str(self.curr_user) + '/' + i[1]
+                    dir = self.dataset_name + '/training_po/user' + str(self.curr_user) + '/val' + str(self.curr_val) + '/' + i[1]
                     if os.path.exists(dir):
                         shutil.rmtree(dir)
                     os.makedirs(dir)
                     with open(dir + "/training_set.lp", "w") as f:
-                        f.write("%current gen file is: " + str(i) + ".\n")
                         f.write("%current user number is: " + str(self.curr_user) + ".\n")
+                        f.write("%current val is: " + str(self.curr_val) + ".\n")
+                        f.write("%current gen file is: " + str(i) + ".\n")
                         
                         f.writelines(self.gen_code[idx])
                         f.write("#program examples.\n")
@@ -73,13 +66,14 @@ class App(Application):
                         f.writelines(self.bkd_code)
                         f.writelines(self.lib_code)
                                     
-                    dir = self.dataset_name + '/validation_po/user' + str(self.curr_user) + '/' + i[1]
+                    dir = self.dataset_name + '/validation_po/user' + str(self.curr_user) + '/val' + str(self.curr_val) + '/' + i[1]
                     if os.path.exists(dir):
                         shutil.rmtree(dir)
                     os.makedirs(dir)
-                    with open(dir + "/validation_set_.lp", "w") as f:
-                        f.write("%current gen file is: " + str(i) + ".\n")
+                    with open(dir + "/validation_set.lp", "w") as f:
                         f.write("%current user number is: " + str(self.curr_user) + ".\n")
+                        f.write("%current val is: " + str(self.curr_val) + ".\n")
+                        f.write("%current gen file is: " + str(i) + ".\n")
                         
                         f.write("#program examples.\n")
                         for k in dataset:
@@ -126,28 +120,26 @@ class App(Application):
         with open(self.lib_file,'r') as f:
             self.lib_code = f.readlines()
         
-        ctl = Control()
-        ctl.load(self.find_good_users)
-        ctl.load(self.score)
-        ctl.load(self.prefs_base)
-        ctl.ground([("base", [])], context=self)
-        ctl.solve(on_model=save_users)
-        
         for i in self.users:
-            self.curr_user= i
-            ctl = Control()
-            
-            for path in self.in_files:
-                ctl.load(path)
-            if not self.in_files:
-                ctl.load("-")
-            prg = "user(" + str(i) + ")."
-            ctl.add("base",[],prg)
-            ctl.add("base",[],"#show.")   
-            ctl.add("base",[],"#show pref/3.")
-            ctl.ground([("base", [])], context=self)
-            
-            #ctl.solve(on_model=save_model)
-		
+            for v in self.valset:
+                self.curr_val = v
+                self.curr_user= i
+                ctl = Control()
+                
+                for path in self.in_files:
+                    ctl.load(path)
+                if not self.in_files:
+                    ctl.load("-")
+                ctl.load(self.prefs_base)
+                prg1 = "user(" + str(i) + ")."
+                prg2 = "val(" + str(v) + ")."
+                ctl.add("base",[],prg1)
+                ctl.add("base",[],prg2)
+                ctl.add("base",[],"#show.")   
+                ctl.add("base",[],"#show pref/3.")
+                ctl.ground([("base", [])], context=self)
+                
+                ctl.solve(on_model=save_model)
+        
 if __name__ == "__main__":
     clingo_main(App(), sys.argv[1:])
