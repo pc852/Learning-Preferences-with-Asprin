@@ -12,20 +12,20 @@ enable_python()
 class App(Application):
     
     def __init__(self):
-        self.users = [i for i in range(100,110)] #to be obtained by method save_users
+        self.users = [i for i in range(100,110)]
         self.valset = [0,1,2,3,4,5,6,7,8,9]
         self.forBenchmark = True #whether to generate for benchmarking, i.e. all program parts and training set in one .lp file
-        self.dataset_name = '../dataset_final_trial_100'
+        self.dataset_name = '../dataset_final_trial_10'
         self.gen_files = [("../generation/generation_aso.lp","aso"),\
                           ("../generation/generation_lw.lp","less_weight"),\
                           ("../generation/generation_poset.lp","poset")]
         
         #input files tts.lp
-        self.dom_file = "../domain_v2.lp"
-        self.exT_file = "../examples_v4.lp"
+        self.dom_file = "../domain_v3.lp"
+        self.exT_file = "../examples_v5.lp"
         self.bkd_file = "../../../backend.lp"
         self.lib_file = "../../../asprin_vL_lib.lp"
-        self.prefs_base = "../prefs_100.lp"
+        self.prefs_base = "../prefs_10.lp"
         self.indices = []
         self.pref = []
         self.in_files = []

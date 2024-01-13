@@ -1,6 +1,6 @@
 #program generation.
 #const statements = 1.
-#const maxEle = 10.
+#const maxEle = 12.
 
 type(poset).
 

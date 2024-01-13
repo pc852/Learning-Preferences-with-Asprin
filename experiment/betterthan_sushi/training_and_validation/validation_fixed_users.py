@@ -10,12 +10,12 @@ import shutil
 import os
 
 users = [100,101,102,103,104,105,106,107,108,109]
-val_set = [1,10,2,3,4,5,6,7,8,9]
+val_set = [0,1,2,3,4,5,6,7,8,9]
 
-dir1 = '../dataset_final_trial_10'                                                                
+dir1 = '../dataset_final_trial_100'                                                                
 val1 = '/validation_po/user'
 val2 = '/validation_set.lp'
-out1 = '/training_10/user'
+out1 = '/training_100/user'
 out2 = '/training_set.lp/run1/learned_preference_instances.lp'
 #gen_types = ["bt"]
 gen_types = ["aso","less_weight", "poset"]
