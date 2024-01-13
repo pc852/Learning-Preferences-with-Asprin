@@ -1,0 +1,291 @@
+asprin_vL version 1.0
+Reading from stdin
+-:305:3-30: info: atom does not occur in any rule head:
+  preference(#X0,#P1,#P2,name(#X3),#P4)
+
+-:315:3-24: info: atom does not occur in any rule head:
+  preference(#X0,#P1,0,#P2,#P3)
+
+-:330:3-31: info: atom does not occur in any rule head:
+  preference(#X0,#P1,#P2,name(#X3),#X4)
+
+-:411:36-48: info: atom does not occur in any rule head:
+  _p_rule(#X0,#X1,#P2,#X3,#X4)
+
+-:672:65-91: info: atom does not occur in any rule head:
+  preference(#X0,#X1,2,for(#X2),#P3)
+
+-:685:34-45: info: atom does not occur in any rule head:
+  better(#X0,#P1,#X2,#X3)
+
+-:862:35-45: info: atom does not occur in any rule head:
+  _p_group(#X0,#P1,#X2,#X3)
+
+-:991:38-65: info: atom does not occur in any rule head:
+  preference(#X0,#X1,0,for(#X2),#P3)
+
+-:1063:50-58: info: atom does not occur in any rule head:
+  _p_rel(#X0,#P1,#X2,#X3)
+
+-:1067:46-59: info: atom does not occur in any rule head:
+  _p_pre(#X0,#X1,#X2,#P3,#X4,#X5)
+
+-:1067:61-75: info: atom does not occur in any rule head:
+  _p_post(#X0,#X1,#X2,#P3,#X4,#X5)
+
+-:1073:23-37: info: atom does not occur in any rule head:
+  _p_post(#X0,#X1,#P2,#P3,#X4,#X5)
+
+-:1172:74-85: info: atom does not occur in any rule head:
+  _p_edge(#X0,#X1,#P2,#X3,#X4)
+
+-:1198:64-75: info: atom does not occur in any rule head:
+  _p_edge(#X0,#P1,#X2,#X3,#X4)
+
+-:1318:35-48: info: atom does not occur in any rule head:
+  _p_lits(#X0,#X1,#P2,#P3,#X4,#X5)
+
+-:1352:25-39: info: atom does not occur in any rule head:
+  _p_pre(#X0,#X1,#P2,#P3,#X4,#X5)
+
+-:1374:33-45: info: atom does not occur in any rule head:
+  _p_acyclic(#X0,#P1,#X2,#X3)
+
+-:222:1-16: info: no atoms over signature occur in program:
+  output/3
+
+-:214:25-37: info: atom does not occur in any rule head:
+  forbid_worse
+
+-:215:25-37: info: atom does not occur in any rule head:
+  forbid_equal
+
+Solving...
+Answer: 1
+preference(1,less(weight)) output(9,eq,3) output(9,eq,4) output(9,eq,5) output(9,eq,8) output(9,eq,6) output(9,eq,7) output(9,eq,1) output(9,eq,2) output(3,eq,4) output(3,eq,5) output(3,eq,8) output(3,eq,6) output(3,eq,7) output(3,eq,1) output(3,eq,2) output(4,eq,5) output(4,eq,8) output(4,eq,6) output(4,eq,7) output(4,eq,1) output(4,eq,2) output(5,eq,8) output(5,eq,6) output(5,eq,7) output(5,eq,1) output(5,eq,2) output(8,eq,6) output(8,eq,7) output(8,eq,1) output(8,eq,2) output(6,eq,7) output(6,eq,1) output(6,eq,2) output(7,eq,1) output(7,eq,2) output(1,eq,2)
+Optimization: 36 0
+Answer: 2
+preference(1,(1,2),1,for(atom(hasOilyLevel(2))),12) preference(1,less(weight)) output(9,better,3) output(9,better,5) output(4,better,5) output(3,worse,4) output(3,worse,8) output(3,worse,6) output(3,worse,7) output(3,worse,1) output(3,worse,2) output(5,worse,8) output(5,worse,6) output(5,worse,7) output(5,worse,1) output(5,worse,2) output(9,eq,4) output(9,eq,8) output(9,eq,6) output(9,eq,7) output(9,eq,1) output(9,eq,2) output(3,eq,5) output(4,eq,8) output(4,eq,6) output(4,eq,7) output(4,eq,1) output(4,eq,2) output(8,eq,6) output(8,eq,7) output(8,eq,1) output(8,eq,2) output(6,eq,7) output(6,eq,1) output(6,eq,2) output(7,eq,1) output(7,eq,2) output(1,eq,2)
+Optimization: 33 1
+Answer: 3
+preference(1,(1,2),1,for(neg(atom(hasPrice(0)))),4) preference(1,less(weight)) output(3,better,4) output(3,better,8) output(3,better,6) output(5,better,8) output(5,better,6) output(9,better,4) output(9,better,8) output(9,better,6) output(8,worse,7) output(8,worse,1) output(8,worse,2) output(6,worse,7) output(6,worse,1) output(6,worse,2) output(4,worse,5) output(4,worse,7) output(4,worse,1) output(4,worse,2) output(9,eq,3) output(9,eq,5) output(9,eq,7) output(9,eq,1) output(9,eq,2) output(3,eq,5) output(3,eq,7) output(3,eq,1) output(3,eq,2) output(4,eq,8) output(4,eq,6) output(5,eq,7) output(5,eq,1) output(5,eq,2) output(8,eq,6) output(7,eq,1) output(7,eq,2) output(1,eq,2)
+Optimization: 28 1
+Answer: 4
+preference(1,(1,2),1,for(atom(hasMinorGrp(0))),12) preference(1,less(weight)) output(3,better,8) output(3,better,1) output(3,better,2) output(5,better,8) output(5,better,1) output(5,better,2) output(9,better,8) output(9,better,1) output(9,better,2) output(6,better,1) output(6,better,2) output(4,better,8) output(4,better,1) output(4,better,2) output(7,better,1) output(7,better,2) output(8,worse,6) output(8,worse,7) output(9,eq,3) output(9,eq,4) output(9,eq,5) output(9,eq,6) output(9,eq,7) output(3,eq,4) output(3,eq,5) output(3,eq,6) output(3,eq,7) output(4,eq,5) output(4,eq,6) output(4,eq,7) output(5,eq,6) output(5,eq,7) output(8,eq,1) output(8,eq,2) output(6,eq,7) output(1,eq,2)
+Optimization: 20 1
+Answer: 5
+preference(1,(1,9),1,for(neg(atom(hasOiliness(1)))),5) preference(1,(1,2),1,for(atom(hasMinorGrp(2))),4) preference(1,(1,5),1,for(atom(hasPrice(0))),2) preference(1,(1,7),1,for(atom(hasOilyLevel(1))),1) preference(1,(1,8),1,for(atom(hasMinorGrp(0))),4) preference(1,less(weight)) output(8,better,1) output(8,better,2) output(1,better,2) output(3,better,4) output(3,better,8) output(3,better,6) output(3,better,7) output(3,better,1) output(3,better,2) output(5,better,8) output(5,better,6) output(5,better,7) output(5,better,1) output(5,better,2) output(9,better,4) output(9,better,8) output(9,better,6) output(9,better,1) output(9,better,2) output(6,better,1) output(6,better,2) output(4,better,1) output(4,better,2) output(7,better,1) output(7,better,2) output(8,worse,7) output(9,worse,3) output(9,worse,5) output(9,worse,7) output(6,worse,7) output(4,worse,5) output(4,worse,7) output(3,eq,5) output(4,eq,8) output(4,eq,6) output(8,eq,6)
+Optimization: 11 5
+Answer: 6
+preference(1,(1,1),1,for(neg(atom(hasOiliness(0)))),3) preference(1,(1,9),1,for(neg(atom(hasOiliness(1)))),5) preference(1,(1,2),1,for(atom(hasMinorGrp(2))),4) preference(1,(1,5),1,for(atom(hasPrice(0))),2) preference(1,(1,7),1,for(atom(hasOilyLevel(1))),1) preference(1,(1,8),1,for(atom(hasMinorGrp(0))),4) preference(1,less(weight)) output(8,better,7) output(8,better,1) output(8,better,2) output(1,better,2) output(3,better,4) output(3,better,8) output(3,better,6) output(3,better,7) output(3,better,1) output(3,better,2) output(5,better,8) output(5,better,6) output(5,better,7) output(5,better,1) output(5,better,2) output(9,better,4) output(9,better,8) output(9,better,6) output(9,better,7) output(9,better,1) output(9,better,2) output(6,better,7) output(6,better,1) output(6,better,2) output(4,better,7) output(4,better,1) output(4,better,2) output(7,better,1) output(7,better,2) output(9,worse,3) output(9,worse,5) output(4,worse,5) output(3,eq,5) output(4,eq,8) output(4,eq,6) output(8,eq,6)
+Optimization: 7 6
+Progression : [1;7] (Error: 6)
+Answer: 7
+preference(1,(1,1),1,for(neg(atom(hasPriceLevel(1)))),8) preference(1,(1,2),1,for(neg(atom(hasMinorGrp(0)))),6) preference(1,(1,3),1,for(neg(atom(hasOilyLevel(1)))),2) preference(1,(1,7),1,for(neg(atom(hasPrice(1)))),6) preference(1,(1,4),1,for(atom(hasOilyLevel(1))),1) preference(1,(1,5),1,for(atom(hasOilyLevel(2))),2) preference(1,(1,6),1,for(atom(hasPrice(1))),4) preference(1,(1,8),1,for(atom(hasMinorGrp(0))),12) preference(1,(1,9),1,for(atom(hasMinorGrp(2))),7) preference(1,(1,10),1,for(atom(hasPrice(0))),2) preference(1,less(weight)) output(8,better,6) output(8,better,7) output(8,better,1) output(8,better,2) output(1,better,2) output(3,better,4) output(3,better,8) output(3,better,6) output(3,better,7) output(3,better,1) output(3,better,2) output(5,better,8) output(5,better,6) output(5,better,7) output(5,better,1) output(5,better,2) output(9,better,3) output(9,better,4) output(9,better,5) output(9,better,8) output(9,better,6) output(9,better,7) output(9,better,1) output(9,better,2) output(6,better,7) output(6,better,1) output(6,better,2) output(4,better,7) output(4,better,1) output(4,better,2) output(4,worse,5) output(4,worse,8) output(7,worse,1) output(7,worse,2) output(3,eq,5) output(4,eq,6)
+Optimization: 6 10
+Answer: 8
+preference(1,(1,2),1,for(neg(atom(hasMinorGrp(0)))),6) preference(1,(1,3),1,for(neg(atom(hasOilyLevel(1)))),2) preference(1,(1,5),1,for(neg(atom(hasOftenSold(1)))),5) preference(1,(1,7),1,for(neg(atom(hasPrice(1)))),8) preference(1,(1,1),1,for(atom(hasOilyLevel(1))),6) preference(1,(1,4),1,for(atom(hasMinorGrp(0))),12) preference(1,(1,6),1,for(atom(hasPrice(1))),4) preference(1,(1,8),1,for(atom(hasMinorGrp(1))),2) preference(1,(1,9),1,for(atom(hasMinorGrp(2))),7) preference(1,(1,10),1,for(atom(hasOilyLevel(2))),1) preference(1,less(weight)) output(8,better,6) output(8,better,7) output(8,better,1) output(8,better,2) output(1,better,2) output(3,better,4) output(3,better,8) output(3,better,6) output(3,better,7) output(3,better,1) output(3,better,2) output(5,better,8) output(5,better,6) output(5,better,7) output(5,better,1) output(5,better,2) output(9,better,3) output(9,better,4) output(9,better,5) output(9,better,8) output(9,better,6) output(9,better,7) output(9,better,1) output(9,better,2) output(6,better,7) output(6,better,1) output(6,better,2) output(4,better,7) output(4,better,1) output(4,better,2) output(7,better,1) output(7,better,2) output(4,worse,5) output(4,worse,8) output(3,eq,5) output(4,eq,6)
+Optimization: 4 10
+Progression : [2;4] (Error: 1)
+Progression : [3;4] (Error: 0.333333)
+Progression : [4;4] (Error: 0)
+Progression : 4 [ 1;10] (Error: 9)
+Answer: 9
+preference(1,(1,2),1,for(neg(atom(hasPriceLevel(2)))),12) preference(1,(1,5),1,for(neg(atom(hasMinorGrp(1)))),7) preference(1,(1,6),1,for(neg(atom(hasPriceLevel(1)))),3) preference(1,(1,8),1,for(neg(atom(hasMinorGrp(0)))),12) preference(1,(1,9),1,for(neg(atom(hasMinorGrp(2)))),2) preference(1,(1,1),1,for(atom(hasMinorGrp(0))),10) preference(1,(1,3),1,for(atom(hasPrice(1))),4) preference(1,(1,4),1,for(atom(hasMinorGrp(2))),2) preference(1,(1,10),1,for(atom(hasOilyLevel(1))),5) preference(1,less(weight)) output(8,better,6) output(8,better,7) output(8,better,1) output(8,better,2) output(1,better,2) output(3,better,4) output(3,better,8) output(3,better,6) output(3,better,7) output(3,better,1) output(3,better,2) output(5,better,8) output(5,better,6) output(5,better,7) output(5,better,1) output(5,better,2) output(9,better,3) output(9,better,4) output(9,better,5) output(9,better,8) output(9,better,6) output(9,better,7) output(9,better,1) output(9,better,2) output(6,better,7) output(6,better,1) output(6,better,2) output(4,better,7) output(4,better,1) output(4,better,2) output(7,better,1) output(7,better,2) output(4,worse,5) output(4,worse,8) output(3,eq,5) output(4,eq,6)
+Optimization: 4 9
+Progression : 4 [2;9] (Error: 3.5)
+Answer: 10
+preference(1,(1,1),1,for(neg(atom(hasOiliness(0)))),1) preference(1,(1,5),1,for(neg(atom(hasMinorGrp(1)))),3) preference(1,(1,6),1,for(neg(atom(hasPrice(0)))),5) preference(1,(1,7),1,for(neg(atom(hasMinorGrp(0)))),8) preference(1,(1,8),1,for(neg(atom(hasOilyLevel(0)))),2) preference(1,(1,9),1,for(neg(atom(hasPrice(1)))),8) preference(1,(1,2),1,for(atom(hasOilyLevel(1))),6) preference(1,(1,3),1,for(atom(hasMinorGrp(0))),9) preference(1,less(weight)) output(8,better,7) output(8,better,1) output(8,better,2) output(1,better,2) output(3,better,4) output(3,better,8) output(3,better,6) output(3,better,7) output(3,better,1) output(3,better,2) output(5,better,8) output(5,better,6) output(5,better,7) output(5,better,1) output(5,better,2) output(9,better,3) output(9,better,4) output(9,better,5) output(9,better,8) output(9,better,6) output(9,better,7) output(9,better,1) output(9,better,2) output(6,better,7) output(6,better,1) output(6,better,2) output(4,better,8) output(4,better,7) output(4,better,1) output(4,better,2) output(7,better,1) output(7,better,2) output(8,worse,6) output(4,worse,5) output(3,eq,5) output(4,eq,6)
+Optimization: 4 8
+Answer: 11
+preference(1,(1,1),1,for(neg(atom(hasOiliness(0)))),1) preference(1,(1,5),1,for(neg(atom(hasMinorGrp(1)))),3) preference(1,(1,6),1,for(neg(atom(hasPrice(0)))),5) preference(1,(1,7),1,for(neg(atom(hasMinorGrp(0)))),8) preference(1,(1,9),1,for(neg(atom(hasPrice(1)))),8) preference(1,(1,3),1,for(atom(hasOilyLevel(1))),6) preference(1,(1,8),1,for(atom(hasMinorGrp(0))),9) preference(1,less(weight)) output(8,better,7) output(8,better,1) output(8,better,2) output(1,better,2) output(3,better,4) output(3,better,8) output(3,better,6) output(3,better,7) output(3,better,1) output(3,better,2) output(5,better,8) output(5,better,6) output(5,better,7) output(5,better,1) output(5,better,2) output(9,better,3) output(9,better,4) output(9,better,5) output(9,better,8) output(9,better,6) output(9,better,7) output(9,better,1) output(9,better,2) output(6,better,7) output(6,better,1) output(6,better,2) output(4,better,8) output(4,better,7) output(4,better,1) output(4,better,2) output(7,better,1) output(7,better,2) output(8,worse,6) output(4,worse,5) output(3,eq,5) output(4,eq,6)
+Optimization: 4 7
+Answer: 12
+preference(1,(1,2),1,for(neg(atom(hasPriceLevel(2)))),7) preference(1,(1,5),1,for(neg(atom(hasMinorGrp(1)))),5) preference(1,(1,8),1,for(neg(atom(hasOiliness(0)))),2) preference(1,(1,3),1,for(atom(hasOilyLevel(1))),1) preference(1,(1,4),1,for(atom(hasMinorGrp(2))),7) preference(1,(1,6),1,for(atom(hasMinorGrp(0))),8) preference(1,less(weight)) output(8,better,7) output(8,better,1) output(8,better,2) output(1,better,2) output(3,better,4) output(3,better,8) output(3,better,6) output(3,better,7) output(3,better,1) output(3,better,2) output(5,better,8) output(5,better,6) output(5,better,7) output(5,better,1) output(5,better,2) output(9,better,3) output(9,better,4) output(9,better,5) output(9,better,8) output(9,better,6) output(9,better,7) output(9,better,1) output(9,better,2) output(6,better,7) output(6,better,1) output(6,better,2) output(4,better,8) output(4,better,7) output(4,better,1) output(4,better,2) output(7,better,1) output(7,better,2) output(8,worse,6) output(4,worse,5) output(3,eq,5) output(4,eq,6)
+Optimization: 4 6
+Answer: 13
+preference(1,(1,8),1,for(neg(atom(hasPriceLevel(2)))),2) preference(1,(1,4),1,for(atom(hasMinorGrp(0))),10) preference(1,(1,5),1,for(atom(hasOilyLevel(2))),3) preference(1,(1,9),1,for(atom(hasMinorGrp(2))),8) preference(1,(1,10),1,for(atom(hasOilyLevel(1))),1) preference(1,less(weight)) output(8,better,7) output(8,better,1) output(8,better,2) output(1,better,2) output(3,better,4) output(3,better,8) output(3,better,6) output(3,better,7) output(3,better,1) output(3,better,2) output(5,better,8) output(5,better,6) output(5,better,7) output(5,better,1) output(5,better,2) output(9,better,3) output(9,better,4) output(9,better,5) output(9,better,8) output(9,better,6) output(9,better,7) output(9,better,1) output(9,better,2) output(6,better,7) output(6,better,1) output(6,better,2) output(4,better,8) output(4,better,7) output(4,better,1) output(4,better,2) output(7,better,1) output(7,better,2) output(8,worse,6) output(4,worse,5) output(3,eq,5) output(4,eq,6)
+Optimization: 4 5
+*** Info : (asprin_vL): Sending shutdown signal...
+*** Info : (asprin_vL): Queueing signal...
+Traceback (most recent call last):
+  File "clingo/application.py", line 359, in _pyclingo_application_main
+  File "asprin_vL.py", line 598, in main
+  File "clingo/control.py", line 805, in solve
+  File "clingo/solving.py", line 527, in get
+  File "clingo/_internal.py", line 44, in _c_call
+  File "clingo/_internal.py", line 75, in _handle_error
+RuntimeError: solving stopped by signal
+*** ERROR: (asprin_vL): solving stopped by signal
+*** Info : (asprin_vL): Shutdown completed in 0.152 seconds
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 13+
+  Optimum    : unknown
+Optimization : 4 5
+Bounds       : 4 [2;5]
+Calls        : 1
+Time         : 1198.156s (Solving: 1193.05s 1st Model: 0.04s Unsat: 0.00s)
+CPU Time     : 4776.708s
+Threads      : 4        (Winner: 4)
+
+Choices      : 20581678 (Domain: 10932)
+Conflicts    : 7443419  (Analyzed: 7443412)
+Restarts     : 10150    (Average: 733.34 Last: 48663)
+Model-Level  : 571.3   
+Problems     : 13       (Average Length: 0.31 Splits: 0)
+Lemmas       : 7463994  (Deleted: 7053182)
+  Binary     : 2603     (Ratio:   0.03%)
+  Ternary    : 1088     (Ratio:   0.01%)
+  Conflict   : 7443410  (Average Length:  572.4 Ratio:  99.72%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 20584    (Average Length:   86.0 Ratio:   0.28%) 
+  Distributed: 6865     (Ratio:   0.09% Average LBD: 3.47) 
+  Integrated : 20595    (Ratio: 300.00% Unit: 150 Average Jumps: 24.75)
+Backjumps    : 7443412  (Average:  2.28 Max: 2703 Sum: 16991152)
+  Executed   : 7443377  (Average:  2.28 Max: 2703 Sum: 16990717 Ratio: 100.00%)
+  Bounded    : 35       (Average: 12.43 Max:  37 Sum:    435 Ratio:   0.00%)
+
+Rules        : 1304235 
+  Choice     : 11      
+  Minimize   : 2       
+Atoms        : 372539  
+Bodies       : 376772  
+  Sum        : 216     
+  Count      : 10      
+Equivalences : 1106912  (Atom=Atom: 356259 Body=Body: 365068 Other: 385585)
+Tight        : Yes
+Variables    : 15523    (Eliminated:    0 Frozen: 10563)
+Constraints  : 963061   (Binary:  98.8% Ternary:   0.5% Other:   0.7%)
+
+No preference instances learned!
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  12 :: atom(hasOilyLevel(2)) 
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  4 :: not atom(hasPrice(0))  
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  12 :: atom(hasMinorGrp(0)) 
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  4 :: atom(hasMinorGrp(2)) ; 
+  2 :: atom(hasPrice(0)) ; 
+  1 :: atom(hasOilyLevel(1)) ; 
+  4 :: atom(hasMinorGrp(0)) ; 
+  5 :: not atom(hasOiliness(1))  
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  3 :: not atom(hasOiliness(0))  ; 
+  4 :: atom(hasMinorGrp(2)) ; 
+  2 :: atom(hasPrice(0)) ; 
+  1 :: atom(hasOilyLevel(1)) ; 
+  4 :: atom(hasMinorGrp(0)) ; 
+  5 :: not atom(hasOiliness(1))  
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  8 :: not atom(hasPriceLevel(1))  ; 
+  6 :: not atom(hasMinorGrp(0))  ; 
+  2 :: not atom(hasOilyLevel(1))  ; 
+  1 :: atom(hasOilyLevel(1)) ; 
+  2 :: atom(hasOilyLevel(2)) ; 
+  4 :: atom(hasPrice(1)) ; 
+  6 :: not atom(hasPrice(1))  ; 
+  12 :: atom(hasMinorGrp(0)) ; 
+  7 :: atom(hasMinorGrp(2)) ; 
+  2 :: atom(hasPrice(0)) 
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  6 :: atom(hasOilyLevel(1)) ; 
+  6 :: not atom(hasMinorGrp(0))  ; 
+  2 :: not atom(hasOilyLevel(1))  ; 
+  12 :: atom(hasMinorGrp(0)) ; 
+  5 :: not atom(hasOftenSold(1))  ; 
+  4 :: atom(hasPrice(1)) ; 
+  8 :: not atom(hasPrice(1))  ; 
+  2 :: atom(hasMinorGrp(1)) ; 
+  7 :: atom(hasMinorGrp(2)) ; 
+  1 :: atom(hasOilyLevel(2)) 
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  10 :: atom(hasMinorGrp(0)) ; 
+  12 :: not atom(hasPriceLevel(2))  ; 
+  4 :: atom(hasPrice(1)) ; 
+  2 :: atom(hasMinorGrp(2)) ; 
+  7 :: not atom(hasMinorGrp(1))  ; 
+  3 :: not atom(hasPriceLevel(1))  ; 
+  12 :: not atom(hasMinorGrp(0))  ; 
+  2 :: not atom(hasMinorGrp(2))  ; 
+  5 :: atom(hasOilyLevel(1)) 
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  1 :: not atom(hasOiliness(0))  ; 
+  6 :: atom(hasOilyLevel(1)) ; 
+  9 :: atom(hasMinorGrp(0)) ; 
+  3 :: not atom(hasMinorGrp(1))  ; 
+  5 :: not atom(hasPrice(0))  ; 
+  8 :: not atom(hasMinorGrp(0))  ; 
+  2 :: not atom(hasOilyLevel(0))  ; 
+  8 :: not atom(hasPrice(1))  
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  1 :: not atom(hasOiliness(0))  ; 
+  6 :: atom(hasOilyLevel(1)) ; 
+  3 :: not atom(hasMinorGrp(1))  ; 
+  5 :: not atom(hasPrice(0))  ; 
+  8 :: not atom(hasMinorGrp(0))  ; 
+  9 :: atom(hasMinorGrp(0)) ; 
+  8 :: not atom(hasPrice(1))  
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  7 :: not atom(hasPriceLevel(2))  ; 
+  1 :: atom(hasOilyLevel(1)) ; 
+  7 :: atom(hasMinorGrp(2)) ; 
+  5 :: not atom(hasMinorGrp(1))  ; 
+  8 :: atom(hasMinorGrp(0)) ; 
+  2 :: not atom(hasOiliness(0))  
+}.
+
+Learned preference statement: 
+
+#preference(1,less(weight)){
+  10 :: atom(hasMinorGrp(0)) ; 
+  3 :: atom(hasOilyLevel(2)) ; 
+  2 :: not atom(hasPriceLevel(2))  ; 
+  8 :: atom(hasMinorGrp(2)) ; 
+  1 :: atom(hasOilyLevel(1)) 
+}.
