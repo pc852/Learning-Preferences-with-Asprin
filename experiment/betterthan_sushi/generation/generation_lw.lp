@@ -1,6 +1,6 @@
 #program generation.
 #const statements = 1.
-#const maxEle = 14.
+#const maxEle = 10.
 
 type(less(weight)).
 weight(1..12).

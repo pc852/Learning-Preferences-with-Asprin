@@ -13,14 +13,14 @@ class App(Application):
     
     def __init__(self):
         self.users = [i for i in range(100,110)] #to be obtained by method save_users
-        self.valset = [1,10,2,3,4,5,6,7,8,9]
+        self.valset = [0,1,2,3,4,5,6,7,8,9]
         self.forBenchmark = True #whether to generate for benchmarking, i.e. all program parts and training set in one .lp file
         self.dataset_name = '../dataset_final_trial_100'
         self.gen_files = [("../generation/generation_aso.lp","aso"),\
                           ("../generation/generation_lw.lp","less_weight"),\
                           ("../generation/generation_poset.lp","poset")]
         
-        #input files prefs_base.lp prefs_po.lp
+        #input files tts.lp
         self.dom_file = "../domain_v2.lp"
         self.exT_file = "../examples_v4.lp"
         self.bkd_file = "../../../backend.lp"
