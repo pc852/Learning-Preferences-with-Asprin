@@ -2,7 +2,7 @@
 
 name=asprin-vL
 
-btool=$HOME/asprin-vL/experiment/betterthan_sushi/benchmarks/benchmark-final-1k-p3
+btool=$HOME/asprin-vL/experiment/betterthan_sushi/benchmarks/benchmark-final-1k-p9
 
 project=asprin-vL
 
