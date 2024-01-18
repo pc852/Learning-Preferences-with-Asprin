@@ -1,0 +1,138 @@
+asprin_vL version 1.0
+Reading from stdin
+-:319:3-30: info: atom does not occur in any rule head:
+  preference(#X0,#P1,#P2,name(#X3),#P4)
+
+-:329:3-24: info: atom does not occur in any rule head:
+  preference(#X0,#P1,0,#P2,#P3)
+
+-:344:3-31: info: atom does not occur in any rule head:
+  preference(#X0,#P1,#P2,name(#X3),#X4)
+
+-:425:36-48: info: atom does not occur in any rule head:
+  _p_rule(#X0,#X1,#P2,#X3,#X4)
+
+-:699:34-45: info: atom does not occur in any rule head:
+  better(#X0,#P1,#X2,#X3)
+
+-:876:35-45: info: atom does not occur in any rule head:
+  _p_group(#X0,#P1,#X2,#X3)
+
+-:1005:38-65: info: atom does not occur in any rule head:
+  preference(#X0,#X1,0,for(#X2),#P3)
+
+-:1077:50-58: info: atom does not occur in any rule head:
+  _p_rel(#X0,#P1,#X2,#X3)
+
+-:1081:46-59: info: atom does not occur in any rule head:
+  _p_pre(#X0,#X1,#X2,#P3,#X4,#X5)
+
+-:1081:61-75: info: atom does not occur in any rule head:
+  _p_post(#X0,#X1,#X2,#P3,#X4,#X5)
+
+-:1087:23-37: info: atom does not occur in any rule head:
+  _p_post(#X0,#X1,#P2,#P3,#X4,#X5)
+
+-:1186:74-85: info: atom does not occur in any rule head:
+  _p_edge(#X0,#X1,#P2,#X3,#X4)
+
+-:1212:64-75: info: atom does not occur in any rule head:
+  _p_edge(#X0,#P1,#X2,#X3,#X4)
+
+-:1332:35-48: info: atom does not occur in any rule head:
+  _p_lits(#X0,#X1,#P2,#P3,#X4,#X5)
+
+-:1366:25-39: info: atom does not occur in any rule head:
+  _p_pre(#X0,#X1,#P2,#P3,#X4,#X5)
+
+-:1388:33-45: info: atom does not occur in any rule head:
+  _p_acyclic(#X0,#P1,#X2,#X3)
+
+-:236:1-16: info: no atoms over signature occur in program:
+  output/3
+
+-:228:25-37: info: atom does not occur in any rule head:
+  forbid_worse
+
+-:229:25-37: info: atom does not occur in any rule head:
+  forbid_equal
+
+-:230:25-35: info: atom does not occur in any rule head:
+  forbid_unc
+
+Solving...
+Answer: 1
+output(48,eq,40) preference(1,poset) output(48,eq,11) output(48,eq,5) output(48,eq,63) output(48,eq,15) output(48,eq,45) output(48,eq,9) output(48,eq,23) output(48,eq,7) output(11,eq,5) output(11,eq,63) output(11,eq,15) output(11,eq,45) output(11,eq,9) output(11,eq,23) output(11,eq,40) output(11,eq,7) output(5,eq,63) output(5,eq,15) output(5,eq,45) output(5,eq,9) output(5,eq,23) output(5,eq,40) output(5,eq,7) output(63,eq,15) output(63,eq,45) output(63,eq,9) output(63,eq,23) output(63,eq,40) output(63,eq,7) output(15,eq,45) output(15,eq,9) output(15,eq,23) output(15,eq,40) output(15,eq,7) output(45,eq,9) output(45,eq,23) output(45,eq,40) output(45,eq,7) output(9,eq,23) output(9,eq,40) output(9,eq,7) output(23,eq,40) output(23,eq,7) output(40,eq,7)
+Optimization: 45 0
+Answer: 2
+output(48,eq,40) preference(1,(1,1),1,for(atom(hasOiliness(0))),()) preference(1,(1,1),2,for(atom(hasOiliness(3))),()) preference(1,poset) output(48,better,11) output(48,better,63) output(48,better,15) output(48,better,45) output(48,better,9) output(48,better,23) output(48,better,7) output(40,better,7) output(5,better,45) output(5,better,7) output(5,better,63) output(5,better,15) output(5,better,9) output(5,better,23) output(11,worse,40) output(63,worse,40) output(15,worse,40) output(45,worse,40) output(9,worse,40) output(23,worse,40) output(11,worse,5) output(48,eq,5) output(11,eq,63) output(11,eq,15) output(11,eq,45) output(11,eq,9) output(11,eq,23) output(11,eq,7) output(5,eq,40) output(63,eq,15) output(63,eq,45) output(63,eq,9) output(63,eq,23) output(63,eq,7) output(15,eq,45) output(15,eq,9) output(15,eq,23) output(15,eq,7) output(45,eq,9) output(45,eq,23) output(45,eq,7) output(9,eq,23) output(9,eq,7) output(23,eq,7)
+Optimization: 31 1
+Answer: 3
+output(48,eq,40) preference(1,(1,1),1,for(atom(hasOiliness(0))),()) preference(1,(1,9),1,for(atom(hasOftenSold(3))),()) preference(1,(1,1),2,for(atom(hasPrice(0))),()) preference(1,(1,9),2,for(atom(hasPrice(0))),()) preference(1,poset) output(48,better,63) output(48,better,15) output(11,better,40) output(5,better,40) output(9,better,40) output(11,better,45) output(5,better,45) output(11,better,63) output(11,better,15) output(11,better,23) output(5,better,63) output(5,better,15) output(5,better,9) output(5,better,23) output(9,better,23) output(63,worse,40) output(15,worse,40) output(48,worse,11) output(48,worse,5) output(48,worse,9) output(48,worse,7) output(40,worse,7) output(45,worse,9) output(11,worse,7) output(63,worse,45) output(63,worse,7) output(15,worse,45) output(15,worse,7) output(9,worse,7) output(23,worse,7) output(63,worse,23) output(15,worse,23) output(11,worse,5) output(63,worse,9) output(15,worse,9) output(45,worse,7) output(48,eq,45) output(48,eq,23) output(11,eq,9) output(5,eq,7) output(63,eq,15) output(45,eq,23) output(45,eq,40) output(23,eq,40)
+Optimization: 30 2
+Answer: 4
+output(48,eq,40) preference(1,(1,1),1,for(atom(hasOiliness(0))),()) preference(1,(1,9),1,for(atom(hasMinorGrp(5))),()) preference(1,(1,1),2,for(atom(hasPrice(0))),()) preference(1,(1,9),2,for(atom(hasOiliness(3))),()) preference(1,poset) output(48,better,11) output(48,better,63) output(48,better,15) output(48,better,45) output(48,better,9) output(48,better,23) output(48,better,7) output(40,better,7) output(5,better,40) output(5,better,45) output(5,better,7) output(45,better,9) output(5,better,63) output(5,better,15) output(5,better,9) output(5,better,23) output(11,worse,40) output(63,worse,40) output(15,worse,40) output(45,worse,40) output(9,worse,40) output(23,worse,40) output(48,worse,5) output(11,worse,45) output(11,worse,7) output(63,worse,45) output(63,worse,7) output(15,worse,45) output(15,worse,7) output(9,worse,7) output(11,worse,23) output(63,worse,23) output(15,worse,23) output(9,worse,23) output(11,worse,5) output(11,eq,63) output(11,eq,15) output(11,eq,9) output(63,eq,15) output(63,eq,9) output(15,eq,9) output(45,eq,23) output(45,eq,7) output(23,eq,7)
+Optimization: 29 2
+Answer: 5
+output(48,eq,40) preference(1,(1,9),1,for(atom(hasOftenSold(3))),()) preference(1,(1,9),2,for(atom(hasMajorGrp(0))),()) preference(1,poset) output(11,better,40) output(5,better,40) output(63,better,40) output(15,better,40) output(9,better,40) output(23,better,40) output(11,better,45) output(11,better,7) output(5,better,45) output(5,better,7) output(63,better,45) output(15,better,45) output(9,better,7) output(11,better,63) output(11,better,15) output(11,better,23) output(5,better,63) output(5,better,15) output(5,better,23) output(9,better,23) output(48,worse,11) output(48,worse,5) output(48,worse,63) output(48,worse,15) output(48,worse,9) output(48,worse,23) output(48,worse,7) output(40,worse,7) output(45,worse,9) output(45,worse,23) output(63,worse,7) output(15,worse,7) output(23,worse,7) output(63,worse,9) output(15,worse,9) output(45,worse,7) output(48,eq,45) output(11,eq,5) output(11,eq,9) output(5,eq,9) output(63,eq,15) output(63,eq,23) output(15,eq,23) output(45,eq,40)
+Optimization: 25 1
+Answer: 6
+output(48,eq,40) preference(1,(1,1),1,for(atom(hasOiliness(0))),()) preference(1,(1,9),1,for(atom(hasOftenSold(0))),()) preference(1,(1,1),2,for(atom(hasOiliness(3))),()) preference(1,(1,9),2,for(atom(hasMinorGrp(2))),()) preference(1,poset) output(48,better,11) output(48,better,5) output(48,better,63) output(48,better,15) output(48,better,45) output(48,better,9) output(48,better,23) output(48,better,7) output(40,better,7) output(11,better,7) output(5,better,7) output(63,better,7) output(45,better,9) output(45,better,23) output(11,better,15) output(11,better,9) output(11,better,23) output(63,better,15) output(63,better,9) output(63,better,23) output(5,better,15) output(5,better,9) output(5,better,23) output(45,better,7) output(11,worse,40) output(5,worse,40) output(63,worse,40) output(15,worse,40) output(45,worse,40) output(9,worse,40) output(23,worse,40) output(11,worse,45) output(15,worse,45) output(11,worse,63) output(63,eq,45) output(15,eq,9) output(15,eq,23) output(15,eq,7) output(9,eq,23) output(9,eq,7) output(23,eq,7) output(11,unc,5) output(5,unc,63) output(5,unc,45)
+Optimization: 21 2
+Answer: 7
+output(48,eq,40) preference(1,(1,1),1,for(atom(hasPrice(2))),()) preference(1,(1,2),1,for(atom(hasMinorGrp(3))),()) preference(1,(1,3),1,for(atom(hasOftenSold(0))),()) preference(1,(1,4),1,for(atom(hasPrice(1))),()) preference(1,(1,5),1,for(atom(hasOiliness(2))),()) preference(1,(1,6),1,for(atom(hasOiliness(3))),()) preference(1,(1,7),1,for(atom(hasMinorGrp(2))),()) preference(1,(1,8),1,for(atom(hasMinorGrp(11))),()) preference(1,(1,9),1,for(atom(hasMinorGrp(3))),()) preference(1,(1,10),1,for(atom(hasMajorGrp(0))),()) preference(1,(1,11),1,for(atom(hasOftenSold(1))),()) preference(1,(1,12),1,for(atom(hasPrice(1))),()) preference(1,(1,13),1,for(atom(hasOftenSold(3))),()) preference(1,(1,14),1,for(atom(hasMinorGrp(6))),()) preference(1,(1,1),2,for(atom(hasMajorGrp(1))),()) preference(1,(1,2),2,for(atom(hasOftenSold(2))),()) preference(1,(1,3),2,for(atom(hasMinorGrp(3))),()) preference(1,(1,4),2,for(atom(hasOiliness(3))),()) preference(1,(1,5),2,for(atom(hasMajorGrp(0))),()) preference(1,(1,6),2,for(atom(hasOiliness(2))),()) preference(1,(1,7),2,for(atom(hasPrice(1))),()) preference(1,(1,8),2,for(atom(hasMinorGrp(2))),()) preference(1,(1,9),2,for(atom(hasPrice(0))),()) preference(1,(1,10),2,for(atom(hasOftenSold(3))),()) preference(1,(1,11),2,for(atom(hasMinorGrp(10))),()) preference(1,(1,12),2,for(atom(hasOftenSold(0))),()) preference(1,(1,13),2,for(atom(hasMinorGrp(6))),()) preference(1,(1,14),2,for(atom(hasPrice(2))),()) preference(1,poset) output(48,better,11) output(48,better,5) output(48,better,63) output(48,better,15) output(48,better,45) output(48,better,9) output(48,better,23) output(48,better,7) output(40,better,7) output(11,better,7) output(5,better,7) output(63,better,7) output(15,better,7) output(9,better,7) output(23,better,7) output(45,better,9) output(45,better,23) output(15,better,23) output(11,better,5) output(11,better,63) output(11,better,15) output(11,better,9) output(11,better,23) output(63,better,23) output(9,better,23) output(45,better,7) output(11,worse,40) output(5,worse,40) output(63,worse,40) output(15,worse,40) output(45,worse,40) output(9,worse,40) output(23,worse,40) output(11,worse,45) output(5,worse,45) output(63,worse,45) output(15,worse,45) output(5,worse,15) output(63,worse,15) output(5,worse,9) output(63,worse,9) output(5,unc,63) output(5,unc,23) output(15,unc,9)
+Optimization: 19 14
+Answer: 8
+output(48,eq,40) preference(1,(1,2),1,for(atom(hasOftenSold(3))),()) preference(1,(1,4),1,for(atom(hasOftenSold(0))),()) preference(1,(1,6),1,for(atom(hasOftenSold(0))),()) preference(1,(1,11),1,for(atom(hasMajorGrp(0))),()) preference(1,(1,12),1,for(atom(hasOftenSold(0))),()) preference(1,(1,14),1,for(atom(hasOftenSold(0))),()) preference(1,(1,2),2,for(atom(hasOftenSold(0))),()) preference(1,(1,4),2,for(atom(hasOftenSold(1))),()) preference(1,(1,6),2,for(atom(hasOiliness(3))),()) preference(1,(1,11),2,for(atom(hasOftenSold(3))),()) preference(1,(1,12),2,for(atom(hasPrice(0))),()) preference(1,(1,14),2,for(atom(hasStyle(0))),()) preference(1,poset) output(48,better,45) output(11,better,40) output(5,better,40) output(63,better,40) output(15,better,40) output(9,better,40) output(23,better,40) output(11,better,45) output(11,better,7) output(5,better,45) output(5,better,7) output(63,better,45) output(63,better,7) output(15,better,45) output(15,better,7) output(9,better,7) output(23,better,7) output(11,better,63) output(11,better,15) output(11,better,23) output(63,better,15) output(63,better,23) output(5,better,63) output(5,better,15) output(5,better,9) output(5,better,23) output(9,better,23) output(45,worse,40) output(48,worse,11) output(48,worse,5) output(48,worse,63) output(48,worse,15) output(48,worse,9) output(48,worse,23) output(48,worse,7) output(40,worse,7) output(45,worse,9) output(45,worse,23) output(15,worse,23) output(11,worse,5) output(63,worse,9) output(15,worse,9) output(45,worse,7) output(11,eq,9)
+Optimization: 18 6
+*** Info : (asprin_vL): Sending shutdown signal...
+*** Info : (asprin_vL): Queueing signal...
+Traceback (most recent call last):
+  File "clingo/application.py", line 359, in _pyclingo_application_main
+  File "asprin_vL.py", line 598, in main
+  File "clingo/control.py", line 805, in solve
+  File "clingo/solving.py", line 527, in get
+  File "clingo/_internal.py", line 44, in _c_call
+  File "clingo/_internal.py", line 75, in _handle_error
+RuntimeError: solving stopped by signal
+*** ERROR: (asprin_vL): solving stopped by signal
+*** Info : (asprin_vL): Shutdown completed in 0.231 seconds
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 8+
+  Optimum    : unknown
+Optimization : 18 6
+Calls        : 1
+Time         : 598.287s (Solving: 564.00s 1st Model: 6.41s Unsat: 0.00s)
+CPU Time     : 2284.407s
+Threads      : 4        (Winner: 4)
+
+Choices      : 4379659  (Domain: 981)
+Conflicts    : 47551    (Analyzed: 47551)
+Restarts     : 64       (Average: 742.98 Last: 15801)
+Model-Level  : 9426.0  
+Problems     : 4        (Average Length: 1.00 Splits: 0)
+Lemmas       : 12274171 (Deleted: 12162506)
+  Binary     : 168      (Ratio:   0.00%)
+  Ternary    : 18149    (Ratio:   0.15%)
+  Conflict   : 47551    (Average Length: 5232.6 Ratio:   0.39%) 
+  Loop       : 12211835 (Average Length:  508.4 Ratio:  99.49%) 
+  Other      : 14785    (Average Length:    3.1 Ratio:   0.12%) 
+  Distributed: 4934     (Ratio:   0.04% Average LBD: 2.91) 
+  Integrated : 14788    (Ratio: 299.72% Unit: 46 Average Jumps: 14199.59)
+Backjumps    : 47551    (Average: 67.21 Max: 355002 Sum: 3195994)
+  Executed   : 47539    (Average: 67.21 Max: 355002 Sum: 3195971 Ratio: 100.00%)
+  Bounded    : 12       (Average:  1.92 Max:   2 Sum:     23 Ratio:   0.00%)
+
+Rules        : 6089923 
+  Choice     : 43      
+  Minimize   : 2       
+Atoms        : 64602   
+Bodies       : 4959698 
+  Count      : 56      
+Equivalences : 63719    (Atom=Atom: 8528 Body=Body: 16452 Other: 38739)
+Tight        : No       (SCCs: 46 Non-Hcfs: 0 Nodes: 4802112 Gammas: 0)
+Variables    : 4834795  (Eliminated:    0 Frozen: 4806855)
+Constraints  : 28032276 (Binary:  82.5% Ternary:   3.4% Other:  14.1%)
+
