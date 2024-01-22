@@ -101,7 +101,7 @@ in(isPale(1),3).
 in(isPale(1),6).
 
 in(isVeg(1),6).
-in(isVeg(1),9)
+in(isVeg(1),9).
 
 in(isTuna(1),2).
 in(isTuna(1),7).
